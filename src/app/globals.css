@@ -1,33 +1,136 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+:root{
+    --white: white;
+    --lightYellow: #F9F900;
+    --Yellow: #ffe727;
+    --tiffany: #4DFFFF;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier new', sans-serif;
+}
+p img {
+  max-width: 100%; /* 使图片最大宽度不超过其包含的<p>标签宽度 */
+  height: auto; /* 保持图片的原始宽高比 */
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+pre {
+  white-space: pre-wrap;       /* 保持格式化的空格，允许自动换行 */
+  word-wrap: break-word;       /* 在必要时可以在任何字符间换行 */
+  overflow-x: auto;            /* 提供水平滚动条 */  /* 轻微的背景色区分代码块 */
+  padding: 1em;                /* 一些内边距 */
+  border-radius: 0.5em;        /* 圆角边框 */
+  border: 1px solid #ddd;      /* 灰色边框 */
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+code {
+  display: block;              /* 让<code>元素像块一样显示 */
+  overflow-x: auto;            /* 同样提供水平滚动条 */
+}
+
+h1 { 
+  color:#F9F900;/* 设置字体颜色 */
+  font-size: 24px; /* 设置字体大小 */
+  text-align: center; /* 设置文本居中对齐 */
+  margin-top: 20px; /* 设置上边距 */
+  margin-bottom: 20px; /* 设置下边距 */
+}
+
+h2{
+    color: var(--Yellow);
+}
+
+pre {
+    border: 1px solid #ccc; /* 设置边框样式 */
+  max-width: 100%; /* 确保pre元素不会超过其父容器的宽度 */
+  overflow-x: auto; /* 当内容溢出时显示水平滚动条 */
+  white-space: pre-wrap; /* 保持空白符的处理方式，同时允许单词在必要时换行 */
+  word-wrap: break-word; /* 在长单词或URL地址不足以在当前行放下时进行换行 */
+}
+
+code {
+  display: block; /* 使code元素表现为块级元素，有助于应用滚动条 */
+  white-space: pre; /* 保持格式化文本的原始空白符 */
+}
+
+p{
+    color: var(--lightYellow);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+em{
+    font-style: italic;
+   color: var(--lightYellow);
+   opacity: 0.8;
+}
+
+body{
+    background-color: black;
+    color: var(--tiffany);
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.buttons{
+    display: flex;
+    gap: 20px
+}
+
+.container{
+    width: 1536px;
+    margin: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media(max-width: 1536px){
+    .container{
+       width: 1366px;
+    }
+}
+
+@media(max-width: 1336px){
+    .container{
+       width: 1280px;
+    }
+}
+
+@media(max-width: 1280px){
+    .container{
+       width: 1024px;
+    }
+}
+
+@media(max-width: 1024px){
+    .container{
+       width: 768px;
+    }
+}
+
+@media(max-width: 768px){
+    .container{
+       width: 640px;
+    }
+}
+
+@media(max-width: 640px){
+    .container{
+       width: 475px;
+    }
+}
+
+@media(max-width: 475){
+    .container{
+       width: 380px;
+    }
 }

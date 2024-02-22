@@ -1,0 +1,54 @@
+.links{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logout{
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.mobileLinks{
+    display: none;
+}
+
+.menuButton{
+    display: none;
+
+}
+
+.menu{
+    position: relative;
+    background-color: black;
+
+}
+
+@media (max-width: 768px){
+    .links{
+        display: none;
+    }
+
+    .menuButton{
+        display: block;
+        cursor: pointer;
+    }
+
+    .mobileLinks{
+        border: 3px solid var(--Yellow);
+        border-radius: 5px;
+        position: absolute;
+        top: 100px;
+        right: 0px;
+        width:30%;
+        background-color: var(--Yellow);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        z-index: 999; 
+    }
+
+}

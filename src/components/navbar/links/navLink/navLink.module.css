@@ -1,0 +1,18 @@
+.container{
+    border-right: 1px solid var(--tiffany);
+    color: white;
+    font-family: 'Copperplate', Courier, monospace;
+    background-color: black;
+    min-width: 100px;
+    border-radius: 2px;
+    padding: 10px;
+    font-weight: 500px;
+    text-align: center;
+    transition: 0.35s;
+}
+
+.active{
+    background-color: var(--tiffany);
+    color: black;
+    font-weight: bold;
+}

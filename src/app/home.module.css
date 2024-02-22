@@ -1,0 +1,80 @@
+.container{
+    display: flex;
+    gap: 100px;
+
+}
+
+.textContainer{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.title{
+    color: var(--lightYellow);
+    font-size: 96px;
+    text-shadow:2px 3px 5px var(--tiffany);
+    font-style: italic;
+}
+
+.description{
+    color:white;
+    font-size: 20px;
+}
+
+.buttons{
+    display: flex;
+    gap: 20px
+}
+
+.button{
+    padding: 20px;
+    min-width: 120px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.button:first-child{
+    background-color: var(--lightYellow);
+    color:black;
+}
+
+.brands{
+    width: 200px;
+    position:relative;
+    filter: grayscale(100%);
+    display: flex;
+    justify-content: space-between;
+}
+.brandImg {
+  width: 100%; /* 調整圖片的寬度以平分空間 */
+}
+
+.imgContainer{
+    flex:1;
+    position: relative;
+    width: 100%;
+    filter:drop-shadow(0px 0px 10px rgba(0,0,0,.5)) contrast(120%);
+    min-height: 500px;
+}
+
+@media(max-width:1024px){
+    .container{
+        flex-direction: column;
+        text-align: center;
+    }
+    .buttons{
+        justify-content: center;
+    }
+}
+
+@media(max-width:768px){
+    .title{
+        font-size: 64px;
+    }
+    .brands{
+        width:100%;
+    }
+}
