@@ -2,7 +2,6 @@
 import Image from "next/image";
 import styles from "./contact.module.css";
 import { useState } from "react";
-import { PrismaClient } from '@prisma/client';
 
 
 const ContactForm = () => {
@@ -12,6 +11,11 @@ const ContactForm = () => {
     phoneNumber: "",
     message: "",
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState('');
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
 
   
   const handleChange = (e) => {
@@ -23,7 +27,13 @@ const ContactForm = () => {
   };
 
  const handleSubmit = async (e) => {
-  e.preventDefault(); 
+   e.preventDefault(); 
+   if (!formState.name || !formState.message || !formState.email) {
+     setMessage('Please at least enter your name, email and message.');
+     return; // 阻止表单提交
+   }
+   setIsSubmitting(true);
+    setMessage('Please wait for the data to input into database.')
 
   // 发送 POST 请求到 /api/contact（或您定义的 API 路由）
   const response = await fetch('/api/contact', {
@@ -36,15 +46,23 @@ const ContactForm = () => {
 
   if (response.ok) {
     console.log('Form submitted successfully');
+    setMessage('I have received it, can send again after 10 secs!');
     setFormState({
       name: "",
       email: "",
       phoneNumber: "",
       message: "",
     });
+     setButtonDisabled(true);
+      setTimeout(() => {
+        setMessage('');
+        setButtonDisabled(false);
+      }, 10000); 
   } else {
     console.error("Error submitting form");
+    setMessage('Submission failed, please contact me with another social media.');
   }
+   setIsSubmitting(false);
 };
 
 
@@ -59,7 +77,8 @@ const ContactForm = () => {
           <input type="text" placeholder="Email Address" name="email" value={formState.email} onChange={handleChange} />
           <input type="text" placeholder="Phone Number (Optional)" name="phoneNumber" value={formState.phoneNumber} onChange={handleChange} />
           <textarea name="message" cols="30" rows="10" placeholder="Message" value={formState.message} onChange={handleChange}></textarea>
-          <button type="submit">Send</button>
+          <button type="submit" disabled={buttonDisabled}>Send</button>
+          <p className={styles.messageReceived}>{message}</p>
         </form>
       </div>
     </div>
