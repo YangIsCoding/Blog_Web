@@ -25,21 +25,28 @@ const ContactForm = () => {
  const handleSubmit = async (e) => {
   e.preventDefault(); 
 
-  try {
-    const savedForm = await prisma.contactForm.create({
-      data: formState,
-    });
-    console.log('Saved form:', savedForm);
+  // 发送 POST 请求到 /api/contact（或您定义的 API 路由）
+  const response = await fetch('/api/contact', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formState),
+  });
+
+  if (response.ok) {
+    console.log('Form submitted successfully');
     setFormState({
       name: "",
       email: "",
       phoneNumber: "",
       message: "",
     });
-  } catch (error) {
-    console.error("Error saving form to database:", error);
+  } else {
+    console.error("Error submitting form");
   }
 };
+
 
   return (
     <div className={styles.container}>
