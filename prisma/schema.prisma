@@ -9,8 +9,10 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./db.dev"
+  //provider = "sqlite"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+ //url = "file:./dev.db"
 }
 
 model ContactForm {
