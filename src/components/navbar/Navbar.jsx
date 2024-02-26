@@ -7,8 +7,7 @@ const Navbar = () => {
     return (
         <div className={styles.container}>
             <Link href="/" passHref>
-                <Image src="/profile_yang.jpg
-                    " alt="Logo" className={styles.logo} width={50} height={50} />
+                <Image src="/profile_yang.jpg" alt="Logo" className={styles.logo} width={50} height={50} />
             </Link>
             <div>
                 <Links/>
