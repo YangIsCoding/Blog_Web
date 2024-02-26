@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+  gap: 100px;
+}
+
+.imgContainer {
+  
+  flex: 1;
+  position: relative;
+  height: calc(100vh - 200px);
+}
+
+.img{
+  object-fit: cover;
+}
+
+.Blogcontent {
+  max-width: 5000px; /* 限制最大宽度，避免内容溢出 */
+  overflow-x: auto; /* 当内容宽度超过容器宽度时，显示水平滚动条 */
+  padding: 20px; /* 在内容与容器边缘之间添加20px的空间 */
+  word-wrap: break-word; /* 允许长单词在必要时换行 */
+  box-sizing: border-box; /* 包括边框和内边距在元素总宽度和总高度内 */
+}
+
+
+.textContainer {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  max-width: 800px;
+}
+
+.title{
+  font-size: 64px;
+}
+
+.detail{
+  display: flex;
+  gap: 20px;
+}
+
+.avatar{
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+}
+
+.detailText{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detailTitle{
+  color: gray;
+  font-weight: bold;
+}
+
+.detailValue{
+  font-weight: 500;
+}
+
+.content{
+  font-size: 20px;
+}
+
+@media (max-width:768px){
+  .imgContainer{
+    display: none;
+  }
+}
+
+@media(max-width: 640px){
+    .container{
+       width: 475px;
+    }
+}
+
+@media(max-width: 475){
+    .container{
+       width: 380px;
+    }
+}
