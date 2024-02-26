@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+}
+
+.imgContainer {
+  flex: 1;
+  position: relative;
+  min-height: 300px;
+  min-width: 300px;
+}
+
+.img {
+  object-fit: contain;
+}
+
+.formContainer {
+  flex: 1;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form input,
+.form textarea {
+background-color: black;
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  border: 1px solid var(--Yellow);
+  color: var(--lightYellow);
+}
+
+.form button {
+  padding: 20px;
+  background-color: black;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--Yellow);
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.messageReceived {
+  border-bottom: 1px solid var(--tiffany);
+  border-radius: 10%;
+  color: var(--Yellow);
+  font-weight: bold;
+  text-align: center;
+}
+
+.form button:hover {
+  background-color: var(--Yellow);
+  color:black
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+.img {
+  border-radius: 50%;
+}
+}
