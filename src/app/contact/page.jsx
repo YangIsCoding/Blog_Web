@@ -2,6 +2,10 @@
 import Image from "next/image";
 import styles from "./contact.module.css";
 import ContactForm from "@/components/form/contactForm";
+import { PrismaClient } from '@prisma/client';
+
+
+const prisma = new PrismaClient();
 
 export const metadata = {
   title: "Contact Page",

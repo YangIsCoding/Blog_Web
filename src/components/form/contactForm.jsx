@@ -2,6 +2,8 @@
 import Image from "next/image";
 import styles from "./contact.module.css";
 import { useState } from "react";
+import { PrismaClient } from '@prisma/client';
+
 
 const ContactForm = () => {
   const [formState, setFormState] = useState({
@@ -11,7 +13,7 @@ const ContactForm = () => {
     message: "",
   });
 
-  // 处理输入变化
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormState(prevState => ({
@@ -20,15 +22,24 @@ const ContactForm = () => {
     }));
   };
 
-  // 处理表单提交
-  const handleSubmit = (e) => {
-    e.preventDefault(); // 阻止表单默认提交行为
+ const handleSubmit = async (e) => {
+  e.preventDefault(); 
 
-    // 这里可以添加你处理表单数据的代码
-    console.log(formState);
-
-    // 重置表单状态或执行其他操作
-  };
+  try {
+    const savedForm = await prisma.contactForm.create({
+      data: formState,
+    });
+    console.log('Saved form:', savedForm);
+    setFormState({
+      name: "",
+      email: "",
+      phoneNumber: "",
+      message: "",
+    });
+  } catch (error) {
+    console.error("Error saving form to database:", error);
+  }
+};
 
   return (
     <div className={styles.container}>
