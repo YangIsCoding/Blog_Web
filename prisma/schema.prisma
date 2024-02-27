@@ -9,10 +9,9 @@ generator client {
 }
 
 datasource db {
-  //provider = "sqlite"
-  provider = "mysql"
-  url      = env("DATABASE_URL")
- //url = "file:./dev.db"
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model ContactForm {
@@ -22,4 +21,22 @@ model ContactForm {
   phoneNumber String?
   message     String
   createdAt   DateTime @default(now())
+}
+
+model post {
+  id       Int     @id @unique @default(autoincrement())
+  userId    Int      
+  title     String
+  filePath      String
+  shortdesc  String
+  postTime  String
+  postImg   String
+  user      user    @relation(fields: [userId], references: [userId])
+}
+
+model user {
+  userId      Int     @id @unique @default(autoincrement())
+  userName    String
+  userImg     String
+  posts       post[]
 }
