@@ -88,6 +88,6 @@
     height: 50px; /* 縮小一半 */
   }
   .imgContainer{
-        min-height: 400px;
+        min-height: 100px;
     }
 }
