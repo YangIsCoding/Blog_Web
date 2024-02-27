@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 
 
+
 const Home = () => {
   const router = useRouter();
   const handleClick = () => {
