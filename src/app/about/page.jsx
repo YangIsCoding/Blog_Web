@@ -6,10 +6,14 @@ export const metadata = {
   description: "About description",
 };
 
+
 const AboutPage = () => {
-  return (
-    <div className={styles.container}>
-      <div className={styles.imgContainer}>
+
+  // console.log("lets check where it works")
+    return (
+      
+        <div className={styles.container}>
+            <div className={styles.imgContainer}>
         <Image
           src="/about.jpg"
           alt="About Image"
@@ -23,22 +27,23 @@ const AboutPage = () => {
           Infuse code with &quot;ROMANCE&quot;
         </h1>
         <p className={styles.desc}>
-          &quot;The world is a simulation.&quot;<br /><br />
+          &quot;The world is a simulation.&quot;<br></br>
 
-          This realization dawned on me during a philosophical debate on materialism versus idealism. I came to understand that the internet and server concepts are perfect metaphors for idealism. Our world is replete with virtual constructs like currency, nationality, and law - all born from collective human consensus and shaping our social fabric. These days, such constructs predominantly reside in the cloud, significantly influencing sectors like healthcare, finance, and transportation. This transition to the virtual underscores a vital truth about our society's structure. So, enhancing these virtual elements is crucial for world improvement, with computer science playing a pivotal role.
+This realization dawned on me during a philosophical debate on materialism versus idealism. I came to understand that the internet and server concepts are perfect metaphors for idealism. Our world is replete with virtual constructs like currency, nationality, and law - all born from collective human consensus and shaping our social fabric. These days, such constructs predominantly reside in the cloud, significantly influencing sectors like healthcare, finance, and transportation. This transition to the virtual underscores a vital truth about our society&apos;s structure. So, enhancing these virtual elements is crucial for world improvement, with computer science playing a pivotal role.
+
         </p>
         <div className={styles.boxes}>
           <div className={styles.box}>
             <h1>100000 +</h1>
-            <p className={styles.boxDesc}>Lines of codes</p>
+            <p className={ styles.boxDesc}>Lines of codes</p>
           </div>
           <div className={styles.box}>
             <h1>30 +</h1>
-            <p className={styles.boxDesc}>Languages and tools</p>
+            <p className={ styles.boxDesc}>Languages and tools</p>
           </div>
           <div className={styles.box}>
             <h1>10 +</h1>
-            <p className={styles.boxDesc}>Numbers of projects</p>
+            <p className={ styles.boxDesc}>Numbers of projects</p>
           </div>
         </div>
       </div>
