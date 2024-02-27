@@ -83,4 +83,8 @@
     .title{
         font-size: 40px;
     }
+    .brandImg {
+    width: 50px; /* 縮小一半 */
+    height: 50px; /* 縮小一半 */
+  }
 }
