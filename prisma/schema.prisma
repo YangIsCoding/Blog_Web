@@ -27,7 +27,7 @@ model post {
   id       Int     @id @unique @default(autoincrement())
   userId    Int      
   title     String
-  filePath      String
+  content      String
   shortdesc  String
   postTime  String
   postImg   String

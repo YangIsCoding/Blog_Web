@@ -26,7 +26,7 @@ async function main() {
       userId: user1.userId,
       title: 'First Post',
       shortdesc: 'This is the body of my 1 post',
-      filePath: "public/posts/post1.md",
+      content: "public/posts/post1.md",
       postTime: "2024.07.07",
       postImg: "/about.jpg"
     }
@@ -37,7 +37,7 @@ async function main() {
       userId: user2.userId,
       title: 'Second Post',
       shortdesc: 'This is the body of my 2 post',
-      filePath: "public/posts/post1.md",
+      content: "public/posts/post1.md",
       postTime: "2024.07.07",
       postImg: "/about.jpg"
     }
@@ -48,7 +48,7 @@ async function main() {
       userId: user2.userId,
       title: 'Third Post',
       shortdesc: 'This is the body of my 3 post',
-      filePath: "public/posts/post1.md",
+      content: "public/posts/post1.md",
       postTime: "2024.07.07",
       postImg: "/about.jpg"
     }
@@ -59,7 +59,7 @@ async function main() {
       userId: user1.userId,
       title: 'forth Post',
       shortdesc: 'This is the body of my 4 post',
-      filePath: "public/posts/post1.md",
+      content: "public/posts/post1.md",
       postTime: "2024.07.07",
       postImg: "/about.jpg"
     }
