@@ -9,14 +9,12 @@ import styles from "./blog.module.css";
 const getData = async () => { 
   
   const host = process.env.HOST
-  const url = "http://localhost:3000/api/posts"
-  const url2 = `${host}/api/posts`
-  console.log("URL:", url2);
-  const res = await fetch(url2, { 
+  const url= `${host}/api/posts`
+  const res = await fetch(url, { 
     method: 'GET', 
     cache: 'no-store' 
   });
-
+9
   if (!res.ok) { 
     throw new Error("Failed to fetch data");
   }
