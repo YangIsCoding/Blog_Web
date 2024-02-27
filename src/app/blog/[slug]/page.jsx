@@ -21,6 +21,15 @@ const SinglePostPage = ({params}) => {
   const [post, setPost] = useState(null);
   const [markdownContent, setMarkdownContent] = useState('');
   const { slug } = params;
+  const [postContent, setPostContent] = useState('');
+
+  useEffect(() => {
+    fetch('/posts/post1.md')
+      .then((response) => response.text())
+      .then((text) => {
+        setPostContent(marked(text));
+      });
+  }, []);
   
   useEffect(() => {
     if (slug) {
@@ -55,6 +64,7 @@ const SinglePostPage = ({params}) => {
           </div>
         </div>
         <article dangerouslySetInnerHTML={{ __html: dataHTML || '' }} />
+        <div dangerouslySetInnerHTML={{ __html: postContent }} />
         <p>here</p>
       </div>
     </div>
