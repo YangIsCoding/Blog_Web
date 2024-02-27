@@ -4,9 +4,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
 
-
-
-
 const Home = () => {
   const router = useRouter();
   const handleClick = () => {
@@ -19,10 +16,12 @@ const Home = () => {
   <div className={styles.container}>
       <div className={styles.textContainer}>
         <h1 className={ styles.title}>
-         Y.Dynamics
+         P.Y.CHEN
         </h1>
         <p className={ styles.description}>
-        We are a group of professionals who are passionate about technology and its potential to transform businesses. We are committed to helping our clients achieve their goals by providing them with the best possible solutions.
+          Hello!<br></br>I'm Pin-Yang Chen, Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.
+          Currently working as a software engineer at a blockchain company, ISUNCLOUD.<br></br>
+          Nice to meet you.
       </p>
       <div className={styles.buttons}>
         <button className={styles.button} onClick={handleClick}>Learn More</button>
@@ -37,7 +36,7 @@ const Home = () => {
       </div>
     </div>
     <div className={styles.imgContainer}>
-      <Image src="/hero.webp" alt="" fill className={styles.heroImg}/>
+      <Image src="/profile_yang.jpg" alt="" fill className={styles.heroImg}/>
     </div>
     </div>
   );
