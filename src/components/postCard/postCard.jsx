@@ -1,4 +1,4 @@
-import Image from "next/image"
+/*import Image from "next/image"
 import styles from "./postCard.module.css"
 import Link from "next/link"
 
@@ -24,14 +24,13 @@ const PostCard = ({ }) => {
   )
 }
 
-export default PostCard
+export default PostCard*/
 
-/*import Image from "next/image"
+import Image from "next/image"
 import styles from "./postCard.module.css"
 import Link from "next/link"
 
 const PostCard = ({ post }) => {
-  //console.log(post);
   return (
     <div className={styles.container}>
 
@@ -55,4 +54,4 @@ const PostCard = ({ post }) => {
   )
 }
 
-export default PostCard*/
+export default PostCard

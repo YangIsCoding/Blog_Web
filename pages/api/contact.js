@@ -1,3 +1,4 @@
+//api/contact.js
 import { PrismaClient } from '@prisma/client';
 
 export default async function handler(req, res) {
@@ -15,7 +16,6 @@ export default async function handler(req, res) {
       await prisma.$disconnect();
     }
   } else {
-    // 处理其他 HTTP 方法的情况
     res.setHeader('Allow', ['POST']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }

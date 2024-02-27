@@ -35,7 +35,6 @@ const ContactForm = () => {
    setIsSubmitting(true);
     setMessage('Please wait for the data to input into database.')
 
-  // 发送 POST 请求到 /api/contact（或您定义的 API 路由）
   const response = await fetch('/api/contact', {
     method: 'POST',
     headers: {
