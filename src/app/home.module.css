@@ -87,4 +87,7 @@
     width: 50px; /* 縮小一半 */
     height: 50px; /* 縮小一半 */
   }
+  .imgContainer{
+        min-height: 400px;
+    }
 }
