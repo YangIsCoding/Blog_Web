@@ -19,7 +19,7 @@ const Home = () => {
          P.Y.CHEN
         </h1>
         <p className={ styles.description}>
-          Hello!<br></br>I'm Pin-Yang Chen, Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.
+          Hello!<br></br>I&#39;m Pin-Yang Chen, Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.
           Currently working as a software engineer at a blockchain company, ISUNCLOUD.<br></br>
           Nice to meet you.
       </p>
