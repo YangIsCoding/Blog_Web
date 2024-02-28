@@ -24,6 +24,25 @@ const SinglePostPage = ({params}) => {
   const [postContent, setPostContent] = useState('');
 
   useEffect(() => {
+  if (slug) {
+    getData(slug)
+      .then(post => {
+        setPost(post);
+        const filePath = post.content;
+        fetch(`${filePath}`)
+          .then((response) => response.text())
+          .then((text) => {
+            setPostContent(marked(text));
+          });
+      })
+      .catch(error => console.error(error));
+  }
+}, [slug]); 
+
+if (!post) return <div>Loading...</div>;
+  
+
+  /*useEffect(() => {
     fetch('/posts/post1.md')
       .then((response) => response.text())
       .then((text) => {
@@ -41,9 +60,20 @@ const SinglePostPage = ({params}) => {
     }
   }, [slug]);
 
-  
   if (!post) return <div>Loading...</div>;
-  const dataHTML = marked(post.content);
+  const filePath = post.content;
+
+  useEffect(() => {
+    fetch(`${filePath}`)
+      .then((response) => response.text())
+      .then((text) => {
+        setPostContent(marked(text));
+      });
+  }, []);＊/
+
+  
+ /* if (!post) return <div>Loading...</div>;
+  const filePath = post.content;*/
 
   return (
     <div className={styles.container}>
@@ -63,9 +93,8 @@ const SinglePostPage = ({params}) => {
             <span className={styles.detailValue}>{post.postTime}</span>
           </div>
         </div>
-        <article dangerouslySetInnerHTML={{ __html: dataHTML || '' }} />
         <div dangerouslySetInnerHTML={{ __html: postContent }} />
-        <p>here</p>
+        <p>Thank you!</p>
       </div>
     </div>
   );
