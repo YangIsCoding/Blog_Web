@@ -6,11 +6,12 @@ const resume = () => {
         <div>
             <div className={styles.imgContainer}>
                 <Image
-              src= "/yang.webp" 
-              alt="my_protrait" 
-              width={500} 
-              height={500} 
-                />
+          src="/yang.webp" // 替换成您图片的路径
+          alt="描述您的图片内容" // 提供图片的替代文本
+          width={500} // 设定图片最大宽度
+          height={300} // 设定图片高度
+          layout="intrinsic" // 保持原始尺寸
+        />
             
                 </div>
             <h1 id="pin-yang-chen">Pin-Yang Chen</h1>
