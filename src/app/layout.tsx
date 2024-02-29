@@ -11,8 +11,8 @@ interface RootLayoutProps {
 }
 
 export const metadata = {
-  title: 'Y.Dynamics',
-  description: 'Next.js starter app',
+  title: 'P.Y,Chen',
+  description: 'dev with nextjs 14',
 };
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
