@@ -87,6 +87,18 @@ a{
     color: inherit;
 }
 
+th, td {
+  border: 1px solid white;
+  padding: 10px; /* Adjust the padding as needed */
+  border-radius: 5px; /* Adjust the border-radius as needed */
+}
+
+/* Remove cell spacing (optional) and allow border radius to be visible */
+table {
+  border-collapse: separate;
+  border-spacing: 0; /* Removes space between cells */
+}
+
 .buttons{
     display: flex;
     gap: 20px
