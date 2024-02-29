@@ -78,6 +78,7 @@ const ContactForm = () => {
           <textarea name="message" cols="30" rows="10" placeholder="Message" value={formState.message} onChange={handleChange}></textarea>
           <button type="submit" disabled={buttonDisabled}>Send</button>
           <p className={styles.messageReceived}>{message}</p>
+          
         </form>
       </div>
     </div>

@@ -16,10 +16,18 @@ const getData = async () => {
 
 const BlogPage = () => {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // 新增加載狀態
 
   useEffect(() => {
-    getData().then(setPosts).catch(error => console.error(error));
+    getData()
+      .then(setPosts)
+      .catch(error => console.error(error))
+      .finally(() => setIsLoading(false)); // 無論成功或失敗，結束時都設置加載狀態為false
   }, []);
+
+  if (isLoading) { // 判斷是否在加載中
+    return <div className={styles.container}>Loading...</div>; // 顯示加載中提示
+  }
 
   return (
     <div className={styles.container}>
