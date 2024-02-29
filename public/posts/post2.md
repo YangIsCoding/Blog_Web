@@ -105,7 +105,7 @@ D. 應用程序漏洞
 1. 攻擊者首先部署EtherStore合約。然後，攻擊者部署Attack合約，並在構造函數中指定EtherStore合約的地址。這樣，Attack合約就可以與EtherStore合約進行交互。
 
 
-2.攻擊者通過調用Attack合約的attackEtherStore()函數來啟動攻擊。這個函數首先要求攻擊者發送至少1個以太幣到Attack合約。attackEtherStore()函數接著調用EtherStore合約的depositFunds()方法，將這1個以太幣存入EtherStore合約。緊接著，attackEtherStore()函數調用EtherStore的withdrawFunds()方法，嘗試從EtherStore合約提取1個以太幣。
+2. 攻擊者通過調用Attack合約的attackEtherStore()函數來啟動攻擊。這個函數首先要求攻擊者發送至少1個以太幣到Attack合約。attackEtherStore()函數接著調用EtherStore合約的depositFunds()方法，將這1個以太幣存入EtherStore合約。緊接著，attackEtherStore()函數調用EtherStore的withdrawFunds()方法，嘗試從EtherStore合約提取1個以太幣。
 
 
 3. 當EtherStore合約處理提款請求時，它將1個以太幣發送回Attack合約。由於是以太幣的轉移，這自動觸發了Attack合約的回調函數（fallback函數）。

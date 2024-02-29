@@ -18,10 +18,10 @@ p img {
 }
 
 pre {
-  white-space: pre-wrap;       /* 保持格式化的空格，允许自动换行 */
-  word-wrap: break-word;       /* 在必要时可以在任何字符间换行 */
-  overflow-x: auto;            /* 提供水平滚动条 */  /* 轻微的背景色区分代码块 */
-  padding: 1em;                /* 一些内边距 */
+  white-space: pre-wrap;       
+  word-wrap: break-word;       
+  overflow-x: auto;           
+  padding: 1em;              
   border-radius: 0.5em;        /* 圆角边框 */
   border: 1px solid #ddd;      /* 灰色边框 */
 }
@@ -68,6 +68,7 @@ code {
 p{
     color: white;
     font-family: 'Courier New', Courier, monospace;
+    margin-top: 5px;
 }
 
 em{
