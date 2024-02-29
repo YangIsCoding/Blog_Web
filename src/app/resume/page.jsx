@@ -1,6 +1,18 @@
+import Image from "next/image";
+import styles from "./resume.module.css";
 const resume = () => { 
     return (
+        
         <div>
+            <div className={styles.imgContainer}>
+                <Image
+              src= "/yang.webp" 
+              alt="my_protrait" 
+              width={500} 
+              height={500} 
+                />
+            
+                </div>
             <h1 id="pin-yang-chen">Pin-Yang Chen</h1>
 <p>Address: No. 8 Qiancun E. Rd. Daya Dist. Taichung City Taiwan </p>
 <p>Contact: +886-968-512787/ allanustw@gmail.com </p>

@@ -65,3 +65,9 @@
     gap: 50px;
   }
 }
+
+@media (max-width: 500px) {
+  .imageContainer {
+    width: 100%;
+  }
+}
