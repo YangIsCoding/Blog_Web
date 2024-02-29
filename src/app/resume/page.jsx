@@ -15,7 +15,7 @@ const resume = () => {
 </ul>
 <h2 id="skills">SKILLS</h2>
 <ul>
-<li>Programming: Solidity, Unity, Linux, C, C#, Python, HTML, CSS, Flutter, JavaScript, Node.js</li>
+<li>Programming: Solidity, Unity, Linux, C, C#, Python, HTML, CSS, Flutter, JavaScript, Node.js, Next.js, and so on</li>
 <li>System Flow: UML graph, develop class diagram, sequence diagram, GitHub Workflow</li>
 <li>Language: English (GRE: 322/340, AW: 4), Chinese (as mother language), Taiwanese (as mother language)</li>
 </ul>
