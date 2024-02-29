@@ -17,29 +17,29 @@ const getData = async (slug) => {
   return res.json();
 };
 
-const SinglePostPage = ({params}) => {
+const SinglePostPage = ({ params }) => {
   const [post, setPost] = useState(null);
   const [markdownContent, setMarkdownContent] = useState('');
   const { slug } = params;
   const [postContent, setPostContent] = useState('');
 
   useEffect(() => {
-  if (slug) {
-    getData(slug)
-      .then(post => {
-        setPost(post);
-        const filePath = post.content;
-        fetch(`${filePath}`)
-          .then((response) => response.text())
-          .then((text) => {
-            setPostContent(marked(text));
-          });
-      })
-      .catch(error => console.error(error));
-  }
-}, [slug]); 
+    if (slug) {
+      getData(slug)
+        .then(post => {
+          setPost(post);
+          const filePath = post.content;
+          fetch(`${filePath}`)
+            .then((response) => response.text())
+            .then((text) => {
+              setPostContent(marked(text));
+            });
+        })
+        .catch(error => console.error(error));
+    }
+  }, [slug]);
 
-if (!post) return <div>Loading...</div>;
+  if (!post) return <div>Loading...</div>;
   
 
   /*useEffect(() => {
@@ -74,7 +74,6 @@ if (!post) return <div>Loading...</div>;
   
  /* if (!post) return <div>Loading...</div>;
   const filePath = post.content;*/
-
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
@@ -93,7 +92,7 @@ if (!post) return <div>Loading...</div>;
             <span className={styles.detailValue}>{post.postTime}</span>
           </div>
         </div>
-        <div dangerouslySetInnerHTML={{ __html: postContent }} />
+        <div className={styles.content} dangerouslySetInnerHTML={{ __html: postContent }} />
         <p>Thank you!</p>
       </div>
     </div>

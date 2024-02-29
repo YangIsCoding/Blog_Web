@@ -22,9 +22,6 @@
   box-sizing: border-box; /* 包括边框和内边距在元素总宽度和总高度内 */
 }
 
-.h2{
-  color: red;
-}
 
 .textContainer {
   flex: 2;
@@ -64,9 +61,6 @@
   font-weight: 500;
 }
 
-.content{
-  font-size: 20px;
-}
 
 @media (max-width:768px){
   .imgContainer{
@@ -75,13 +69,19 @@
 }
 
 @media(max-width: 640px){
-    .container{
+    .container,.content{
        width: 475px;
     }
 }
 
 @media(max-width: 475){
-    .container{
+    .container,.content{
        width: 380px;
+    }
+}
+
+@media(max-width: 400){
+    .container,.content{
+       width: 290px;
     }
 }
