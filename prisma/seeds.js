@@ -4,64 +4,24 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-  const user1 =  await prisma.user.create({
+  /*const user1 =  await prisma.user.create({
     data: {
       userId: 1,
       userName: "Yang",
       userImg: "/profile_yang.jpg"
     }
-  });
+  });*/
 
-  const user2 = await prisma.user.create({
-    data: {
-      userId: 2,
-      userName: "Nana",
-      userImg: "/hero.gif"
-    }
-  });
 
   await prisma.post.create({
     data: {
-      id:1,
-      userId: user1.userId,
-      title: 'First Post',
-      shortdesc: 'This is the body of my 1 post',
-      content: "public/posts/post1.md",
-      postTime: "2024.07.07",
-      postImg: "/about.jpg"
-    }
-  });
-  await prisma.post.create({
-    data: {
-      id:2,
-      userId: user2.userId,
-      title: 'Second Post',
-      shortdesc: 'This is the body of my 2 post',
-      content: "public/posts/post1.md",
-      postTime: "2024.07.07",
-      postImg: "/about.jpg"
-    }
-  });
-  await prisma.post.create({
-    data: {
-      id:3,
-      userId: user2.userId,
-      title: 'Third Post',
-      shortdesc: 'This is the body of my 3 post',
-      content: "public/posts/post1.md",
-      postTime: "2024.07.07",
-      postImg: "/about.jpg"
-    }
-  });
-  await prisma.post.create({
-    data: {
-      id:4,
-      userId: user1.userId,
-      title: 'forth Post',
-      shortdesc: 'This is the body of my 4 post',
-      content: "public/posts/post1.md",
-      postTime: "2024.07.07",
-      postImg: "/about.jpg"
+      id:5,
+      userId: 1,
+      title: '唯物vs唯心',
+      shortdesc: '探討我對於世界的看法，以及自我探索的過程',
+      content: "/posts/post5.md",
+      postTime: "2024.01.26",
+      postImg: "/post5.webp"
     }
   });
 }
