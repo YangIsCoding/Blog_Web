@@ -41,6 +41,15 @@ h1 {
 
 h2{
     color: var(--Yellow);
+    margin-top: 50px;
+}
+
+h3{
+    margin-top: 20px;
+}
+
+h4{
+    margin-top: 15px;
 }
 
 pre {
@@ -57,7 +66,7 @@ code {
 }
 
 p{
-    color: var(--lightYellow);
+    color: white;
     font-family: 'Courier New', Courier, monospace;
 }
 
