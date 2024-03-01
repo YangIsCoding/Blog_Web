@@ -6,8 +6,8 @@ const prisma = new PrismaClient();
 async function main() {
   /*const user1 =  await prisma.user.create({
     data: {
-      userId: 1,
-      userName: "Yang",
+      userId: 2,
+      userName: "Bibbs",
       userImg: "/profile_yang.jpg"
     }
   });*/
@@ -15,12 +15,12 @@ async function main() {
 
   await prisma.post.create({
     data: {
-      id:5,
-      userId: 1,
-      title: '唯物vs唯心',
-      shortdesc: '探討我對於世界的看法，以及自我探索的過程',
-      content: "/posts/post5.md",
-      postTime: "2024.01.26",
+      id:6,
+      userId: 2,
+      title: 'Cross-Site Request Forgery',
+      shortdesc: '是一種網路攻擊方式，發生於使用者已經通過身份驗證並信任某應用程式的情況下，稱為跨站請求偽造。',
+      content: "/posts/post6.md",
+      postTime: "2024.02.26",
       postImg: "/post5.webp"
     }
   });

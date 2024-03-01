@@ -22,10 +22,10 @@ const BlogPage = () => {
     getData()
       .then(setPosts)
       .catch(error => console.error(error))
-      .finally(() => setIsLoading(false)); // 無論成功或失敗，結束時都設置加載狀態為false
+      .finally(() => setIsLoading(false)); 
   }, []);
 
-  if (isLoading) { // 判斷是否在加載中
+  if (isLoading) { 
     return <div className={styles.container}>Loading...</div>; // 顯示加載中提示
   }
 
