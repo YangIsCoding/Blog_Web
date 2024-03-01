@@ -15,18 +15,23 @@ const Home = () => {
   return(
   <div className={styles.container}>
       <div className={styles.textContainer}>
-        <h1 className={ styles.title}>
-         P.Y.CHEN
-        </h1>
-        
+        <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
         <p className={ styles.description}>
           Hello!<br></br>I&#39;m Pin-Yang Chen, Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.
           Currently working as a software engineer at a blockchain company, ISUNCLOUD.<br></br>
           Nice to meet you.
       </p>
       <div className={styles.buttons}>
-        <button className={styles.button} onClick={handleClick}>Learn More</button>
-        <button className={ styles.button} onClick={handleContactClick}>Contact</button>
+          <button className="cybr-btn" onClick={handleClick}>
+                Learn More<span aria-hidden>_</span>
+                <span aria-hidden className="cybr-btn__glitch">Learn More_</span>
+                <span aria-hidden className="cybr-btn__tag">R25</span>
+          </button>
+          <button className="cybr-btn" onClick={handleContactClick}>
+              Contact<span aria-hidden>_</span>
+              <span aria-hidden className="cybr-btn__glitch">Contact_</span>
+              <span aria-hidden className="cybr-btn__tag">R25</span>
+          </button>
       </div>
         <div className={styles.brands}>
           <a href="https://www.instagram.com/yong881122/" target="_blank" rel="noopener noreferrer">

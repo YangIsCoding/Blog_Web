@@ -15,7 +15,6 @@
     color: var(--lightYellow);
     font-size: 96px;
     text-shadow:2px 3px 5px var(--tiffany);
-    font-style: italic;
 }
 
 .description{
@@ -90,4 +89,64 @@
   .imgContainer{
         min-height: 300px;
     }
+}
+
+.title {
+  position: relative;
+  font-family: 'Cyber', sans-serif;
+  display: inline-block;
+  color: var(--lightYellow); 
+  overflow: hidden;
+}
+
+.title::before,.title::after {
+  content: attr(data-text);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: var(--color, white); /* 默认白色，可根据需要调整 */
+  overflow: hidden;
+  
+}
+
+.title::before {
+  animation: glitch3 2s infinite;
+  clip-path: polygon(0 25%, 100% 20%, 100% 80%, 0 75%);
+}
+
+.title::after {
+  animation: glitch4 2s infinite;
+  clip-path: polygon(0 20%, 100% 25%, 100% 75%, 0 80%);
+}
+
+@keyframes glitch3 {
+  0%, 100% {
+    transform: translate(0);
+    opacity: 0.75;
+  }
+  20%, 40%, 60% {
+    transform: translate(-2px, -2px);
+    opacity: 0.5;
+  }
+  30%, 50%, 70% {
+    transform: translate(2px, 2px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes glitch4 {
+  0%, 100% {
+    transform: translate(0);
+    opacity: 0.75;
+  }
+  20%, 40%, 60% {
+    transform: translate(2px, 2px);
+    opacity: 0.5;
+  }
+  30%, 50%, 70% {
+    transform: translate(-2px, -2px);
+    opacity: 0.5;
+  }
 }
