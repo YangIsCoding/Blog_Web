@@ -12,8 +12,10 @@ const Home = () => {
   const handleContactClick = () => {
     router.push('/contact'); // 程序化地导航到 /contact 页面
   };
+
+  //className="cyber-h" , className={styles.title}
   return(
-  <div className={styles.container}>
+    <div className={styles.container}>
       <div className={styles.textContainer}>
         <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
         <p className={ styles.description}>
@@ -41,10 +43,16 @@ const Home = () => {
           <Link href="https://www.linkedin.com/in/pin-yang-chen-445bba288/" passHref><Image src="/linkedin.png" alt=""  width="100" height="50" className={styles.brandImg}/></Link>
       </div>
     </div>
-    <div className={styles.imgContainer}>
-      <Image src="/profile_yang.jpg" alt="" fill className={styles.heroImg}/>
-    </div>
-    </div>
+      <div className={styles.imgContainer}>
+          <section className="cyberpunk both">
+            <img
+              className="cyberpunk"
+              src="/profile_yang.jpg"
+              alt=""
+            />
+          </section>
+       </div>
+      </div>
   );
 };
 
