@@ -248,14 +248,14 @@ RLP standardizes the transmission of data between nodes in a way that saves spac
 	#### Decoding
 
     1. Obtain Raw Transaction Data: Firstly, it's necessary to obtain the raw transaction data to be decoded. This is typically provided in the form of a hexadecimal string, for example: 0x02c4c3010203. Convert the raw data into binary.
-    
+
     2. The decoding process begins with converting the hexadecimal string into binary data. This is because the data encoded with RLP is stored in binary form.
     3. Start Decoding Process: The decoding process starts from the binary representation of the data. Initially, it groups bytes of binary data into smaller chunks, which contain the length of a data item and the actual data.
     4. Recursively Parse Data: Once a data item with a length prefix is detected, the decoder recursively enters that data item to parse its internal structure. This means RLP can handle complex data structures, including lists and nested data.
     5. Complete Decoding: The decoding process continues recursively parsing data items until the entire data structure is decoded into a human-readable form, such as arrays and objects in JavaScript. After decoding, the decoded data structure is accessible for data retrieval.
     	
    ### ECDSA:
-	>Svetlin Nakov: "The ECDSA signing algorithm (RFC 6979) takes as input a message msg ****+ a private key privKey ****and produces as output a signature, which consists of a pair of integers {r, s}.
+	>Svetlin Nakov: **The ECDSA signing algorithm (RFC 6979) takes as input a message msg  a private key privKey** and produces as output a signature, which consists of a pair of integers {r, s}.
 	>…The calculated signature {r, s} is a pair of integers, each in the range [1…n-1]. It encodes the random point R = k * G, along with a proof s, confirming that the signer knows the message h and the private key privKey. The proof s is by idea verifiable using the corresponding pubKey"
  
  	ECDSA (Elliptic Curve Digital Signature Algorithm) consists of two parts: signature creation algorithm and signature verification algorithm.
