@@ -78,13 +78,14 @@ const ContactForm = () => {
             </div>
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit} className={styles.form}>
-          <input type="text" placeholder="Name and Surname" name="name" value={formState.name} onChange={handleChange} />
-          <input type="text" placeholder="Email Address" name="email" value={formState.email} onChange={handleChange} />
-          <input type="text" placeholder="Phone Number (Optional)" name="phoneNumber" value={formState.phoneNumber} onChange={handleChange} />
-          <textarea name="message" cols="30" rows="10" placeholder="Message" value={formState.message} onChange={handleChange}></textarea>
+           
+          <input class="cyberpunk" type="text" placeholder="Name and Surname" name="name" value={formState.name} onChange={handleChange} />
+          <input class="" type="text" placeholder="Email Address" name="email" value={formState.email} onChange={handleChange} />
+          <input class="" type="text" placeholder="Phone Number (Optional)" name="phoneNumber" value={formState.phoneNumber} onChange={handleChange} />
+          <textarea class="" name="message" cols="30" rows="10" placeholder="Message" value={formState.message} onChange={handleChange}></textarea>
           <button type="submit" disabled={buttonDisabled} className="cybr-btn">Send<span aria-hidden>_</span>
                 <span aria-hidden className="cybr-btn__glitch">Learn More_</span>
-                <span aria-hidden className="cybr-btn__tag">R25</span></button>
+                <span aria-hidden className="cybr-btn__tag">g...glitch</span></button>
           <p className={styles.messageReceived}>{message}</p>
 
           

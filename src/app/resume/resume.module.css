@@ -1,12 +1,29 @@
-.imageContainer {
-  width: 100%;
-  max-width: 500px; /* 在大屏幕上图片宽度不超过500px */
-  margin: 0 auto; /* 图片居中显示 */
+.imgContainer{
+    flex:1;
+    position: relative;
+    width: 100%;
+    filter:drop-shadow(0px 0px 10px rgba(0,0,0,.5)) contrast(110%);
+    min-height: 600px;
+    max-width: 600px;
 }
 
 /* 在屏幕宽度小于或等于500px时，图片宽度为100% */
 @media (max-width: 500px) {
   .imageContainer {
-    width: 100%;
+    width: 300px;
   }
+}
+
+@media(max-width: 450px){
+    .title{
+        font-size: 40px;
+    }
+    .brandImg {
+    width: 50px; 
+    height: 50px; 
+  }
+  .imgContainer{
+        min-height: 300px;
+        min-width: 300px;
+    }
 }

@@ -27,12 +27,13 @@ const Home = () => {
           <button className="cybr-btn" onClick={handleClick}>
                 Learn More<span aria-hidden>_</span>
                 <span aria-hidden className="cybr-btn__glitch">Learn More_</span>
-                <span aria-hidden className="cybr-btn__tag">R25</span>
+                
           </button>
           <button className="cybr-btn" onClick={handleContactClick}>
               Contact<span aria-hidden>_</span>
-              <span aria-hidden className="cybr-btn__glitch">Contact_</span>
-              <span aria-hidden className="cybr-btn__tag">R25</span>
+            <span aria-hidden className="cybr-btn__glitch">Contact_</span>
+            
+             
           </button>
       </div>
         <div className={styles.brands}>

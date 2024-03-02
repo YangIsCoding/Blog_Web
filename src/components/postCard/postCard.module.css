@@ -37,7 +37,15 @@
   font-weight: 300;
   color: gray;
 }
+.bottom {
+  position: relative;
+}
 
-.link{
+.link {
   text-decoration: underline;
+   position: absolute;
+  right: 50px;
+  bottom: 0;
+  margin-top: 50px; /* 根据需要调整距离 */
+  display: block;
 }

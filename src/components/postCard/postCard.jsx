@@ -44,9 +44,9 @@ const PostCard = ({ post }) => {
       </div>
 
       <div className={styles.bottom}>
-        <h1 className={styles.title}>{post.title}</h1>
+        <h1 className={styles.title}>{post.title.length > 15 ? post.title.substring(0, 15) + "..." : post.title}</h1>
         <p className={styles.desc}>
-          {post.shortdesc.length > 25 ? post.shortdesc.substring(0, 25) + "..." : post.shortdesc}
+          {post.shortdesc.length > 30 ? post.shortdesc.substring(0, 30) + "..." : post.shortdesc}
         </p>
         <Link className={styles.link} href={`/blog/${post.id}`}>READ MORE</Link>
       </div>

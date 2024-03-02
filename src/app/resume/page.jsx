@@ -5,15 +5,13 @@ const resume = () => {
         
         <div>
             <div className={styles.imgContainer}>
-                <Image
-          src="/yang.webp" // 替换成您图片的路径
-          alt="描述您的图片内容" // 提供图片的替代文本
-          width={500} // 设定图片最大宽度
-          height={300} // 设定图片高度
-          layout="intrinsic" // 保持原始尺寸
-        />
+                <section className="cyberpunk both">
+                    <img src="/yang.webp"  // 设定图片最大宽度
+                     // 设定图片高度
+                    />
+                </section>
             
-                </div>
+            </div>
             <h1 id="pin-yang-chen">Pin-Yang Chen</h1>
 <p>Address: No. 8 Qiancun E. Rd. Daya Dist. Taichung City Taiwan </p>
 <p>Contact: +886-968-512787/ allanustw@gmail.com </p>
