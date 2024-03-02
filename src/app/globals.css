@@ -4,7 +4,9 @@
     --Yellow: #ffe727;
     --tiffany: #4DFFFF;
 }
-
+strong{
+    color: red;
+}
 @font-face {
    font-family: 'Noto Sans TC';
    font-style: normal;

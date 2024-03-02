@@ -15,13 +15,13 @@ async function main() {
 
   await prisma.post.create({
     data: {
-      id:6,
-      userId: 2,
-      title: 'Cross-Site Request Forgery',
-      shortdesc: '是一種網路攻擊方式，發生於使用者已經通過身份驗證並信任某應用程式的情況下，稱為跨站請求偽造。',
-      content: "/posts/post6.md",
-      postTime: "2024.02.26",
-      postImg: "/post5.webp"
+      id:7,
+      userId: 1,
+      title: '[EN]EIP-1559, keys, decoding, and news',
+      shortdesc: 'A transaction pricing mechanism that includes fixed-per-block network fee that is burned and dynamically expands/contracts block sizes to deal with transient congestion',
+      content: "/posts/post3en.md",
+      postTime: "2024.03.02",
+      postImg: "/post3.webp"
     }
   });
 }
