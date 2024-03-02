@@ -68,17 +68,27 @@ const ContactForm = () => {
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
-        <Image src="/contact.png" alt="" fill className={styles.img} />
-      </div>
+              <section className="cyberpunk both">
+                <img
+                  className="cyberpunk"
+                  src="/contact.png"
+                  alt=""
+                />
+              </section>
+            </div>
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <input type="text" placeholder="Name and Surname" name="name" value={formState.name} onChange={handleChange} />
           <input type="text" placeholder="Email Address" name="email" value={formState.email} onChange={handleChange} />
           <input type="text" placeholder="Phone Number (Optional)" name="phoneNumber" value={formState.phoneNumber} onChange={handleChange} />
           <textarea name="message" cols="30" rows="10" placeholder="Message" value={formState.message} onChange={handleChange}></textarea>
-          <button type="submit" disabled={buttonDisabled}>Send</button>
+          <button type="submit" disabled={buttonDisabled} className="cybr-btn">Send<span aria-hidden>_</span>
+                <span aria-hidden className="cybr-btn__glitch">Learn More_</span>
+                <span aria-hidden className="cybr-btn__tag">R25</span></button>
           <p className={styles.messageReceived}>{message}</p>
+
           
+
         </form>
       </div>
     </div>

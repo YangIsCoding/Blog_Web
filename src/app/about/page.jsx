@@ -14,13 +14,14 @@ const AboutPage = () => {
       
         <div className={styles.container}>
             <div className={styles.imgContainer}>
-        <Image
-          src="/about.jpg"
-          alt="About Image"
-          fill
-          className={styles.img}
-        />
-      </div>
+              <section className="cyberpunk both">
+                <img
+                  className="cyberpunk"
+                  src="/about.jpg"
+                  alt=""
+                />
+              </section>
+            </div>
       <div className={styles.textContainer}>
         <h2 className={styles.subtitle}>About Yang</h2>
         <h1 className={styles.title}>

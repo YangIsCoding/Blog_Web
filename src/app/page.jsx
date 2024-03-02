@@ -45,12 +45,10 @@ const Home = () => {
     </div>
       <div className={styles.imgContainer}>
           <section className="cyberpunk both">
-            <img
-              className="cyberpunk"
-              src="/profile_yang.jpg"
-              alt=""
-            />
-          </section>
+          <img src="/profile_yang.jpg" class="cyber-glitch-0"/>
+        </section>
+
+
        </div>
       </div>
   );

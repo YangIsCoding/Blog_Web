@@ -45,7 +45,7 @@
 .imgContainer {
   flex: 1;
   position: relative;
-   min-height: 500px;
+   min-height: 260px;
 }
 .boxDesc{
    color: white;
