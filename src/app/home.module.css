@@ -113,12 +113,12 @@
 }
 
 .title::before {
-  animation: glitch3 0.8s infinite;
+  animation: glitch3 2s infinite;
   clip-path: polygon(0 25%, 100% 20%, 100% 80%, 0 75%);
 }
 
 .title::after {
-  animation: glitch4 0.8s infinite;
+  animation: glitch4 2s infinite;
   clip-path: polygon(0 20%, 100% 25%, 100% 75%, 0 80%);
 }
 
@@ -151,3 +151,4 @@
     opacity: 0.5;
   }
 }
+
