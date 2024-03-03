@@ -15,13 +15,13 @@ async function main() {
 
   await prisma.post.create({
     data: {
-      id:7,
+      id:8,
       userId: 1,
-      title: '[EN]EIP-1559, keys, decoding, and news',
-      shortdesc: 'A transaction pricing mechanism that includes fixed-per-block network fee that is burned and dynamically expands/contracts block sizes to deal with transient congestion',
-      content: "/posts/post3en.md",
-      postTime: "2024.03.02",
-      postImg: "/post3.webp"
+      title: '給愛姪',
+      shortdesc: '愛姪，願妳似花, 願妳開朗似豔陽下的向日葵。堅定如孟仲夏的木棉花。純潔若青草上的小白花。平安像呵護中的水仙花。',
+      content: "/posts/post7.md",
+      postTime: "2022.09.22",
+      postImg: "/post7.webp"
     }
   });
 }

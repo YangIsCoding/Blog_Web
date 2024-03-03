@@ -6,8 +6,8 @@ const resume = () => {
         <div>
             <div className={styles.imgContainer}>
                 <section className="cyberpunk both">
-                    <img src="/yang.webp"  // 设定图片最大宽度
-                     // 设定图片高度
+                    <img src="/tools.png"  
+                     
                     />
                 </section>
             

@@ -442,7 +442,7 @@ img.cyberpunk,
   padding: 30px ;
   padding-left: 5px;
   padding-right: 5px;
-  padding-bottom: 15px;
+  padding-bottom: 17px;
   clip-path: polygon(0px 25px, 26px 0px, calc(60% - 25px) 0px, 60% 25px, 100% 25px, 100% calc(100% - 10px), calc(100% - 15px) calc(100% - 10px), calc(80% - 10px)  calc(100% - 10px), calc(80% - 15px) calc(100% - 0px), 10px  calc(100% - 0px), 0% calc(100% - 10px));
   background-color: var(--black-color);
   max-width: calc(100% - 10px);
@@ -461,7 +461,7 @@ section.cyberpunk:after,
 section.cyberpunk.black:after {
   content: " ";
   display: block;
-  bottom: 0px;
+  bottom: -1px;
   left: 0px;
   width: 100%;
   height: 30px;
