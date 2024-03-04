@@ -15,7 +15,7 @@ const resume = () => {
             <h1 id="pin-yang-chen">Pin-Yang Chen</h1>
 <p>Address: No. 8 Qiancun E. Rd. Daya Dist. Taichung City Taiwan </p>
 <p>Contact: +886-968-512787/ allanustw@gmail.com </p>
-<p>Website: <a href="https://blog-web-kohl-iota.vercel.app/">https://blog-web-kohl-iota.vercel.app/</a></p>
+            <p>Website: <a className={ styles.link} href="https://blog-web-kohl-iota.vercel.app/">https://blog-web-kohl-iota.vercel.app/</a></p>
 <h2 id="education">EDUCATION</h2>
 <ul>
 <li><strong>National Chung Cheng University (CCU), Chiayi, Taiwan</strong><ul>

@@ -7,6 +7,10 @@
     max-width: 600px;
 }
 
+.link{
+    text-decoration: underline;
+}
+
 /* 在屏幕宽度小于或等于500px时，图片宽度为100% */
 @media (max-width: 500px) {
   .imageContainer {

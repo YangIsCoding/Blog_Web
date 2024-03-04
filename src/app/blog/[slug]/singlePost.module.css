@@ -61,6 +61,11 @@
   font-weight: 500;
 }
 
+.content a{
+  text-decoration: underline;
+  color: var(--lightYellow);
+}
+
 
 @media (max-width:768px){
   .imgContainer{
