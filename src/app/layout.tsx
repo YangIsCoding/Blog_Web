@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/footer/Footer';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,6 +25,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
           {children}
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   );
