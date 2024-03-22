@@ -18,7 +18,11 @@ const resume = () => {
             <p>Website: <a className={ styles.link} href="https://blog-web-kohl-iota.vercel.app/">https://blog-web-kohl-iota.vercel.app/</a></p>
 <h2 id="education">EDUCATION</h2>
 <ul>
-<li><strong>National Chung Cheng University (CCU), Chiayi, Taiwan</strong><ul>
+<li><strong>New York University (NYU), New York, USA</strong><ul>
+<li>&emsp;Master of Computer Engineering, Sep. 2024 – Expected Jan. 2026</li>
+</ul>
+                </li>
+                <li><strong>National Chung Cheng University (CCU), Chiayi, Taiwan</strong><ul>
 <li>&emsp;Bachelor of Science in Management Information System, Sep. 2020 – Expected Jan. 2024</li>
 <li>&emsp;Interdisciplinary Course Programs certified in Computer Programming (Department of Computer Science) and E-commerce (Department of Accounting and Information Technology)</li>
 </ul>
