@@ -18,8 +18,8 @@ const resume = () => {
             <p>Website: <a className={ styles.link} href="https://blog-web-kohl-iota.vercel.app/">https://blog-web-kohl-iota.vercel.app/</a></p>
 <h2 id="education">EDUCATION</h2>
 <ul>
-<li><strong>New York University (NYU), New York, USA</strong><ul>
-<li>&emsp;Master of Computer Engineering, Sep. 2024 – Expected Jan. 2026</li>
+<li><strong>Duke University, USA</strong><ul>
+<li>&emsp;Master of Financial Technology, Pratt School of Engineering, Sep. 2024 – Expected Jan. 2026</li>
 </ul>
                 </li>
                 <li><strong>National Chung Cheng University (CCU), Chiayi, Taiwan</strong><ul>
