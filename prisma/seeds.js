@@ -15,13 +15,13 @@ async function main() {
 
   await prisma.post.create({
     data: {
-      id:13,
+      id:14,
       userId: 1,
-      title: '[CHI]斜槓青年',
-      shortdesc: '沒有自控力與實力作為前提的自由是任性',
-      content: "/posts/post13.md",
-      postTime: "2021.03.13",
-      postImg: "/versatile.webp"
+      title: '[CHI]算法筆記',
+      shortdesc: '感謝代碼隨想錄前輩的重點整理',
+      content: "/posts/post14.md",
+      postTime: "continue updating",
+      postImg: "/algo.webp"
     }
   });
 }
