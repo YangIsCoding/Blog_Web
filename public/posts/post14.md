@@ -390,7 +390,7 @@ class Solution:
 
 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
 
-<img src="image.png" alt="alt text" width="60%"/>
+![alt text](image-2.png)
 
 RECURSION:
 
@@ -426,4 +426,4 @@ class Solution:
         cur = cur.next.next # cur移动两位，准备下一轮交换 return dummyHead.next
     return dummyHead.next
 ```
-<img src="image-1.png" alt="alt text" width="100%"/>
+![alt text](image-1.png)
