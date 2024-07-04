@@ -12,9 +12,10 @@
 # 算法重點
 非常感謝代碼隨想錄前輩的精心資源，接下來的算法筆記是大多出自於此前輩，並沒有任何營利目的。
 
-我在此基礎上加了許多我自己的筆記，以及仍存的疑問的解答，主要是用python寫。
+我在此基礎上加了我自己的筆記，以及仍存的疑問的解答，主要是用python寫。
 
 請務必到：[代碼隨想錄](https://github.com/youngyangyang04/leetcode-master/tree/master)網站來看更齊全的資料。
+
 ## 性能分析:
 大O用来表示上界的，当用它作为算法的最坏情况运行时间的上界，就是对任意数据输入的运行时间的上界。
 
@@ -835,4 +836,203 @@ class Solution:
         return n == 1
 ```
 
+<div style="text-align: center;">
+#1
+</div>
+
+*map 在python 中稱為dict*
+
+给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+
+你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
+
+示例:
+
+给定 nums = [2, 7, 11, 15], target = 9
+
+因为 nums[0] + nums[1] = 2 + 7 = 9
+
+所以返回 [0, 1]
+
+---
+
+本题其实有四个重点：
+
+1. 为什么会想到用哈希表
+2. 哈希表为什么用map
+3. 本题map是用来存什么的
+4. map中的key和value用来存什么的
+
+首先我再强调一下 什么时候使用哈希法，当我们需要查询一个元素是否出现过，或者一个元素是否在集合里的时候，就要第一时间想到哈希法。
+
+本题呢，我就需要一个集合来存放我们遍历过的元素，然后在遍历数组的时候去询问这个集合，某元素是否遍历过，也就是 是否出现在这个集合。
+
+那么我们就应该想到使用哈希法了。
+
+因为本题，我们不仅要知道元素有没有遍历过，还要知道这个元素对应的下标，需要使用 key value结构来存放，key来存元素，value来存下标，那么使用map正合适。
+
+再来看一下使用数组和set来做哈希法的局限。
+
+数组的大小是受限制的，而且如果元素很少，而哈希值太大会造成内存空间的浪费。
+
+set是一个集合，里面放的元素只能是一个key，而两数之和这道题目，不仅要判断y是否存在而且还要记录y的下标位置，因为要返回x 和 y的下标。所以set 也不能用。
+
+此时就要选择另一种数据结构：map ，map是一种key value的存储结构，可以用key保存数值，用value再保存数值所在的下标。
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        
+        Haveseen = {}  # 初始化一个空的哈希表
+        
+        for i, value in enumerate(nums):  # 枚举nums数组，i是索引，value是对应的元素
+            if target - value in Haveseen:  # 检查当前元素的补数是否在哈希表中
+                return [Haveseen[target - value], i]  # 如果找到了补数，返回补数的索引和当前索引
+            else:
+                Haveseen[value] = i  # 如果没有找到补数，把当前元素存入哈希表，键是元素值，值是索引
+```
+
+**enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在for 循环当中。**
+
+當然也可以先把題幹做排序，用雙指針（但是會由O(n)變成O(nlogn)）
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # 对输入列表进行排序
+        nums_sorted = sorted(nums)
+        
+        # 使用双指针
+        left = 0
+        right = len(nums_sorted) - 1
+        while left < right:
+            current_sum = nums_sorted[left] + nums_sorted[right]
+            if current_sum == target:
+                # 如果和等于目标数，则返回两个数的下标
+                left_index = nums.index(nums_sorted[left])
+                right_index = nums.index(nums_sorted[right])
+                if left_index == right_index:
+                    right_index = nums[left_index+1:].index(nums_sorted[right]) + left_index + 1
+                return [left_index, right_index]
+            elif current_sum < target:
+                # 如果总和小于目标，则将左侧指针向右移动
+                left += 1
+            else:
+                # 如果总和大于目标值，则将右指针向左移动
+                right -= 1
+```
+
+
+
+![](https://camo.githubusercontent.com/7c9fdc5c90edbd8498ac963e8ca830cdd848921ef303d84dbdcf2092cf39e1cb/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303232303731313230323633382e706e67)
+
+<div style="text-align: center;">
+#454
+</div>
+
+给定四个包含整数的数组列表 A , B , C , D ,计算有多少个元组 (i, j, k, l) ，使得 A[i] + B[j] + C[k] + D[l] = 0。
+
+为了使问题简单化，所有的 A, B, C, D 具有相同的长度 N，且 0 ≤ N ≤ 500 。所有整数的范围在 -2^28 到 2^28 - 1 之间，最终结果不会超过 2^31 - 1 。
+
+例如:
+
+输入:
+
+A = [ 1, 2]
+B = [-2,-1]
+C = [-1, 2]
+D = [ 0, 2]
+
+输出:
+
+2
+
+解释:
+
+两个元组如下:
+
+(0, 0, 0, 1) -> A[0] + B[0] + C[0] + D[1] = 1 + (-2) + (-1) + 2 = 0
+
+(1, 1, 0, 0) -> A[1] + B[1] + C[0] + D[0] = 2 + (-1) + (-1) + 0 = 0
+
+本题乍眼一看好像和0015.三数之和，0018.四数之和差不多，其实差很多。
+
+本题是使用哈希法的经典题目，而0015.三数之和，0018.四数之和并不合适使用哈希法，因为三数之和和四数之和这两道题目使用哈希法在不超时的情况下做到对结果去重是很困难的，很有多细节需要处理。
+
+而这道题目是四个独立的数组，只要找到A[i] + B[j] + C[k] + D[l] = 0就可以，不用考虑有重复的四个元素相加等于0的情况，所以相对于题目18. 四数之和，题目15.三数之和，还是简单了不少！
+
+```python
+class Solution(object):
+    def fourSumCount(self, nums1, nums2, nums3, nums4):
+        # 使用字典存储nums1和nums2中的元素及其和
+        hashmap = {}
+        for n1 in nums1:
+            for n2 in nums2:
+                hashmap[n1+n2] = hashmap.get(n1+n2, 0) + 1
+        
+        # 如果 -(n1+n2) 存在于nums3和nums4, 存入结果, 
+        # 試想，當hashmap裡面已經有2了，這時候n3+n4出現一個 -2, 只要將-2變為2（取負數），如果存在在hashmap中，就知道他們相加==0。
+        count = 0
+        for n3 in nums3:
+            for n4 in nums4:
+                key = - n3 - n4
+                if key in hashmap:
+                    count += hashmap[key]
+        return count
+```
+
+时间复杂度: O(n^2)
+
+空间复杂度: O(n^2)
+
+
+<div style="text-align: center;">
+#383
+</div>
+
+给定一个赎金信 (ransom) 字符串和一个杂志(magazine)字符串，**判断第一个字符串 ransom 能不能由第二个字符串 magazines 里面的字符构成。如果可以构成，返回 true ；否则返回 false。**
+
+(题目说明：为了不暴露赎金信字迹，要从杂志上搜索各个需要的字母，组成单词来表达意思。杂志字符串中的每个字符只能在赎金信字符串中使用一次。)
+
+注意：
+
+你可以假设两个字符串均只含有小写字母。
+
+canConstruct("a", "b") -> false
+
+canConstruct("aa", "ab") -> false
+
+canConstruct("aa", "aab") -> true
+
+```python
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        ransom_count = [0] * 26
+        magazine_count = [0] * 26
+        for c in ransomNote:
+            ransom_count[ord(c) - ord('a')] += 1
+        for c in magazine:
+            magazine_count[ord(c) - ord('a')] += 1
+        return all(ransom_count[i] <= magazine_count[i] for i in range(26))
+```
+
+**all 函数会对生成器表达式中的每个元素进行求值，只要所有元素都为 True，它就返回 True，否则返回 False。**
+
+**生成器表达式 ransom_count[i] <= magazine_count[i] for i in range(26) 会遍历从 0 到 25 的所有索引（对应字母 a 到 z），并检查 ransom_count 中每个索引 i 的值是否小于或等于 magazine_count 中对应的值**
+
+```python
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        counts = {}
+        for char in magazine:
+            counts[char] = counts.get(char,0) + 1
+        
+        for char in ransomNote:
+            if char in counts and counts[char] > 0:
+                counts[char] -= 1
+        
+            else:
+                return False
+        return True
+```
 **To be continued...**
