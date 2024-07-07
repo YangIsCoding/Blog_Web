@@ -45,6 +45,18 @@ const SinglePostPage = ({ params }) => {
     fetchData();
   }, [slug]);
 
+  useEffect(() => {
+    if (postContent) {
+      const highlightCode = async () => {
+        const hljs = (await import('highlight.js')).default;
+        document.querySelectorAll('pre code').forEach((block) => {
+          hljs.highlightElement(block);
+        });
+      };
+      highlightCode();
+    }
+  }, [postContent]);
+
   if (!post) return <div>Loading...</div>;
 
   return (
