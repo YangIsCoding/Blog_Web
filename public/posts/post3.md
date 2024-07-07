@@ -35,7 +35,7 @@ EIP-1559還要求網絡**燒毀**用於支付基礎費用的以太幣代幣(Ethe
 
 ## Specification
 
-1.As of FORK_BLOCK_NUMBER, a new EIP-2718 transaction is introduced with TransactionType 2.
+1.As of FORK_BLOCK_NUMBER, a new EIP-2718 transaction is introduced with TransactionType 2..
 
 2.新交易的固有成本是從 EIP-2930 繼承而來的:
 
