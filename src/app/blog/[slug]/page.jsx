@@ -2,9 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from "./singlePost.module.css";
-import { marked } from 'marked';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/github.css'; // 你可以选择任何适合的主题
+import 'highlight.js/styles/github.css'; // 选择一个适合的主题
 
 const getData = async (slug) => {
   const res = await fetch(`/api/${slug}`, {
@@ -24,23 +22,27 @@ const SinglePostPage = ({ params }) => {
   const [postContent, setPostContent] = useState('');
 
   useEffect(() => {
-    if (slug) {
-      getData(slug)
-        .then(post => {
+    const fetchData = async () => {
+      if (slug) {
+        try {
+          const post = await getData(slug);
           setPost(post);
           const filePath = post.content;
-          fetch(`${filePath}`)
-            .then((response) => response.text())
-            .then((text) => {
-              const htmlContent = marked(text);
-              setPostContent(htmlContent);
-              document.querySelectorAll('pre code').forEach((block) => {
-                hljs.highlightElement(block);
-              });
-            });
-        })
-        .catch(error => console.error(error));
-    }
+          const response = await fetch(`${filePath}`);
+          const text = await response.text();
+          const { marked } = await import('marked');
+          const htmlContent = marked(text);
+          setPostContent(htmlContent);
+          const hljs = (await import('highlight.js')).default;
+          document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightElement(block);
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+    fetchData();
   }, [slug]);
 
   if (!post) return <div>Loading...</div>;

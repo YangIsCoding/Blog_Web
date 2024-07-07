@@ -1,4 +1,5 @@
 import Link from "next/link";
+import 'highlight.js/styles/github.css';
 const NotFound = () => { 
     return (
         <div>
