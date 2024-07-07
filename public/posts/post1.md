@@ -142,13 +142,13 @@ pragma: 這是一個通用的編程術語，用於提供編譯器以特定的指
 在以太坊中，事件用於合約內部的狀態變更通知。這些事件會被區塊鏈的日誌記錄(logs)下來，且可以被外部監聽器（例如Web3.js, ethers.js）監聽和處理。簡單來說，就是一種自定義的報錯語法。
 你可以先用以下語法定義一個事件：
 
-```solidity
+```
 event transactionAdded(bytes32 transactionType);
 ```
 
 在線程執行到預想的位置時，將事件寫入日誌。
 
-```solidity
+```
 function addRecord(bytes32[] memory data) public noReentrancy{
         ...
         emit transactionAdded(transactionType);
@@ -159,11 +159,11 @@ function addRecord(bytes32[] memory data) public noReentrancy{
 ### 映射
 映射是一種將鍵（keys）關聯到值（values）的數據結構。在這個合約中，它用於存儲每筆交易的參數。他很大一部分取代了傳統的陣列，他可以直接獲取到keys關聯的value不在需要向陣列那樣尋找，類似於python裡的dictionary。他在solidity中很常見，但是要注意solidity不支援將struct（結構）當作參數（無論是keys或是values）。你可以先用以下語法定義一個映射（我先用string代替bytes32比較好理解）：
 
-```solidity
+```
  mapping(string => bool) private recordedEvents;
 ```
 
-```solidity
+```
 function addRecord(string[] memory data) public noReentrancy{
         ...
         recordedEvents[eventId] = true;
@@ -175,14 +175,14 @@ function addRecord(string[] memory data) public noReentrancy{
 ### 結構體
 結構體允許開發者創建包含多個不同數據類型的自定義數據類型。在這個合約中，Transaction結構體用於表示一個交易。有時，結構體會被定義在interface之下，這個我們之後再談。你可以先用以下語法定義一個結構體：
 
- ```solidity
-  struct Transaction {
-        bytes32 eventId;
-        bytes32 transactionType;
-        address recorder;
-        mapping(bytes32 => int256) params;
-    }
- ```
+```
+struct Transaction {
+    bytes32 eventId;
+    bytes32 transactionType;
+    address recorder;
+    mapping(bytes32 => int256) params;
+}
+```
 
  ### 可見性修飾符 Visibility Modifier
  可見性修飾符是非常重要的概念，他用於指定合約中的函數和變量能夠被訪問的範圍。包括public、private、internal和external。
@@ -197,7 +197,7 @@ function addRecord(string[] memory data) public noReentrancy{
 
  你可以在定義函數時添加這些修飾：
 
- ```solidity
+ ```
  function registerHanlder(params) external {
         ...
     }
@@ -210,7 +210,7 @@ interface是一種特殊的合約類型，用於定義合約之間的交互方�
 
 他通常長得類似像 [i_transaction_handler.sol](https://github.com/CAFECA-IO/auditing_system/blob/feature/auto_test/src/services/blockchain/interfaces/i_transaction_handler.sol):
 
-```solidity
+```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -220,19 +220,19 @@ interface ITransactionHandler {
 }
 ```
 所以當我們要導入這個接口時：
-```solidity
+```
 import "../interfaces/i_transaction_handler.sol";
 ```
 
 導入接口的智能合約。
 
-```solidity
+```
 mapping(bytes32 => ITransactionHandler) private handlers;
 ```
 
 將這個接口定義為某映射的值（意味著不同的鍵將對應不同實例化的接口）。
 
-```solidity
+```
 function addRecord(bytes32[] memory data) public noReentrancy{
         ...
         ITransactionHandler handler = handlers[transactionType];
@@ -246,7 +246,7 @@ function addRecord(bytes32[] memory data) public noReentrancy{
 ### 條件檢查
 
 當然，我們需要一些檢查機制，來確保智能合約從運行之始到結束都符合我們的預期。require語句將判斷參數條件是是否為真，若為真，則往下繼續運行線程。若為否則撤回（revert）整筆交易，但是消耗的gas fee將不會撤回，特別注意，引發revert是相對費用高昂的。
-```solidity
+```
 require(data.length >= 3, "Data must have at least three elements");
 ```
 
@@ -254,7 +254,7 @@ require(data.length >= 3, "Data must have at least three elements");
 
 我們可以將自己定義的修飾符加入到函式中，例如（以下例子沒有在[Transaction Contract](https://github.com/CAFECA-IO/auditing_system/blob/feature/auto_test/src/services/blockchain/contracts/transaction_contract.sol)裡）：
 
-```solidity
+```
 modifier onlyOwner() {
         require(msg.sender == owner, "Not the owner");
         _;
@@ -267,7 +267,7 @@ _;
 ```
 這使智能合約知道這是一個modifier，並且開始執行被修飾的函示。
 
-```solidity
+```
 function restrictedFunction() public onlyOwner {
         // 僅擁有者可執行的代碼
     }
@@ -282,7 +282,7 @@ constructor 是一個特殊類型的函數，它在合約部署到以太坊區�
 另外，constructor 是唯一一個不需要可見性修飾符（如 public 或 private）的函數，因為它們本質上是公開的。它們在合約部署過程中自動執行。
 constructor 只在合約部署時被執行一次。一旦合約被部署到區塊鏈上，constructor 就不能再被調用或訪問。
 
-```solidity
+```
   constructor(address _parser) {
         Iparser = IParser(_parser);
     }
@@ -303,7 +303,7 @@ constructor 只在合約部署時被執行一次。一旦合約被部署到區�
 
 讓我們舉個例子，參考以下有漏洞的合約，它可以作為保險箱使用，讓使用者每週提取1乙太幣。
 
-```solidity
+```
 contract EtherStore{
         uint256 public withdrawalLimit = 1ether;
         mapping(address => uint256) public lastWithdraTime;
@@ -328,7 +328,7 @@ contract EtherStore{
 
 如果一個攻擊者創建了一個惡意合約如下
 
-```solidity
+```
 import "EtherStore.sol";
     
     contract Attack{
@@ -398,7 +398,7 @@ import "EtherStore.sol";
 
 好，回到我們的系統來舉例，我們利用互斥鎖來增強合約的防禦能力。
 
-```solidity
+```
  bool private locked;
 
  modifier noReentrancy() {
@@ -432,7 +432,7 @@ function addRecord(bytes32[] memory data) public noReentrancy{
 討論軟體的可靠性時，特別是在面對錯誤和失效時。可靠的程式碼應該具備的特點包括正確執行預期功能，允許使用者錯誤或不尋常的使用方式，或是在負載和數據量下保持性能。此外，它應防止未授權的訪問和濫用。可靠性可被理解為**即使出現問題，系統仍能正常運行，或是即時阻止更嚴重的錯誤發生。** 最後，我們都知道，預防還是勝於治療啊。
 
 好，在我們的智能合約中，使用以下方法來達成這個特性：
-```solidity
+```
 
 1. NoReentrancy Modifier（防重入修飾符）：剛才提過，你已經會了！
 
@@ -456,7 +456,7 @@ function addRecord(bytes32[] memory data) public noReentrancy{
 
 我們如何實現的：
 
-```solidity
+```
 struct Transaction {
         bytes32 eventId;
         bytes32 transactionType;
@@ -501,7 +501,7 @@ function addProcessedTransaction(
 
 我們來看看程式碼：
 
-```solidity
+```
 function registerHanlder(bytes32 transactionType, ITransactionHandler handler) external {
         require(handlers[transactionType] == ITransactionHandler(address(0)), "Handler already registered");
         handlers[transactionType] = handler;
@@ -529,7 +529,7 @@ function addRecord(bytes32[] memory data) public noReentrancy{
 再想像一下，你有一間玩具工廠（這裡就是智能合約的「工廠合約」），而這間工廠可以製造很多相同的玩具車（這些玩具車就是「實例合約」）。這間玩具工廠有一個特殊的機器，每當你按下一個按鈕，它就會製造出一個全新的玩具車。在這個例子中，按鈕就像是工廠合約中的一個函數，你每按一次，就創建一個新的智能合約（玩具車）。每個玩具車都是一樣的，都有輪子、方向盤和座位。在智能合約中，這意味著每個創建的實例合約都有相同的基本特性和功能。並且只有工廠老闆或是其他授權的人可以對單獨的玩具車進行改裝。
 
 
-```solidity
+```
 contract InstanceContract {
     uint public data;
     address public owner;
@@ -569,7 +569,7 @@ contract FactoryContract {
 
 ### 設定當下匯率與報表主鍵（與交易主鍵不同）
 
-```solidity
+```
  function setRate(bytes32 _SP002, bytes32 _SP003, bytes32 _SP004, bytes32 _reportName)external {
         require(!usedReportIDs[_reportName], "Report ID already used");
         Settlement memory newRate = Settlement({
@@ -595,7 +595,7 @@ contract FactoryContract {
 
 ### 設定時間區間，進行交易主鍵查詢
 
-```solidity
+```
 
 struct Settlement {
         int256 SP001;
@@ -674,7 +674,7 @@ isuncloud 的 handler 有兩個主要功能。
 2. 計算報表
 
 儲存event:
-```solidity
+```
  function processTransaction(bytes32[] memory data, address recorder) external override {
 
         require(data.length == 6, "Data length for E00010001 must be 6");
@@ -700,12 +700,12 @@ isuncloud 的 handler 有兩個主要功能。
 
 上面的功能將數據存取在陣列中。
 
- ```solidity
+ ```
  int256 A001 = int256(((EP001 + EP003) * latestSP002) / 10**18);
  report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.totalAmountFairValue", A001);
  ```
 上面的report是指以下合約的實例化，我們將計算結果存在Reports智能合約下。
- ```solidity
+ ```
  contract Reports {
     mapping(string => mapping(string => mapping(string => int256))) public data;
 
@@ -759,7 +759,7 @@ isuncloud 的 handler 有兩個主要功能。
 抽象化是一種將複雜性隱藏於用戶視野之外，只向用戶展示最關鍵和最相關信息的方法。這種原則使得用戶能夠更容易地與系統互動，而不需要理解底層的複雜實現細節。在抽象化的過程中，系統的內部工作方式被封裝起來，用戶通過一個簡化的界面與系統交互。這使得軟體或系統更加用戶友好，降低了學習和使用的難度。
 
 我們來看看怎麼實現的：
-```solidity
+```
 import "./transaction_contract.sol";
 import "./get_transaction_time_span.sol";
 import "./reports.sol";
@@ -884,7 +884,7 @@ Ethers.js是一個流行的JavaScript庫，用於與以太坊區塊鏈進行交�
 
 isuncloud即將發布一個基於ERC721的新的以太坊提案，新的功能主要是，允許使用者分享報表，卻不會將自己的token權限轉移。
 
-```solidity
+```
 function share(uint256 tokenId, address targetWallet) override external returns (uint256) {
         require(ownerOf(tokenId) == msg.sender, "Only the owner can share this report");
         require(targetWallet != address(0), "Target wallet cannot be zero");

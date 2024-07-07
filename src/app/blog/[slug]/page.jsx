@@ -1,10 +1,10 @@
-// 使用 React, useState, useEffect, useRouter, Image
-"use client"
+"use client";
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from "./singlePost.module.css";
 import { marked } from 'marked';
-
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github.css'; // 你可以选择任何适合的主题
 
 const getData = async (slug) => {
   const res = await fetch(`/api/${slug}`, {
@@ -32,7 +32,11 @@ const SinglePostPage = ({ params }) => {
           fetch(`${filePath}`)
             .then((response) => response.text())
             .then((text) => {
-              setPostContent(marked(text));
+              const htmlContent = marked(text);
+              setPostContent(htmlContent);
+              document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+              });
             });
         })
         .catch(error => console.error(error));
@@ -40,40 +44,7 @@ const SinglePostPage = ({ params }) => {
   }, [slug]);
 
   if (!post) return <div>Loading...</div>;
-  
 
-  /*useEffect(() => {
-    fetch('/posts/post1.md')
-      .then((response) => response.text())
-      .then((text) => {
-        setPostContent(marked(text));
-      });
-  }, []);
-  
-  useEffect(() => {
-    if (slug) {
-      getData(slug)
-        .then(post => {
-          setPost(post);
-        })
-        .catch(error => console.error(error));
-    }
-  }, [slug]);
-
-  if (!post) return <div>Loading...</div>;
-  const filePath = post.content;
-
-  useEffect(() => {
-    fetch(`${filePath}`)
-      .then((response) => response.text())
-      .then((text) => {
-        setPostContent(marked(text));
-      });
-  }, []);＊/
-
-  
- /* if (!post) return <div>Loading...</div>;
-  const filePath = post.content;*/
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>

@@ -1,16 +1,18 @@
+/* singlePost.module.css */
+
 .container {
   display: flex;
   gap: 100px;
+  font-family: Arial, Helvetica, sans-serif; /* 覆盖字体 */
 }
 
 .imgContainer {
-  
   flex: 1;
   position: relative;
   height: calc(100vh - 200px);
 }
 
-.img{
+.img {
   object-fit: cover;
 }
 
@@ -22,71 +24,80 @@
   box-sizing: border-box; /* 包括边框和内边距在元素总宽度和总高度内 */
 }
 
-
 .textContainer {
   flex: 2;
   display: flex;
   flex-direction: column;
   gap: 50px;
   max-width: 800px;
+  font-family: Arial, Helvetica, sans-serif; /* 覆盖字体 */
 }
 
-.title{
+.title {
   font-size: 64px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* 覆盖字体 */
 }
 
-.detail{
+.detail {
   display: flex;
   gap: 20px;
+  font-family: Arial, Helvetica, sans-serif; /* 覆盖字体 */
 }
 
-.avatar{
+.avatar {
   object-fit: cover;
   width: 50px;
   height: 50px;
 }
 
-.detailText{
+.detailText {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-family: Arial, Helvetica, sans-serif; /* 覆盖字体 */
 }
 
-.detailTitle{
+.detailTitle {
   color: gray;
   font-weight: bold;
 }
 
-.detailValue{
+.detailValue {
   font-weight: 500;
 }
 
-.content a{
+.content {
+  font-family: Arial, Helvetica, sans-serif; /* 覆盖字体 */
+}
+
+.content a {
   text-decoration: underline;
   color: var(--lightYellow);
 }
 
-
-@media (max-width:768px){
-  .imgContainer{
+@media (max-width: 768px) {
+  .imgContainer {
     display: none;
   }
 }
 
-@media(max-width: 640px){
-    .container,.content{
-       width: 475px;
-    }
+@media (max-width: 640px) {
+  .container,
+  .content {
+    width: 475px;
+  }
 }
 
-@media(max-width: 475){
-    .container,.content{
-       width: 380px;
-    }
+@media (max-width: 475px) {
+  .container,
+  .content {
+    width: 380px;
+  }
 }
 
-@media(max-width: 400){
-    .container,.content{
-       width: 290px;
-    }
+@media (max-width: 400px) {
+  .container,
+  .content {
+    width: 290px;
+  }
 }

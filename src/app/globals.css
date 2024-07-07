@@ -1,3 +1,5 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github.min.css');
+
 :root{
     --white: white;
     --lightYellow: #F9F900;
@@ -35,18 +37,17 @@ p img {
 }
 
 pre {
-  white-space: pre-wrap;       
-  word-wrap: break-word;       
-  overflow-x: auto;           
-  padding: 1em;              
-  border-radius: 0.5em;        /* 圆角边框 */
-  border: 1px solid #ddd;      /* 灰色边框 */
+  background-color: #282c34;
+  color: #abb2bf;
+  padding: 16px;
+  border-radius: 8px;
+  overflow: auto;
 }
 
 code {
-  display: block;              /* 让<code>元素像块一样显示 */
-  overflow-x: auto;            /* 同样提供水平滚动条 */
+  font-family: 'Courier New', Courier, monospace;
 }
+
 
 h1 { 
   color:#F9F900;/* 设置字体颜色 */
