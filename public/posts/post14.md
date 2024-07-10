@@ -14,87 +14,112 @@
 
 我在此基礎上加了我自己的筆記，以及仍存的疑問的解答，主要是用python寫。
 
+當中的題號都是leetcode的題號。照著本篇順序一題一題解，相信會有很大的成長的。
+
 請務必到：[代碼隨想錄](https://github.com/youngyangyang04/leetcode-master/tree/master)網站來看更齊全的資料。
 
 ## 性能分析:
-大O用来表示上界的，当用它作为算法的最坏情况运行时间的上界，就是对任意数据输入的运行时间的上界。
+
+大O用來表示上界的，當用它作為演算法的最壞情況運行時間的上界，就是對任意資料輸入的運行時間的上界。
 
 ## 數組:
 <h1 class="circle-title">二分搜尋</h1>
 <div style="text-align: center;">
-#704
+#704, Binary Search
 </div>
 
-二分查找涉及的很多的边界条件，逻辑比较简单，但就是写不好。例如到底是 WHILE(LEFT < RIGHT) 还 是 WHILE(LEFT <= RIGHT)，到底是RIGHT = MIDDLE呢，还是要RIGHT = MIDDLE - 1呢?
+```
+给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，
+写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
 
-写二分法，区间的定义一般为两种，左闭右闭即[LEFT, RIGHT]，或者左闭右开即[LEFT, RIGHT)。 
+输入: nums = [-1,0,3,5,9,12], target = 9     
+输出: 4       
+解释: 9 出现在 nums 中并且下标为 4     
+```
 
-*二分法第一种写法:*
+二分查找涉及的很多的邊界條件，邏輯比較簡單，但就是寫不好。例如到底是 WHILE(LEFT < RIGHT) 還 是 WHILE(LEFT <= RIGHT)，到底是RIGHT = MIDDLE呢，還是要RIGHT = MIDDLE - 1呢?
 
-第一种写法，我们定义 TARGET 是在一个在左闭右闭的区间里，也就是[LEFT, RIGHT] (这个很重要非常重要)。
-区间的定义这就决定了二分法的代码应该如何写，因为定义TARGET在[LEFT, RIGHT]区间，所以有如下两 点:
+寫二分法，區間的定義一般為兩種，左閉右閉即[LEFT, RIGHT]，或左閉右開即[LEFT, RIGHT)。
 
-1. WHILE (LEFT <= RIGHT) 要使用 <= ，因为LEFT == RIGHT是有意义的，所以使用 <=
+*二分法第一種寫法:*
 
-2. IF (NUMS[MIDDLE] > TARGET) RIGHT 要赋值为 MIDDLE - 1，因为当前这个NUMS[MIDDLE]一定不
-是TARGET，那么接下来要查找的左区间结束下标位置就是 MIDDLE - 1
+![](https://camo.githubusercontent.com/ff499aa858e7f57b04f432a733d7fa8df867d1d613403a156e46ab0c38266f6b/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303231303331313135333035353732332e6a7067)
+
+第一種寫法，我們定義 TARGET 是在一個在左閉右閉的區間裡，也就是[LEFT, RIGHT] (這很重要非常重要)。
+
+區間的定義這決定了二分法的代碼應該如何寫，因為定義TARGET在[LEFT, RIGHT]區間，所以有如下兩點:
+
+1. WHILE (LEFT <= RIGHT) 要使用 <= ，因為LEFT == RIGHT是有意義的，所以使用 <=
+
+2. IF (NUMS[MIDDLE] > TARGET) RIGHT 要賦值為 MIDDLE - 1，因為目前這個NUMS[MIDDLE]一定不
+是TARGET，那麼接下來要找的左區間結束下標位置就是 MIDDLE - 1
 
 ```python
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        left, right = 0, len(nums) - 1 # 定义target在左闭右闭的区间里，[left, right]
+        left, right = 0, len(nums) - 1 # 定義target在左閉右閉的區間裡，[left, right]
         while left <= right:
             middle = left + (right - left) // 2
 
             if nums[middle] > target:
-            right = middle - 1 # target在左区间，所以[left, middle - 1]
+            right = middle - 1 # target在左邊區間，所以[left, middle - 1]
             elif nums[middle] < target:
-            left = middle + 1 # target在右区间，所以[middle + 1, right]
+            left = middle + 1 # target在右邊區間，所以[middle + 1, right]
             else:
-            return middle # 数组中找到目标值，直接返回下标
-        return -1 # 未找到目标值
+            return middle# 數組中找到目標值，直接傳回下標
+        return -1 # 未找到目標值
 ```
 
-*二分法第二种写法:*
 
-如果说定义 target 是在一个在左闭右开的区间里，也就是[left, right) ，那么二分法的边界处理方式 则截然不同。
+*二分法第二種寫法:*
 
-有如下两点:
-1. while (left < right)，这里使用 < ,因为left == right在区间[left, right)是没有意义的
-2. if (nums[middle] > target) right 更新为 middle，因为当前nums[middle]不等于target，去左区间继续寻找，而寻找区间是左闭右开区间，所以right更新为middle，即: 下一个查询区间不 会去比较nums[middle]
+![](https://camo.githubusercontent.com/e5d8f3e2f3a09f669b49357974c9a265b8508778745f3402784b7f0aaa943bd9/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303231303331313135333132333633322e6a7067)
+
+如果說定義 target 是在一個在左閉右開的區間裡，也就是[left, right) ，那麼二分法的邊界處理方式 則截然不同。
+
+有如下两點：
+
+1. while (left < right)，這裡用 < ,因為left == right在區間[left, right)是沒有意義的
+
+2. if (nums[middle] > target) right 更新為middle，因為當前nums[middle]不等於target，去左區間繼續尋找，而尋找區間是左閉右開區間，所以right更新為middle，即:下一個查詢區間不會去比較nums[middle]
 
 ```python
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        left, right = 0, len(nums) # 定义target在左闭右开的区间里，即:[left, right)
-        while left < right: # 因为left == right的时候，在[left, right)是无效的空间，所以使用 < middle = left + (right - left) // 2
+        left, right = 0, len(nums) # 定義target在左閉右開的區間裡，即:[left, right)
+        while left < right: # 因爲left == right的時候，在[left, right)是無效的空間，所以使用 < middle = left + (right - left) // 2
             if nums[middle] > target:
-                right = middle # target 在左区间，在[left, middle)中
+                right = middle # target 在左區間，在[left, middle)中
             elif nums[middle] < target:
-                left = middle + 1 # target 在右区间，在[middle + 1, right)中
+                left = middle + 1 # target 在右區間，在[middle + 1, right)中
             else:
-                return middle # 数组中找到目标值，直接返回下标
-        return -1 # 未找到目标值
+                return middle # 數组中找到目標值，直接返回下標
+        return -1 # 未找到目標值
 ```
 
 **補充：**
 
-防止整数溢出:
+防止整數溢出:
 
-当处理非常大的数组或整数时，LEFT + RIGHT 的值可能超过整数的最大表示范围，导致整数溢出。虽 然在 PYTHON 中这种情况不太可能发生，因为 PYTHON 的整数类型可以自动扩展，但在其他编程语言中 (如C、C++、JAVA)，整数溢出是一个实际的问题。
+當處理非常大的陣列或整數時，LEFT + RIGHT 的值可能超過整數的最大表示範圍，導致整數溢位。雖 然在 PYTHON 中這種情況不太可能發生，因為 PYTHON 的整數類型可以自動擴展，但在其他程式語言中 (如C、C++、JAVA)，整數溢位是一個實際的問題。
 
-假设 LEFT 和 RIGHT 都是非常大的正整数，那么 LEFT + RIGHT 可能会超过这些语言中的整数上 限(例如，在32位系统中为2^31 - 1)。然而，LEFT + (RIGHT - LEFT) // 2 通过先计算 RIGHT - LEFT 来避免这种情况，因为 RIGHT - LEFT 不会超过 RIGHT 或 LEFT 的范围。
+假設 LEFT 和 RIGHT 都是非常大的正整數，那麼 LEFT + RIGHT 可能會超過這些語言中的整數上 限(例如，在32位元系統中為2^31 - 1)。然而，LEFT + (RIGHT - LEFT) // 2 先計算 RIGHT - LEFT 來避免這種情況，因為 RIGHT - LEFT 不會超過 RIGHT 或 LEFT 的範圍。
 
 <h1 class="circle-title">雙指針法</h1>
 
 
 <div style="text-align: center;">
-#27
+#27, Remove Element
 </div>
 
+```
 在數組內移除特定元素
-双指针法(快慢指针法): 通过一个快指针和慢指针在一个FOR循环下完成两个FOR循环的工作。 定义快慢指针
+```
+
+雙指針法(快慢指針法): 透過一個快指針和慢指針在一個FOR循環下完成兩個FOR循環的工作。 定義快慢指針
+
 1. 快指针:寻找新数组的元素 ，新数组就是不含有目标元素的数组
+
 2. 慢指针:指向更新 新数组下标的位置
 
 ```python
@@ -110,14 +135,16 @@ class Solution:
 ```
 
 <div style="text-align: center;">
-#977
+#977, Squares of a Sorted Array
 </div>
 
+```
 给你一个按 非递减顺序 排序的整数数组 NUMS，返回 每个数字的平方 组成的新数组，要求也按 非递减顺 序 排序。
 示例 1:
 1. 输入:NUMS = [-4,-1,0,3,10]
 2. 输出:[0,1,9,16,100]
 3. 解释:平方后，数组变为 [16,1,0,9,100]，排序后，数组变为 [0,1,9,16,100]
+```
 
 数组其实是有序的， 只不过负数平方之后可能成为最大数了。 那么数组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间。 此时可以考虑双指针法了，I指向起始位置，J指向终止位置。 定义一个新数组RESULT，和A数组一样的大小，让K指向RESULT数组终止位置。
 
@@ -141,15 +168,17 @@ class Solution:
 
 
 <div style="text-align: center;">
-#209
+#209, Minimum Size Subarray Sum
 </div>
 
+```
 给定一个含有 N 个正整数的数组和一个正整数 S ，找出该数组中满足其和 ≥ S 的⻓度最小的 连续 子数组， 并返回其⻓度。如果不存在符合条件的子数组，返回 0。
 
 示例:
 1. 输入:S = 7, NUMS = [2,3,1,2,4,3]
 2. 输出:2
 3. 解释:子数组 [4,3] 是该条件下的⻓度最小的子数组。
+```
 
 首先要思考 如果用一个FOR循环，那么应该表示 滑动窗口的起始位置，还是终止位置。 如果只用一个FOR循环来表示 滑动窗口的起始位置，那么如何遍历剩下的终止位置? 此时难免再次陷入 暴力解法的怪圈。
 所以 只用一个FOR循环，那么这个循环的索引，一定是表示 滑动窗口的终止位置
@@ -176,9 +205,10 @@ class Solution
 <h1 class="circle-title">螺旋矩陣</h1>
 
 <div style="text-align: center;">
-#59
+#59, Spiral Matrix 2
 </div>
 
+```
 给定一个正整数 N，生成一个包含 1 到 N^2 所有元素，且元素按顺时针顺序螺旋排列的正方形矩阵。 示例:
 输入: 3 输出: [ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ] ]
 
@@ -188,6 +218,7 @@ class Solution
 2. 填充右列从上到下 
 3. 填充下行从右到左 
 4. 填充左列从下到上
+```
 
 由外向内一圈一圈这么画下去。 可以发现这里的边界条件非常多，在一个循环中，如此多的边界条件，如果不按照固定规则来遍历，那就是一 进循环深似海，从此OFFER是路人。 这里一圈下来，我们要画每四条边，这四条边怎么画，每画一条边都要坚持一致的左闭右开，或者左开右闭的 原则，这样这一圈才能按照统一的规则画下来。
 
@@ -243,14 +274,16 @@ class ListNode:
 ```
 
 <div style="text-align: center;">
-#203
+#203, Remove Linked Lish Elements
 </div>
 
+```
 题意:删除链表中等于给定值 VAL 的所有节点。
 示例 :
 1. 输入:HEAD = [1,2,6,3,4,5,6], VAL = 6 输出:[1,2,3,4,5]
 2. 输入:HEAD = [], VAL = 1 输出:[]
 3. 输入:HEAD = [7,7,7,7], VAL = 7 输出:[]
+```
 
 ```python
 class Solution:
@@ -276,9 +309,10 @@ def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNod
 2. 未更新链表头部:使用虚拟头节点(DUMMY NODE)的目的是为了简化删除操作，特别是当头节点 需要被删除时。如果你在删除操作后直接返回 HEAD，就无法处理这种情况。
 
 <div style="text-align: center;">
-#707
+#707, Design Linked List
 </div>
 
+```
 在链表类中实现这些功能:
 1. GET(INDEX):获取链表中第 INDEX 个节点的值。如果索引无效，则返回-1。
 2.  ADDATHEAD(VAL):在链表的第一个元素之前添加一个值为 VAL 的节点。插入后，新节点将成为链表 的第一个节点。
@@ -287,6 +321,7 @@ def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNod
 于链表的⻓度，则该节点将附加到链表的末尾。如果 INDEX 大于链表⻓度，则不会插入节点。如果
 INDEX小于0，则在头部插入节点。
 5. DELETEATINDEX(INDEX):如果索引 INDEX 有效，则删除链表中的第 INDEX 个节点。
+```
 
 ```python
 class ListNode:
@@ -356,10 +391,12 @@ SELF.DUMMY.NEXT = NEW_NODE
 
 <h1 class="circle-title">LL中的遞迴與遍歷</h1>
 <div style="text-align: center;">
-#206
+#206, Reverse Linked List
 </div>
 
+```
 反轉LL:
+```
 
 Iterative:
 ```python
@@ -387,9 +424,10 @@ class Solution:
 ```
 
 <div style="text-align: center;">
-#24
+#24, Swap Nodes in Paris
 </div>
 
+```
 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
 
 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
@@ -399,6 +437,7 @@ class Solution:
 head = [1,2,3,4]
 
 output: [2,1,4,3]
+```
 
 RECURSION:
 
@@ -437,9 +476,10 @@ class Solution:
 ![描述文字](https://camo.githubusercontent.com/01651992af843c28fd7496e6a04cc4e83760a7ceead3d8da46e4c1acb35b02bc/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f706963732f32342e254534254238254134254534254238254134254534254241254134254536253844254132254539253933254245254538254131254138254534254238254144254537253941253834254538253841253832254537253832254239312e706e67)
 
 <div style="text-align: center;">
-#19
+#19, Remove Nth Node From End of List
 </div>
 
+```
 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
 
 输入：head = [1,2,3,4,5], n = 2 输出：[1,2,3,5]
@@ -449,6 +489,7 @@ class Solution:
 
 
 输入：head = [1,2], n = 1 输出：[1]
+```
 
 双指针的经典应用，如果要删除倒数第n个节点，让fast移动n步，然后让fast和slow同时移动，直到fast指向链表末尾。删掉slow所指向的节点就可以了。
 
@@ -490,10 +531,12 @@ class Solution:
 ```
 
 <div style="text-align: center;">
-#160
+#160, Intersection of Two Linked Lists
 </div>
 
+```
 给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 null 。
+```
 
 ![](https://camo.githubusercontent.com/f5e894bff106380c6648d69ea08217bfe793eb925e37f36663db2903e84ec10e/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303231313231393232313732332e706e67)
 
@@ -540,12 +583,15 @@ class Solution:
 
 
 <div style="text-align: center;">
-#142
+#142, Linked List Cycle 2
 </div>
 
+```
 题意： 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+```
 
 为了表示给定链表中的环，使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。
+
 
 ![](https://camo.githubusercontent.com/b364f73596cb946f8cef38dcecf559f6abad44a5d45c5f2e58802abec84bd46a/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303232303932353130333433332e706e67)
 
@@ -621,9 +667,10 @@ dict 是一個鍵-值對映射。它的底層實現也是基於哈希表。
 
 
 <div style="text-align: center;">
-#242
+#242, Valid Anagram
 </div>
 
+```
 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
 
 示例 1: 输入: s = "anagram", t = "nagaram" 输出: true
@@ -631,6 +678,7 @@ dict 是一個鍵-值對映射。它的底層實現也是基於哈希表。
 示例 2: 输入: s = "rat", t = "car" 输出: false
 
 说明: 你可以假设字符串只包含小写字母。
+```
 
 ```python
 class Solution:
@@ -671,9 +719,10 @@ class Solution:
 
 
 <div style="text-align: center;">
-#1002
+#1002, Find Common Characters
 </div>
 
+```
 给你一个字符串数组 words ，请你找出所有在 words 的每个字符串中都出现的共用字符（ 包括重复字符），并以数组形式返回。你可以按 任意顺序 返回答案。
 
 示例 1：
@@ -687,6 +736,7 @@ class Solution:
 提示：
 
 1 <= words.length <= 100 1 <= words[i].length <= 100 words[i] 由小写英文字母组成
+```
 
 ![](https://camo.githubusercontent.com/005ce8412d380d9aa3ba005eafc914e90da50358dccc382740f81dafa9601160/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f706963732f313030322e2545362539462541352545362538392542452545352542382542382545372539342541382545352541442539372545372541432541362e706e67)
 
@@ -744,9 +794,10 @@ O(L)，其中
 L 是字符串数组中最长字符串的长度。
 
 <div style="text-align: center;">
-#349
+#349, Intersection of Two Arrays
 </div>
 
+```
 题意：给定两个数组，编写一个函数来计算它们的交集。you may return the result in any order.
 
 Input: nums1 = [1,2,2,1], nums2 = [2,2]
@@ -758,6 +809,7 @@ Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
 Output: [9,4]
 
 Explanation: [4,9] is also accepted.
+```
 
 ```python
 class Solution:
@@ -797,9 +849,10 @@ O(1)。
 使用集合的优点是它只存储唯一元素，自动去重。
 
 <div style="text-align: center;">
-#202
+#202, Happy Number
 </div>
 
+```
 「快乐数」定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。如果 可以变为  1，那么这个数就是快乐数。
 
 输入：19
@@ -815,6 +868,7 @@ O(1)。
 6^2 + 8^2 = 100
 
 1^2 + 0^2 + 0^2 = 1
+```
 
 这道题目看上去貌似一道数学问题，其实并不是！
 
@@ -837,11 +891,12 @@ class Solution:
 ```
 
 <div style="text-align: center;">
-#1
+#1, Two Sum
 </div>
 
 *map 在python 中稱為dict*
 
+```
 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
 
 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
@@ -853,8 +908,7 @@ class Solution:
 因为 nums[0] + nums[1] = 2 + 7 = 9
 
 所以返回 [0, 1]
-
----
+```
 
 本题其实有四个重点：
 
@@ -927,9 +981,10 @@ class Solution:
 ![](https://camo.githubusercontent.com/7c9fdc5c90edbd8498ac963e8ca830cdd848921ef303d84dbdcf2092cf39e1cb/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303232303731313230323633382e706e67)
 
 <div style="text-align: center;">
-#454
+#454, 4 Sum 2
 </div>
 
+```
 给定四个包含整数的数组列表 A , B , C , D ,计算有多少个元组 (i, j, k, l) ，使得 A[i] + B[j] + C[k] + D[l] = 0。
 
 为了使问题简单化，所有的 A, B, C, D 具有相同的长度 N，且 0 ≤ N ≤ 500 。所有整数的范围在 -2^28 到 2^28 - 1 之间，最终结果不会超过 2^31 - 1 。
@@ -954,6 +1009,7 @@ D = [ 0, 2]
 (0, 0, 0, 1) -> A[0] + B[0] + C[0] + D[1] = 1 + (-2) + (-1) + 2 = 0
 
 (1, 1, 0, 0) -> A[1] + B[1] + C[0] + D[0] = 2 + (-1) + (-1) + 0 = 0
+```
 
 本题乍眼一看好像和0015.三数之和，0018.四数之和差不多，其实差很多。
 
@@ -987,9 +1043,10 @@ class Solution(object):
 
 
 <div style="text-align: center;">
-#383
+#383, Ransom Note
 </div>
 
+```
 给定一个赎金信 (ransom) 字符串和一个杂志(magazine)字符串，**判断第一个字符串 ransom 能不能由第二个字符串 magazines 里面的字符构成。如果可以构成，返回 true ；否则返回 false。**
 
 (题目说明：为了不暴露赎金信字迹，要从杂志上搜索各个需要的字母，组成单词来表达意思。杂志字符串中的每个字符只能在赎金信字符串中使用一次。)
@@ -1003,6 +1060,7 @@ canConstruct("a", "b") -> false
 canConstruct("aa", "ab") -> false
 
 canConstruct("aa", "aab") -> true
+```
 
 ```python
 class Solution:
@@ -1035,4 +1093,113 @@ class Solution:
                 return False
         return True
 ```
+
+<div style="text-align: center;">
+#15, 3Sum
+</div>
+
+```
+給你一個包含 n 個整數的陣列 nums，判斷 nums 中是否存在三個元素 a，b，c ，使得 a + b + c = 0 ？請你找出所有符合條件且不重複的三元組。
+
+注意： 答案中不可以包含重複的三元组。
+
+示例：
+
+给定數组 nums = [-1, 0, 1, 2, -1, -4]，
+
+滿足要求的三元组集合：[ [-1, 0, 1], [-1, -1, 2] ]
+```
+
+*hash 解法：*
+
+兩層for迴圈就可以確定a 和b 的數值了，可以用哈希法來確定0-(a+b) 是否在數組裡出現過，其實這個思路是正確的，但是我們有一個非常棘手的問題，就是題目中說的不可以包含重複的三元組。
+
+把符合條件的三元組放進vector中，然後再去重，這樣是非常費時的，很容易超時，也是這道題目通過率如此之低的根源所在。O(n^2)
+
+```python
+from typing import List
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        nums.sort()
+        # 找出a + b + c = 0
+        # a = nums[i], b = nums[j], c = -(a + b)
+        for i in range(len(nums)):
+            # 排序之后如果第一個元素已經大於零，不可能凑成三元组
+            if nums[i] > 0:
+                break
+            if i > 0 and nums[i] == nums[i - 1]:  # 三元组元素a去重
+                continue
+            s = set()
+            for j in range(i + 1, len(nums)):
+                if j > i + 2 and nums[j] == nums[j - 1] and nums[j - 1] == nums[j - 2]:  # 三元组元素b去重
+                    continue
+                c = - (nums[i] + nums[j])
+                if c in s:
+                    result.append([nums[i], nums[j], c])
+                    s.remove(c)  # 三元组元素c去重
+                else:
+                    s.add(nums[j])
+        return result
+
+```
+
+*雙指針*
+
+![](https://camo.githubusercontent.com/a6e56f0cd5661cc020cd6609522309707357b7a9c31a57a7436b264d276516be/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f676966732f31352e2545342542382538392545362539352542302545342542392538422545352539322538432e676966
+)
+
+拿這個nums數組來舉例，先將數組排序，然後有一層for循環，i從下標0的地方開始，同時定一個下標left 定義在i+1的位置上，定義下標right 在數組結尾的位置上。
+
+還是在陣列中找到 abc 使得a + b +c =0，我們在這裡相當於 a = nums[i]，b = nums[left]，c = nums[right]。
+
+接下來要如何移動left 和right呢， 如果nums[i] + nums[left] + nums[right] > 0 就表示此時三數總和大了，因為數組是排序後了，所以right下標就應該向左移動，這樣才能讓三數總和小一點。
+
+如果 nums[i] + nums[left] + nums[right] < 0 說明 此時 三數之和小了，left 就向右移動，才能讓三數總和大一些，直到left與right相遇為止。
+
+時間複雜度：O(n^2)。
+
+```python
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        nums.sort()
+        
+        for i in range(len(nums)):
+            # 如果第一个元素已经大于0，不需要进一步检查
+            if nums[i] > 0:
+                return result
+            
+            # 跳过相同的元素以避免重复
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+                
+            left = i + 1
+            right = len(nums) - 1
+            
+            while right > left:
+                sum_ = nums[i] + nums[left] + nums[right]
+                
+                if sum_ < 0:
+                    left += 1
+                elif sum_ > 0:
+                    right -= 1
+                else:
+                    result.append([nums[i], nums[left], nums[right]])
+                    
+                    # 跳过相同的元素以避免重复
+                    while right > left and nums[right] == nums[right - 1]:
+                        right -= 1
+                    while right > left and nums[left] == nums[left + 1]:
+                        left += 1
+                        
+                    right -= 1
+                    left += 1
+                    
+        return result
+```
+
+
+
 **To be continued...**
