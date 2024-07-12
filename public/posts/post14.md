@@ -1,4 +1,4 @@
-在線簡體繁體轉換工具：請輸入簡體字,點擊下面按鈕進行在線轉換<style>
+<style>
 .circle-title {
     display: inline-block;
     padding: 10px;
