@@ -20,34 +20,37 @@
 
 ## 目錄：
 
--[性能分析](#性能分析)
+性能分析
 
--[數組](#數組)
-1. [704-binary search](#704)
-2. [27-remove element](#27)
-3. [977-Squares of a Sorted Array](#977)
-4. [209-Minimum Size Subarray Sum](#209)
-5. [59-Spiral Matrix 2](#59)
+數組:
+1. [704 - binary search](#704)
+2. [27 - remove element](#27)
+3. [977 - Squares of a Sorted Array](#977)
+4. [209 - Minimum Size Subarray Sum](#209)
+5. [59 - Spiral Matrix 2](#59)
 
--[鏈表](#鏈表)
-1. [203](#203)
-2. [707](#707)
-3. [206](#206)
-4. [24](#24)
-5. [19](#19)
-6. [160](#160)
-7. [142](#142)
+鏈表:
+1. [203 - Remove Linked Lish Elements](#203)
+2. [707 - Design Linked List](#707)
+3. [206 - Reverse Linked List](#206)
+4. [24 - Swap Nodes in Paris](#24)
+5. [19 - Remove Nth Node From End of List](#19)
+6. [160 - Intersection of Two Linked Lists](#160)
+7. [142 - Linked List Cycle 2](#142)
 
--[hash table](#hash-table)
-1. [242]()
-2. [1002](#1002)
-3. []()
-4. []()
-5. []()
-6. []()
-7. []()
+hash table:
+1. [242 - Valid Anagram](#242)
+2. [1002 - Find Common Characters](#1002)
+3. [349 - Intersection of Two Arrays](#349)
+4. [202 - Happy Number](#202)
+5. [1 - Two Sum](#1)
+6. [454 - 4 Sum 2](#454)
+7. [383 - Ransom Note](#383)
+8. [15 - 3Sum](#15)
+9. [18 - 4 sum](#18)
 
--[string](#字符串)
+string:
+1. [344 - reverse stirng](#344)
 
 ## 性能分析:
 
