@@ -18,13 +18,45 @@
 
 請務必到：[代碼隨想錄](https://github.com/youngyangyang04/leetcode-master/tree/master)網站來看更齊全的資料。
 
+## 目錄：
+
+-[性能分析](#性能分析)
+
+-[數組](#數組)
+1. [704-binary search](#704)
+2. [27-remove element](#27)
+3. [977-Squares of a Sorted Array](#977)
+4. [209-Minimum Size Subarray Sum](#209)
+5. [59-Spiral Matrix 2](#59)
+
+-[鏈表](#鏈表)
+1. [203](#203)
+2. [707](#707)
+3. [206](#206)
+4. [24](#24)
+5. [19](#19)
+6. [160](#160)
+7. [142](#142)
+
+-[hash table](#hash-table)
+1. [242]()
+2. [1002](#1002)
+3. []()
+4. []()
+5. []()
+6. []()
+7. []()
+
+-[string](#字符串)
+
 ## 性能分析:
 
 大O用來表示上界的，當用它作為演算法的最壞情況運行時間的上界，就是對任意資料輸入的運行時間的上界。
 
 ## 數組:
 <h1 class="circle-title">二分搜尋</h1>
-<div style="text-align: center;">
+
+<div id = "704" style="text-align: center;">
 #704, Binary Search
 </div>
 
@@ -108,7 +140,7 @@ class Solution:
 <h1 class="circle-title">雙指針法</h1>
 
 
-<div style="text-align: center;">
+<div id = "27" style="text-align: center;">
 #27, Remove Element
 </div>
 
@@ -134,7 +166,7 @@ class Solution:
         return slow
 ```
 
-<div style="text-align: center;">
+<div id = "977" style="text-align: center;">
 #977, Squares of a Sorted Array
 </div>
 
@@ -167,7 +199,7 @@ class Solution:
 **但是 [] LIST 不能使用APPENDLEFT, 要改成RES = COLLECTIONS.DEQUE()才可以。**
 
 
-<div style="text-align: center;">
+<div id = "209" style="text-align: center;">
 #209, Minimum Size Subarray Sum
 </div>
 
@@ -204,7 +236,7 @@ class Solution
 
 <h1 class="circle-title">螺旋矩陣</h1>
 
-<div style="text-align: center;">
+<div id = "59" style="text-align: center;">
 #59, Spiral Matrix 2
 </div>
 
@@ -273,7 +305,7 @@ class ListNode:
         self.next = next
 ```
 
-<div style="text-align: center;">
+<div id = "203" style="text-align: center;">
 #203, Remove Linked Lish Elements
 </div>
 
@@ -308,7 +340,7 @@ def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNod
 
 2. 未更新链表头部:使用虚拟头节点(DUMMY NODE)的目的是为了简化删除操作，特别是当头节点 需要被删除时。如果你在删除操作后直接返回 HEAD，就无法处理这种情况。
 
-<div style="text-align: center;">
+<div id = "707" style="text-align: center;">
 #707, Design Linked List
 </div>
 
@@ -390,7 +422,7 @@ NEW_NODE = LISTNODE(VAL, SELF.DUMMY.NEXT)
 SELF.DUMMY.NEXT = NEW_NODE
 
 <h1 class="circle-title">LL中的遞迴與遍歷</h1>
-<div style="text-align: center;">
+<div id = "206" style="text-align: center;">
 #206, Reverse Linked List
 </div>
 
@@ -423,7 +455,7 @@ class Solution:
         return new_node
 ```
 
-<div style="text-align: center;">
+<div id = "24" style="text-align: center;">
 #24, Swap Nodes in Paris
 </div>
 
@@ -475,7 +507,7 @@ class Solution:
 ```
 ![描述文字](https://camo.githubusercontent.com/01651992af843c28fd7496e6a04cc4e83760a7ceead3d8da46e4c1acb35b02bc/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f706963732f32342e254534254238254134254534254238254134254534254241254134254536253844254132254539253933254245254538254131254138254534254238254144254537253941253834254538253841253832254537253832254239312e706e67)
 
-<div style="text-align: center;">
+<div id = "19" style="text-align: center;">
 #19, Remove Nth Node From End of List
 </div>
 
@@ -530,7 +562,7 @@ class Solution:
         return dummy.next
 ```
 
-<div style="text-align: center;">
+<div id = "160" style="text-align: center;">
 #160, Intersection of Two Linked Lists
 </div>
 
@@ -582,7 +614,7 @@ class Solution:
 ```
 
 
-<div style="text-align: center;">
+<div id = "142" style="text-align: center;">
 #142, Linked List Cycle 2
 </div>
 
@@ -666,7 +698,7 @@ dict 是一個鍵-值對映射。它的底層實現也是基於哈希表。
 
 
 
-<div style="text-align: center;">
+<div id = "242" style="text-align: center;">
 #242, Valid Anagram
 </div>
 
@@ -718,7 +750,7 @@ class Solution:
 ```
 
 
-<div style="text-align: center;">
+<div id = "1002" style="text-align: center;">
 #1002, Find Common Characters
 </div>
 
@@ -793,7 +825,7 @@ O(L)，其中
 𝐿
 L 是字符串数组中最长字符串的长度。
 
-<div style="text-align: center;">
+<div id = "349" style="text-align: center;">
 #349, Intersection of Two Arrays
 </div>
 
@@ -848,7 +880,7 @@ O(1)。
 存储交集结果：我们使用集合 res 来存储交集结果。
 使用集合的优点是它只存储唯一元素，自动去重。
 
-<div style="text-align: center;">
+<div id = "202" style="text-align: center;">
 #202, Happy Number
 </div>
 
@@ -890,7 +922,7 @@ class Solution:
         return n == 1
 ```
 
-<div style="text-align: center;">
+<div id = "1" style="text-align: center;">
 #1, Two Sum
 </div>
 
@@ -980,7 +1012,7 @@ class Solution:
 
 ![](https://camo.githubusercontent.com/7c9fdc5c90edbd8498ac963e8ca830cdd848921ef303d84dbdcf2092cf39e1cb/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303232303731313230323633382e706e67)
 
-<div style="text-align: center;">
+<div id = "454" style="text-align: center;">
 #454, 4 Sum 2
 </div>
 
@@ -1042,7 +1074,7 @@ class Solution(object):
 空间复杂度: O(n^2)
 
 
-<div style="text-align: center;">
+<div id = "383"style="text-align: center;">
 #383, Ransom Note
 </div>
 
@@ -1094,7 +1126,7 @@ class Solution:
         return True
 ```
 
-<div style="text-align: center;">
+<div id = "15" style="text-align: center;">
 #15, 3Sum
 </div>
 
@@ -1199,6 +1231,270 @@ class Solution:
                     
         return result
 ```
+
+<div id = "18" style="text-align: center;">
+#18, 4 sum
+</div>
+
+```
+题意：给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。
+
+注意：
+
+答案中不可以包含重复的四元组。
+
+示例： 给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。 
+满足要求的四元组集合为： [ [-1, 0, 0, 1], [-2, -1, 1, 2], [-2, 0, 0, 2] ]
+```
+
+四数之和，和15.三数之和是一个思路，都是使用双指针法, 基本解法就是在15.三数之和 的基础上再套一层for循环。
+
+但是有一些细节需要注意，例如： 不要判断nums[k] > target 就返回了，三数之和 可以通过 nums[i] > 0 就返回了，因为 0 已经是确定的数了，四数之和这道题目 target是任意值。比如：数组是[-4, -3, -2, -1]，target是-10，不能因为-4 > -10而跳过。但是我们依旧可以去做剪枝，逻辑变成nums[i] > target && (nums[i] >=0 || target >= 0)就可以了。
+
+四数之和的双指针解法是两层for循环nums[k] + nums[i]为确定值，依然是循环内有left和right下标作为双指针，找出nums[k] + nums[i] + nums[left] + nums[right] == target的情况，三数之和的时间复杂度是O(n^2)，四数之和的时间复杂度是O(n^3) 。
+
+那么一样的道理，五数之和、六数之和等等都采用这种解法。
+
+对于15.三数之和双指针法就是将原本暴力O(n^3)的解法，降为O(n^2)的解法，四数之和的双指针解法就是将原本暴力O(n^4)的解法，降为O(n^3)的解法。
+
+之前我们讲过哈希表的经典题目：454.四数相加II，相对于本题简单很多，因为本题是要求在一个集合中找出四个数相加等于target，同时四元组不能重复。
+
+双指针法将时间复杂度：O(n^2)的解法优化为 O(n)的解法。也就是降一个数量级，题目如下：
+
+1. 27.移除元素
+2. 15.三数之和
+3. 18.四数之和
+
+```python
+def four_sum(nums, target):
+    nums.sort()  # 对数组进行排序
+    result = []
+    n = len(nums)
+    
+    for i in range(n - 3):
+        # 去重
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+        for j in range(i + 1, n - 2):
+            # 去重
+            if j > i + 1 and nums[j] == nums[j - 1]:
+                continue
+            left, right = j + 1, n - 1
+            while left < right:
+                total = nums[i] + nums[j] + nums[left] + nums[right]
+                if total == target:
+                    result.append([nums[i], nums[j], nums[left], nums[right]])
+                    # 跳过重复元素
+                    while left < right and nums[left] == nums[left + 1]:
+                        left += 1
+                    while left < right and nums[right] == nums[right - 1]:
+                        right -= 1
+                    left += 1
+                    right -= 1
+                elif total < target:
+                    left += 1
+                else:
+                    right -= 1
+    return result
+
+```
+
+四指针法（双指针法）：
+
+排序：时间复杂度是 
+𝑂
+(
+𝑛
+log
+⁡
+𝑛
+)
+
+
+四重循环：第一层循环是 
+𝑂
+(
+𝑛
+)
+，第二层循环是 
+𝑂
+(
+𝑛
+)
+，内层双指针循环的复杂度是 
+𝑂
+(
+𝑛
+)
+
+
+總時間複雜度為：O(nlogn+n ^
+3
+ )=O(n ^
+3
+ )。
+
+*hash table:*
+
+四数之和问题的算法实现中使用的四指针法（实际上是两层循环加双指针法）是比较高效的方法之一，但它的时间复杂度是 
+𝑂
+(
+𝑛
+3
+)
+O(n 
+3
+ )，这并不是最快的理论时间复杂度，但是对于实际应用来说，这个算法的性能通常是足够的。
+
+对于此类问题，最理想的时间复杂度可能是 
+𝑂
+(
+𝑛
+2
+log
+⁡
+𝑛
+)
+O(n 
+2
+ logn) 或 
+𝑂
+(
+𝑛
+2
+)
+O(n 
+2
+ )，通过使用哈希表来进一步优化查找过程。但是，这样的优化往往在实际实现中会遇到诸如管理和维护复杂的数据结构、处理更复杂的去重逻辑等挑战。
+
+ ```python
+ def four_sum_hash(nums, target):
+    from collections import defaultdict
+    num_dict = defaultdict(list)
+    results = set()
+    nums.sort()
+    n = len(nums)
+    
+    # 存储所有可能的两数和
+    for i in range(n):
+        for j in range(i + 1, n):
+            num_dict[nums[i] + nums[j]].append((i, j))
+    
+    # 查找四个不同索引的元素，其和为 target
+    for key in num_dict:
+        complement = target - key
+        if complement in num_dict:
+            for first_pair in num_dict[key]:
+                for second_pair in num_dict[complement]:
+                    index_set = set(first_pair + second_pair)
+                    # 确保四个索引不重复
+                    if len(index_set) == 4:
+                        quad = sorted(nums[i] for i in index_set)
+                        results.add(tuple(quad))
+    
+    return [list(quad) for quad in results]
+
+ ```
+
+ ## 字符串
+
+
+<div id = "344" style="text-align: center;">
+#344, reverse stirng
+</div>
+
+```
+编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。
+
+不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。
+
+你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。
+
+示例 1：
+输入：["h","e","l","l","o"]
+输出：["o","l","l","e","h"]
+
+示例 2：
+输入：["H","a","n","n","a","h"]
+输出：["h","a","n","n","a","H"]
+```
+
+two pointers:
+```python
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        left, right = 0, len(s) - 1
+        
+        # 该方法已经不需要判断奇偶数，经测试后时间空间复杂度比用 for i in range(len(s)//2)更低
+        # 因为while每次循环需要进行条件判断，而range函数不需要，直接生成数字，因此时间复杂度更低。推荐使用range
+        while left < right:
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1
+```
+stack:
+```python
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        stack = []
+        for char in s:
+            stack.append(char)
+        for i in range(len(s)):
+            s[i] = stack.pop()
+       
+```
+
+reversed:
+```python
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        s[:] = reversed(s)
+       
+```
+reverse():
+```python
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        # 原地反转,无返回值
+        s.reverse()
+       
+```
+for:
+```python
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        n = len(s)
+        for i in range(n // 2):
+            s[i], s[n - i - 1] = s[n - i - 1], s[i]
+       
+```
+
+slice:
+```python
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        s[:] = s[::-1]
+       
+```
+
 
 
 
