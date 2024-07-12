@@ -1,4 +1,4 @@
-<style>
+在線簡體繁體轉換工具：請輸入簡體字,點擊下面按鈕進行在線轉換<style>
 .circle-title {
     display: inline-block;
     padding: 10px;
@@ -53,6 +53,7 @@ string:
 1. [344 - reverse stirng](#344)
 2. [541 - reverse string 2](#541)
 3. [151 -  Reverse Words in a String](#151)
+4. [28 - Find the Index of the First Occurrence in a String](#28)
 
 ## 性能分析:
 
@@ -66,12 +67,12 @@ string:
 </div>
 
 ```
-给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，
-写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
+給定一個 n 個元素有序的（升序）整型數組 nums 和一個目標值 target ，
+寫一個函數搜索 nums 中的 target，如果目標值存在返回下標，否則返回 -1。
 
-输入: nums = [-1,0,3,5,9,12], target = 9     
-输出: 4       
-解释: 9 出现在 nums 中并且下标为 4     
+輸入: nums = [-1,0,3,5,9,12], target = 9     
+輸出: 4       
+解釋: 9 出現在 nums 中並且下標為 4     
 ```
 
 二分查找涉及的很多的邊界條件，邏輯比較簡單，但就是寫不好。例如到底是 WHILE(LEFT < RIGHT) 還 是 WHILE(LEFT <= RIGHT)，到底是RIGHT = MIDDLE呢，還是要RIGHT = MIDDLE - 1呢?
@@ -114,7 +115,7 @@ class Solution:
 
 如果說定義 target 是在一個在左閉右開的區間裡，也就是[left, right) ，那麼二分法的邊界處理方式 則截然不同。
 
-有如下两點：
+有如下兩點：
 
 1. while (left < right)，這裡用 < ,因為left == right在區間[left, right)是沒有意義的
 
@@ -130,7 +131,7 @@ class Solution:
             elif nums[middle] < target:
                 left = middle + 1 # target 在右區間，在[middle + 1, right)中
             else:
-                return middle # 數组中找到目標值，直接返回下標
+                return middle # 數組中找到目標值，直接返回下標
         return -1 # 未找到目標值
 ```
 
@@ -155,9 +156,9 @@ class Solution:
 
 雙指針法(快慢指針法): 透過一個快指針和慢指針在一個FOR循環下完成兩個FOR循環的工作。 定義快慢指針
 
-1. 快指针:寻找新数组的元素 ，新数组就是不含有目标元素的数组
+1. 快指針:尋找新數組的元素 ，新數組就是不含有目標元素的數組
 
-2. 慢指针:指向更新 新数组下标的位置
+2. 慢指針:指向更新 新數組下標的位置
 
 ```python
 class Solution:
@@ -176,14 +177,14 @@ class Solution:
 </div>
 
 ```
-给你一个按 非递减顺序 排序的整数数组 NUMS，返回 每个数字的平方 组成的新数组，要求也按 非递减顺 序 排序。
+給你一個按 非遞減顺序 排序的整數數組 NUMS，返回 每個數字的平方 組成的新數組，要求也按 非遞減顺 序 排序。
 示例 1:
-1. 输入:NUMS = [-4,-1,0,3,10]
-2. 输出:[0,1,9,16,100]
-3. 解释:平方后，数组变为 [16,1,0,9,100]，排序后，数组变为 [0,1,9,16,100]
+1. 輸入:NUMS = [-4,-1,0,3,10]
+2. 輸出:[0,1,9,16,100]
+3. 解釋:平方後，數組變為 [16,1,0,9,100]，排序後，數組變為 [0,1,9,16,100]
 ```
 
-数组其实是有序的， 只不过负数平方之后可能成为最大数了。 那么数组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间。 此时可以考虑双指针法了，I指向起始位置，J指向终止位置。 定义一个新数组RESULT，和A数组一样的大小，让K指向RESULT数组终止位置。
+數組其實是有序的， 只不過負數平方之後可能成為最大數了。 那麼數組平方的最大值就在數組的兩端，不是最左邊就是最右邊，不可能是中间。 此時可以考慮雙指針法了，I指向起始位置，J指向終止位置。 定義一個新數組RESULT，和A數組一樣的大小，讓K指向RESULT數組終止位置。
 
 ```python
 class Solution:
@@ -209,16 +210,16 @@ class Solution:
 </div>
 
 ```
-给定一个含有 N 个正整数的数组和一个正整数 S ，找出该数组中满足其和 ≥ S 的⻓度最小的 连续 子数组， 并返回其⻓度。如果不存在符合条件的子数组，返回 0。
+給定一個含有 N 個正整數的數組和一個正整數 S ，找出該數組中滿足其和 ≥ S 的⻓度最小的 連續 子數組， 並返回其⻓度。如果不存在符合條件的子數組，返回 0。
 
 示例:
-1. 输入:S = 7, NUMS = [2,3,1,2,4,3]
-2. 输出:2
-3. 解释:子数组 [4,3] 是该条件下的⻓度最小的子数组。
+1. 輸入:S = 7, NUMS = [2,3,1,2,4,3]
+2. 輸出:2
+3. 解釋:子數組 [4,3] 是該條件下的⻓度最小的子數組。
 ```
 
-首先要思考 如果用一个FOR循环，那么应该表示 滑动窗口的起始位置，还是终止位置。 如果只用一个FOR循环来表示 滑动窗口的起始位置，那么如何遍历剩下的终止位置? 此时难免再次陷入 暴力解法的怪圈。
-所以 只用一个FOR循环，那么这个循环的索引，一定是表示 滑动窗口的终止位置
+首先要思考 如果用一個FOR循環，那麼應該表示 滑動窗口的起始位置，還是終止位置。 如果只用一個FOR循環來表示 滑動窗口的起始位置，那麼如何遍曆剩下的終止位置? 此時难免再次陷入 暴力解法的怪圈。
+所以 只用一個FOR循環，那麼這個循環的索引，一定是表示 滑動窗口的終止位置
 
 ```python
 class Solution
@@ -246,18 +247,18 @@ class Solution
 </div>
 
 ```
-给定一个正整数 N，生成一个包含 1 到 N^2 所有元素，且元素按顺时针顺序螺旋排列的正方形矩阵。 示例:
-输入: 3 输出: [ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ] ]
+給定一個正整數 N，生成一個包含 1 到 N^2 所有元素，且元素按顺時針顺序螺旋排列的正方形矩阵。 示例:
+輸入: 3 輸出: [ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ] ]
 
-一定要坚持循环不变量原则。 而求解本题依然是要坚持循环不变量原则。 模拟顺时针画矩阵的过程:
+一定要堅持循環不變量原則。 而求解本题依然是要堅持循環不變量原則。 模擬顺時針畫矩阵的過程:
 
-1. 填充上行从左到右 
-2. 填充右列从上到下 
-3. 填充下行从右到左 
-4. 填充左列从下到上
+1. 填充上行從左到右 
+2. 填充右列從上到下 
+3. 填充下行從右到左 
+4. 填充左列從下到上
 ```
 
-由外向内一圈一圈这么画下去。 可以发现这里的边界条件非常多，在一个循环中，如此多的边界条件，如果不按照固定规则来遍历，那就是一 进循环深似海，从此OFFER是路人。 这里一圈下来，我们要画每四条边，这四条边怎么画，每画一条边都要坚持一致的左闭右开，或者左开右闭的 原则，这样这一圈才能按照统一的规则画下来。
+由外向內一圈一圈這麼畫下去。 可以發現這裏的邊界條件非常多，在一個循環中，如此多的邊界條件，如果不按照固定規則來遍曆，那就是一 進循環深似海，從此OFFER是路人。 這裏一圈下來，我們要畫每四條邊，這四條邊怎麼畫，每畫一條邊都要堅持一致的左闭右開，或者左開右闭的 原則，這樣這一圈才能按照統一的規則畫下來。
 
 ```python
 from typing import List
@@ -268,36 +269,36 @@ class Solution:
     num = 1
     left, right, top, bottom = 0, n - 1, 0, n - 1
     while left <= right and top <= bottom:
-        # 从左到右填充顶行
-        for i in range(left, right + 1):#left 到 right 表示当前顶行从左到右的范围，包括
+        # 從左到右填充顶行
+        for i in range(left, right + 1):#left 到 right 表示當前顶行從左到右的范圍，包括
             right，因此使用 right + 1。
             matrix[top][i] = num
             num += 1
-            top += 1# 填充完顶行，顶行边界下移
+            top += 1# 填充完顶行，顶行邊界下移
 
-        # 从上到下填充右列
-        for i in range(top, bottom + 1):#top 到 bottom 表示当前右列从上到下的范围，包括 bottom，因此使用 bottom + 1。
+        # 從上到下填充右列
+        for i in range(top, bottom + 1):#top 到 bottom 表示當前右列從上到下的范圍，包括 bottom，因此使用 bottom + 1。
             matrix[i][right] = num
             num += 1
-            right -= 1# 填充完右列，右列边界左移
+            right -= 1# 填充完右列，右列邊界左移
 
         if top <= bottom:
-            # 从右到左填充底行
+            # 從右到左填充底行
             for i in range(right, left - 1, -1):
                 matrix[bottom][i] = num
                 num += 1 bottom -= 1
 
         if left <= right:
-            # 从下到上填充左列
+            # 從下到上填充左列
             for i in range(bottom, top - 1, -1):
                 matrix[i][left] = num
                 num += 1 left += 1
     return matrix
 ```
 
-為什只有# 从右到左填充底行 # 从下到上填充左列 需要特別檢查?
+為什只有# 從右到左填充底行 # 從下到上填充左列 需要特別檢查?
 
-只有从右到左填充底行和从下到上填充左列需要特别检查，是因为在这些步骤之前已经改变了 TOP 和 RIGHT 边界，这可能导致这些边界条件在某些情况下已经不再满足。例如，当矩阵中只剩下一行或一列需要填充时，更新后的 TOP 或 RIGHT 可能会越过 BOTTOM 或 LEFT 边界，导致不再需要执行这些步骤。
+只有從右到左填充底行和從下到上填充左列需要特別檢查，是因為在這些步骤之前已經改變了 TOP 和 RIGHT 邊界，這可能導致這些邊界條件在某些情況下已經不再滿足。例如，當矩阵中只剩下一行或一列需要填充時，更新後的 TOP 或 RIGHT 可能會越過 BOTTOM 或 LEFT 邊界，導致不再需要執行這些步骤。
 
 ## 鏈表:
 
@@ -315,11 +316,11 @@ class ListNode:
 </div>
 
 ```
-题意:删除链表中等于给定值 VAL 的所有节点。
+题意:刪除鏈表中等於給定值 VAL 的所有節點。
 示例 :
-1. 输入:HEAD = [1,2,6,3,4,5,6], VAL = 6 输出:[1,2,3,4,5]
-2. 输入:HEAD = [], VAL = 1 输出:[]
-3. 输入:HEAD = [7,7,7,7], VAL = 7 输出:[]
+1. 輸入:HEAD = [1,2,6,3,4,5,6], VAL = 6 輸出:[1,2,3,4,5]
+2. 輸入:HEAD = [], VAL = 1 輸出:[]
+3. 輸入:HEAD = [7,7,7,7], VAL = 7 輸出:[]
 ```
 
 ```python
@@ -339,25 +340,25 @@ def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNod
 
 如果RETURN HEAD代表什麼?
 
-如果在你的代码中直接返回 HEAD 而不是 DUMMY.NEXT，那么会存在以下问题:
+如果在你的代碼中直接返回 HEAD 而不是 DUMMY.NEXT，那麼會存在以下问题:
 
-1. 未处理头节点的情况:如果需要删除的节点正是链表的头节点(即 HEAD 本身)，在删除操作后， HEAD 仍然指向原来的头节点，这样返回的链表仍然包含需要删除的头节点。
+1. 未處理頭節點的情況:如果需要刪除的節點正是鏈表的頭節點(即 HEAD 本身)，在刪除操作後， HEAD 仍然指向原來的頭節點，這樣返回的鏈表仍然包含需要刪除的頭節點。
 
-2. 未更新链表头部:使用虚拟头节点(DUMMY NODE)的目的是为了简化删除操作，特别是当头节点 需要被删除时。如果你在删除操作后直接返回 HEAD，就无法处理这种情况。
+2. 未更新鏈表頭部:使用虛擬頭節點(DUMMY NODE)的目的是為了簡化刪除操作，特別是當頭節點 需要被刪除時。如果你在刪除操作後直接返回 HEAD，就無法處理這種情況。
 
 <div id = "707" style="text-align: center;">
 #707, Design Linked List
 </div>
 
 ```
-在链表类中实现这些功能:
-1. GET(INDEX):获取链表中第 INDEX 个节点的值。如果索引无效，则返回-1。
-2.  ADDATHEAD(VAL):在链表的第一个元素之前添加一个值为 VAL 的节点。插入后，新节点将成为链表 的第一个节点。
-3. ADDATTAIL(VAL):将值为 VAL 的节点追加到链表的最后一个元素。
-4. ADDATINDEX(INDEX,VAL):在链表中的第 INDEX 个节点之前添加值为 VAL 的节点。如果 INDEX 等
-于链表的⻓度，则该节点将附加到链表的末尾。如果 INDEX 大于链表⻓度，则不会插入节点。如果
-INDEX小于0，则在头部插入节点。
-5. DELETEATINDEX(INDEX):如果索引 INDEX 有效，则删除链表中的第 INDEX 个节点。
+在鏈表類中實現這些功能:
+1. GET(INDEX):獲取鏈表中第 INDEX 個節點的值。如果索引無效，則返回-1。
+2.  ADDATHEAD(VAL):在鏈表的第一個元素之前添加一個值為 VAL 的節點。插入後，新節點將成為鏈表 的第一個節點。
+3. ADDATTAIL(VAL):將值為 VAL 的節點追加到鏈表的最後一個元素。
+4. ADDATINDEX(INDEX,VAL):在鏈表中的第 INDEX 個節點之前添加值為 VAL 的節點。如果 INDEX 等
+於鏈表的⻓度，則該節點將附加到鏈表的末尾。如果 INDEX 大於鏈表⻓度，則不會插入節點。如果
+INDEX小於0，則在頭部插入節點。
+5. DELETEATINDEX(INDEX):如果索引 INDEX 有效，則刪除鏈表中的第 INDEX 個節點。
 ```
 
 ```python
@@ -465,9 +466,9 @@ class Solution:
 </div>
 
 ```
-给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
+給定一個鏈表，兩兩交換其中相鄰的節點，並返回交換後的鏈表。
 
-你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+你不能只是單純的改變節點內部的值，而是需要實际的進行節點交換。
 
 示例：
 
@@ -487,7 +488,7 @@ class Solution:
         cur = head.next
         next = head.next.next
         cur.next = prev
-        prev.next = self.swapPairs(next) # 将以next为head的后续
+        prev.next = self.swapPairs(next) # 將以next為head的後續
         return cur
 ```
 
@@ -496,18 +497,18 @@ Iterative:
 ```python
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) ->Optional[ListNode]:
-    dummyHead = ListNode(0) # 设置一个虚拟头结点面做删除操作
-    dummyHead.next = head # 将虚拟头结点指向head，这样方便后
+    dummyHead = ListNode(0) # 設置一個虛擬頭結點面做刪除操作
+    dummyHead.next = head # 將虛擬頭結點指向head，這樣方便後
     cur = dummyHead
     while cur.next and cur.next.next:
-        tmp1 = cur.next # 记录临时节点
-        tmp2 = cur.next.next.next # 记录临时节点
+        tmp1 = cur.next # 記錄臨時節點
+        tmp2 = cur.next.next.next # 記錄臨時節點
 
         cur.next = cur.next.next # 步骤一
         cur.next.next = tmp1 # 步骤二
         cur.next.next.next = tmp2 # 步骤三
 
-        cur = cur.next.next # cur移动两位，准备下一轮交换 return dummyHead.next
+        cur = cur.next.next # cur移動兩位，准備下一輪交換 return dummyHead.next
     return dummyHead.next
 ```
 ![描述文字](https://camo.githubusercontent.com/01651992af843c28fd7496e6a04cc4e83760a7ceead3d8da46e4c1acb35b02bc/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f706963732f32342e254534254238254134254534254238254134254534254241254134254536253844254132254539253933254245254538254131254138254534254238254144254537253941253834254538253841253832254537253832254239312e706e67)
@@ -517,30 +518,30 @@ class Solution:
 </div>
 
 ```
-给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+給你一個鏈表，刪除鏈表的倒數第 n 個結點，並且返回鏈表的頭結點。
 
-输入：head = [1,2,3,4,5], n = 2 输出：[1,2,3,5]
-
-
-输入：head = [1], n = 1 输出：[]
+輸入：head = [1,2,3,4,5], n = 2 輸出：[1,2,3,5]
 
 
-输入：head = [1,2], n = 1 输出：[1]
+輸入：head = [1], n = 1 輸出：[]
+
+
+輸入：head = [1,2], n = 1 輸出：[1]
 ```
 
-双指针的经典应用，如果要删除倒数第n个节点，让fast移动n步，然后让fast和slow同时移动，直到fast指向链表末尾。删掉slow所指向的节点就可以了。
+雙指針的經典應用，如果要刪除倒數第n個節點，讓fast移動n步，然後讓fast和slow同時移動，直到fast指向鏈表末尾。刪掉slow所指向的節點就可以了。
 
-思路是这样的，但要注意一些细节。
+思路是這樣的，但要注意一些細節。
 
-1. 首先这里我推荐大家使用虚拟头结点，这样方便处理删除实际头结点的逻辑。
+1. 首先這裏我推薦大家使用虛擬頭結點，這樣方便處理刪除實际頭結點的邏輯。
 
-2. 定义fast指针和slow指针，初始值为虚拟头结点
+2. 定義fast指針和slow指針，初始值為虛擬頭結點
 
-3. fast首先走n + 1步 ，为什么是n+1呢，因为只有这样同时移动的时候slow才能指向删除节点的上一个节点（方便做删除操作
+3. fast首先走n + 1步 ，為什麼是n+1呢，因為只有這樣同時移動的時候slow才能指向刪除節點的上一個節點（方便做刪除操作
 
-4. fast和slow同时移动，直到fast指向末尾(Null)
+4. fast和slow同時移動，直到fast指向末尾(Null)
 
-5. 删除slow指向的下一个节点
+5. 刪除slow指向的下一個節點
 
 ```python
 class Solution:
@@ -572,44 +573,44 @@ class Solution:
 </div>
 
 ```
-给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 null 。
+給你兩個單鏈表的頭節點 headA 和 headB ，請你找出並返回兩個單鏈表相交的起始節點。如果兩個鏈表沒有交點，返回 null 。
 ```
 
 ![](https://camo.githubusercontent.com/f5e894bff106380c6648d69ea08217bfe793eb925e37f36663db2903e84ec10e/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303231313231393232313732332e706e67)
 
-简单来说，就是求两个链表交点节点的指针。 这里同学们要注意，交点不是数值相等，而是指针相等。
+簡單來說，就是求兩個鏈表交點節點的指針。 這裏同學們要注意，交點不是數值相等，而是指針相等。
 
-为了方便举例，假设节点元素数值相等，则节点指针相等。
+為了方便舉例，假設節點元素數值相等，則節點指針相等。
 
-看如下两个链表，目前curA指向链表A的头结点，curB指向链表B的头结点：
+看如下兩個鏈表，目前curA指向鏈表A的頭結點，curB指向鏈表B的頭結點：
 
 ![](https://camo.githubusercontent.com/c6d77070c788bb9aba8c74b7b3c1f649797a0cfe2843f1fe91050e208b642f07/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f706963732f25453925394425413225453825414625393525453925413225393830322e30372e2545392539332542452545382541312541382545372539422542382545342542412541345f312e706e67)
 
-我们求出两个链表的长度，并求出两个链表长度的差值，然后让curA移动到，和curB 末尾对齐的位置，如图：
+我們求出兩個鏈表的长度，並求出兩個鏈表长度的差值，然後讓curA移動到，和curB 末尾對齐的位置，如圖：
 
 ![](https://camo.githubusercontent.com/f50f6cd03839a7f7f1d443129261f1fe36e297ae5381c1d2395e9d9c732c55d9/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f706963732f25453925394425413225453825414625393525453925413225393830322e30372e2545392539332542452545382541312541382545372539422542382545342542412541345f322e706e67)
 
-此时我们就可以比较curA和curB是否相同，如果不相同，同时向后移动curA和curB，如果遇到curA == curB，则找到交点。
+此時我們就可以比較curA和curB是否相同，如果不相同，同時向後移動curA和curB，如果遇到curA == curB，則找到交點。
 
 ```python
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
         lenA, lenB = 0, 0
         cur = headA
-        while cur:         # 求链表A的长度
+        while cur:         # 求鏈表A的长度
             cur = cur.next 
             lenA += 1
         cur = headB 
-        while cur:         # 求链表B的长度
+        while cur:         # 求鏈表B的长度
             cur = cur.next 
             lenB += 1
         curA, curB = headA, headB
-        if lenA < lenB:     # 让curA为最长链表的头，lenB为其长度
+        if lenA < lenB:     # 讓curA為最长鏈表的頭，lenB為其长度
             curA, curB = curB, curA
             lenA, lenB = lenB, lenA 
-        for _ in range(lenA - lenB):  # 让curA和curB在同一起点上（末尾位置对齐）
+        for _ in range(lenA - lenB):  # 讓curA和curB在同一起點上（末尾位置對齐）
             curA = curA.next 
-        while curB:         #  遍历curA 和 curB，遇到相同则直接返回
+        while curB:         #  遍曆curA 和 curB，遇到相同則直接返回
             if curA == curB:
                 return curB
             else:
@@ -624,37 +625,37 @@ class Solution:
 </div>
 
 ```
-题意： 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+题意： 給定一個鏈表，返回鏈表開始入環的第一個節點。 如果鏈表無環，則返回 null。
 ```
 
-为了表示给定链表中的环，使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。
+為了表示給定鏈表中的環，使用整數 pos 來表示鏈表尾連接到鏈表中的位置（索引從 0 開始）。 如果 pos 是 -1，則在該鏈表中沒有環。
 
 
 ![](https://camo.githubusercontent.com/b364f73596cb946f8cef38dcecf559f6abad44a5d45c5f2e58802abec84bd46a/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303232303932353130333433332e706e67)
 
-那么相遇时： slow指针走过的节点数为: x + y， fast指针走过的节点数： x + y + n (z + y)，n为fast指针在环内走了n圈才遇到slow指针， （y+z）为 一圈内节点的个数A。
+那麼相遇時： slow指針走過的節點數為: x + y， fast指針走過的節點數： x + y + n (z + y)，n為fast指針在環內走了n圈才遇到slow指針， （y+z）為 一圈內節點的個數A。
 
-因为fast指针是一步走两个节点，slow指针一步走一个节点， 所以 fast指针走过的节点数 = slow指针走过的节点数 * 2：
+因為fast指針是一步走兩個節點，slow指針一步走一個節點， 所以 fast指針走過的節點數 = slow指針走過的節點數 * 2：
 
 (x + y) * 2 = x + y + n (y + z)
 
-两边消掉一个（x+y）: x + y  = n (y + z) 
+兩邊消掉一個（x+y）: x + y  = n (y + z) 
 
-因为要找环形的入口，那么要求的是x，因为x表示 头结点到 环形入口节点的的距离。
+因為要找環形的入口，那麼要求的是x，因為x表示 頭結點到 環形入口節點的的距離。
 
-所以要求x ，将x单独放在左面：x = n (y + z) - y ,
+所以要求x ，將x單獨放在左面：x = n (y + z) - y ,
 
-这个公式说明什么呢？
+這個公式說明什麼呢？
 
-先拿n为1的情况来举例，意味着fast指针在环形里转了一圈之后，就遇到了 slow指针了。
+先拿n為1的情況來舉例，意味著fast指針在環形裏轉了一圈之後，就遇到了 slow指針了。
 
-当 n为1的时候，公式就化解为 x = z，
+當 n為1的時候，公式就化解為 x = z，
 
-这就意味着，从头结点出发一个指针，从相遇节点 也出发一个指针，这两个指针每次只走一个节点， 那么当这两个指针相遇的时候就是 环形入口的节点。
+這就意味著，從頭結點出發一個指針，從相遇節點 也出發一個指針，這兩個指針每次只走一個節點， 那麼當這兩個指針相遇的時候就是 環形入口的節點。
 
-也就是在相遇节点处，定义一个指针index1，在头结点处定一个指针index2。
+也就是在相遇節點處，定義一個指針index1，在頭結點處定一個指針index2。
 
-让index1和index2同时移动，每次移动一个节点， 那么他们相遇的地方就是 环形入口的节点。
+讓index1和index2同時移動，每次移動一個節點， 那麼他們相遇的地方就是 環形入口的節點。
 
 ```python
 class Solution:
@@ -676,11 +677,11 @@ class Solution:
 
 ## Hash Table:
 
-一般哈希表都是用来快速判断一个元素是否出现集合里。要枚举的话时间复杂度是O(n)，但如果使用哈希表的话， 只需要O(1)就可以做到。
+一般哈希表都是用來快速判斷一個元素是否出現集合裏。要枚舉的話時间複雜度是O(n)，但如果使用哈希表的話， 只需要O(1)就可以做到。
 
-哈希函数，把学生的姓名直接映射为哈希表上的索引，然后就可以通过查询索引下标快速知道这位同学是否在这所学校里了。
+哈希函數，把學生的姓名直接映射為哈希表上的索引，然後就可以通過查詢索引下標快速知道這位同學是否在這所學校裏了。
 
-哈希函数，通过hashCode把名字转化为数值，一般hashcode是通过特定编码方式，可以将其他数据格式转化为不同的数值，这样就把学生名字映射为哈希表上的索引数字了。
+哈希函數，通過hashCode把名字轉化為數值，一般hashcode是通過特定編碼方式，可以將其他數據格式轉化為不同的數值，這樣就把學生名字映射為哈希表上的索引數字了。
 
 哈希碰撞
 
@@ -708,13 +709,13 @@ dict 是一個鍵-值對映射。它的底層實現也是基於哈希表。
 </div>
 
 ```
-给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
+給定兩個字符串 s 和 t ，編寫一個函數來判斷 t 是否是 s 的字母異位詞。
 
-示例 1: 输入: s = "anagram", t = "nagaram" 输出: true
+示例 1: 輸入: s = "anagram", t = "nagaram" 輸出: true
 
-示例 2: 输入: s = "rat", t = "car" 输出: false
+示例 2: 輸入: s = "rat", t = "car" 輸出: false
 
-说明: 你可以假设字符串只包含小写字母。
+說明: 你可以假設字符串只包含小寫字母。
 ```
 
 ```python
@@ -722,13 +723,13 @@ class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         record = [0] * 26
         for i in s:
-            #并不需要记住字符a的ASCII，只要求出一个相对数值就可以了
+            #並不需要記住字符a的ASCII，只要求出一個相對數值就可以了
             record[ord(i) - ord("a")] += 1
         for i in t:
             record[ord(i) - ord("a")] -= 1
         for i in range(26):
             if record[i] != 0:
-                #record数组如果有的元素不为零0，说明字符串s和t 一定是谁多了字符或者谁少了字符。
+                #record數組如果有的元素不為零0，說明字符串s和t 一定是誰多了字符或者誰少了字符。
                 return False
         return True
 ```
@@ -760,19 +761,19 @@ class Solution:
 </div>
 
 ```
-给你一个字符串数组 words ，请你找出所有在 words 的每个字符串中都出现的共用字符（ 包括重复字符），并以数组形式返回。你可以按 任意顺序 返回答案。
+給你一個字符串數組 words ，請你找出所有在 words 的每個字符串中都出現的共用字符（ 包括重複字符），並以數組形式返回。你可以按 任意顺序 返回答案。
 
 示例 1：
 
-输入：words = ["bella","label","roller"] 输出：["e","l","l"]
+輸入：words = ["bella","label","roller"] 輸出：["e","l","l"]
 
 示例 2：
 
-输入：words = ["cool","lock","cook"] 输出：["c","o"]
+輸入：words = ["cool","lock","cook"] 輸出：["c","o"]
 
 提示：
 
-1 <= words.length <= 100 1 <= words[i].length <= 100 words[i] 由小写英文字母组成
+1 <= words.length <= 100 1 <= words[i].length <= 100 words[i] 由小寫英文字母組成
 ```
 
 ![](https://camo.githubusercontent.com/005ce8412d380d9aa3ba005eafc914e90da50358dccc382740f81dafa9601160/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f706963732f313030322e2545362539462541352545362538392542452545352542382542382545372539342541382545352541442539372545372541432541362e706e67)
@@ -784,32 +785,32 @@ class Solution:
             return []
 
         result = []
-        hash = [0] * 26  # 用来统计所有字符串里字符出现的最小频率
+        hash = [0] * 26  # 用來統計所有字符串裏字符出現的最小频率
         
-        # 用第一个字符串给hash初始化
+        # 用第一個字符串給hash初始化
         for c in words[0]:  
             hash[ord(c) - ord('a')] += 1
         
-        # 统计除第一个字符串外字符的出现频率
+        # 統計除第一個字符串外字符的出現频率
         for i in range(1, len(words)):
             hashOtherStr = [0] * 26
             for j in range(len(words[i])):
                 hashOtherStr[ord(words[i][j]) - ord('a')] += 1
 
-            # 更新hash，保证hash里统计26个字符在所有字符串里出现的最小次数
+            # 更新hash，保證hash裏統計26個字符在所有字符串裏出現的最小次數
             for k in range(26):
                 hash[k] = min(hash[k], hashOtherStr[k])
         
-        # 将hash统计的字符次数，转成输出形式
+        # 將hash統計的字符次數，轉成輸出形式
         for i in range(26):
-            while hash[i] != 0:  # 注意这里是while，多个重复的字符
+            while hash[i] != 0:  # 注意這裏是while，多個重複的字符
                 result.append(chr(i + ord('a')))
                 hash[i] -= 1
         
         return result
 ```
 
-时间复杂度：
+時间複雜度：
 𝑂
 (
 𝑊
@@ -818,24 +819,24 @@ class Solution:
 )
 O(W⋅L)，其中 
 𝑊
-W 是字符串数组的长度，
+W 是字符串數組的长度，
 𝐿
-L 是字符串数组中最长字符串的长度。
-空间复杂度：
+L 是字符串數組中最长字符串的长度。
+空间複雜度：
 𝑂
 (
 𝐿
 )
 O(L)，其中 
 𝐿
-L 是字符串数组中最长字符串的长度。
+L 是字符串數組中最长字符串的长度。
 
 <div id = "349" style="text-align: center;">
 #349, Intersection of Two Arrays
 </div>
 
 ```
-题意：给定两个数组，编写一个函数来计算它们的交集。you may return the result in any order.
+题意：給定兩個數組，編寫一個函數來計算它們的交集。you may return the result in any order.
 
 Input: nums1 = [1,2,2,1], nums2 = [2,2]
 
@@ -851,12 +852,12 @@ Explanation: [4,9] is also accepted.
 ```python
 class Solution:
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
-    # 使用哈希表存储一个数组中的所有元素
+    # 使用哈希表存儲一個數組中的所有元素
         table = {}
         for num in nums1:
             table[num] = table.get(num, 0) + 1
         
-        # 使用集合存储结果
+        # 使用集合存儲結果
         res = set()
         for num in nums2:
             if num in table:
@@ -870,33 +871,33 @@ class Solution:
 
 哈希表的作用：
 
-存储 nums1 的元素：
-我们使用哈希表 table 来存储 nums1 中的所有元素，并记录每个元素出现的次数。
-使用哈希表的优点是查找和插入操作的平均时间复杂度都是 
+存儲 nums1 的元素：
+我們使用哈希表 table 來存儲 nums1 中的所有元素，並記錄每個元素出現的次數。
+使用哈希表的優點是查找和插入操作的平均時间複雜度都是 
 𝑂
 (
 1
 )
 O(1)。
-具体地，对于每个 nums1 中的元素，我们将其作为哈希表的键，并将其值初始化为1（即便多次出现也不影响，因为我们只关心是否存在）
+具體地，對於每個 nums1 中的元素，我們將其作為哈希表的鍵，並將其值初始化為1（即便多次出現也不影響，因為我們只關心是否存在）
 
 集合的作用：
 
-存储交集结果：我们使用集合 res 来存储交集结果。
-使用集合的优点是它只存储唯一元素，自动去重。
+存儲交集結果：我們使用集合 res 來存儲交集結果。
+使用集合的優點是它只存儲唯一元素，自動去重。
 
 <div id = "202" style="text-align: center;">
 #202, Happy Number
 </div>
 
 ```
-「快乐数」定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。如果 可以变为  1，那么这个数就是快乐数。
+「快樂數」定義為：對於一個正整數，每一次將該數替換為它每個位置上的數字的平方和，然後重複這個過程直到這個數變為 1，也可能是 無限循環 但始終變不到 1。如果 可以變為  1，那麼這個數就是快樂數。
 
-输入：19
+輸入：19
 
-输出：true
+輸出：true
 
-解释：
+解釋：
 
 1^2 + 9^2 = 82
 
@@ -907,9 +908,9 @@ O(1)。
 1^2 + 0^2 + 0^2 = 1
 ```
 
-这道题目看上去貌似一道数学问题，其实并不是！
+這道题目看上去貌似一道數學问题，其實並不是！
 
-题目中说了会 无限循环，那么也就是说求和的过程中，sum会重复出现，这对解题很重要！当我们遇到了要快速判断一个元素是否出现集合里的时候，就要考虑哈希法了。
+题目中說了會 無限循環，那麼也就是說求和的過程中，sum會重複出現，這對解题很重要！當我們遇到了要快速判斷一個元素是否出現集合裏的時候，就要考慮哈希法了。
 
 ```python
 class Solution:
@@ -934,82 +935,82 @@ class Solution:
 *map 在python 中稱為dict*
 
 ```
-给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+給定一個整數數組 nums 和一個目標值 target，請你在該數組中找出和為目標值的那 兩個 整數，並返回他們的數組下標。
 
-你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
+你可以假設每種輸入只會對應一個答案。但是，數組中同一個元素不能使用兩遍。
 
 示例:
 
-给定 nums = [2, 7, 11, 15], target = 9
+給定 nums = [2, 7, 11, 15], target = 9
 
-因为 nums[0] + nums[1] = 2 + 7 = 9
+因為 nums[0] + nums[1] = 2 + 7 = 9
 
 所以返回 [0, 1]
 ```
 
-本题其实有四个重点：
+本题其實有四個重點：
 
-1. 为什么会想到用哈希表
-2. 哈希表为什么用map
-3. 本题map是用来存什么的
-4. map中的key和value用来存什么的
+1. 為什麼會想到用哈希表
+2. 哈希表為什麼用map
+3. 本题map是用來存什麼的
+4. map中的key和value用來存什麼的
 
-首先我再强调一下 什么时候使用哈希法，当我们需要查询一个元素是否出现过，或者一个元素是否在集合里的时候，就要第一时间想到哈希法。
+首先我再強調一下 什麼時候使用哈希法，當我們需要查詢一個元素是否出現過，或者一個元素是否在集合裏的時候，就要第一時间想到哈希法。
 
-本题呢，我就需要一个集合来存放我们遍历过的元素，然后在遍历数组的时候去询问这个集合，某元素是否遍历过，也就是 是否出现在这个集合。
+本题呢，我就需要一個集合來存放我們遍曆過的元素，然後在遍曆數組的時候去詢问這個集合，某元素是否遍曆過，也就是 是否出現在這個集合。
 
-那么我们就应该想到使用哈希法了。
+那麼我們就應該想到使用哈希法了。
 
-因为本题，我们不仅要知道元素有没有遍历过，还要知道这个元素对应的下标，需要使用 key value结构来存放，key来存元素，value来存下标，那么使用map正合适。
+因為本题，我們不僅要知道元素有沒有遍曆過，還要知道這個元素對應的下標，需要使用 key value結構來存放，key來存元素，value來存下標，那麼使用map正合適。
 
-再来看一下使用数组和set来做哈希法的局限。
+再來看一下使用數組和set來做哈希法的局限。
 
-数组的大小是受限制的，而且如果元素很少，而哈希值太大会造成内存空间的浪费。
+數組的大小是受限制的，而且如果元素很少，而哈希值太大會造成內存空间的浪費。
 
-set是一个集合，里面放的元素只能是一个key，而两数之和这道题目，不仅要判断y是否存在而且还要记录y的下标位置，因为要返回x 和 y的下标。所以set 也不能用。
+set是一個集合，裏面放的元素只能是一個key，而兩數之和這道题目，不僅要判斷y是否存在而且還要記錄y的下標位置，因為要返回x 和 y的下標。所以set 也不能用。
 
-此时就要选择另一种数据结构：map ，map是一种key value的存储结构，可以用key保存数值，用value再保存数值所在的下标。
+此時就要選擇另一種數據結構：map ，map是一種key value的存儲結構，可以用key保存數值，用value再保存數值所在的下標。
 
 ```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
-        Haveseen = {}  # 初始化一个空的哈希表
+        Haveseen = {}  # 初始化一個空的哈希表
         
-        for i, value in enumerate(nums):  # 枚举nums数组，i是索引，value是对应的元素
-            if target - value in Haveseen:  # 检查当前元素的补数是否在哈希表中
-                return [Haveseen[target - value], i]  # 如果找到了补数，返回补数的索引和当前索引
+        for i, value in enumerate(nums):  # 枚舉nums數組，i是索引，value是對應的元素
+            if target - value in Haveseen:  # 檢查當前元素的補數是否在哈希表中
+                return [Haveseen[target - value], i]  # 如果找到了補數，返回補數的索引和當前索引
             else:
-                Haveseen[value] = i  # 如果没有找到补数，把当前元素存入哈希表，键是元素值，值是索引
+                Haveseen[value] = i  # 如果沒有找到補數，把當前元素存入哈希表，鍵是元素值，值是索引
 ```
 
-**enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在for 循环当中。**
+**enumerate() 函數用於將一個可遍曆的數據對象(如列表、元組或字符串)組合為一個索引序列，同時列出數據和數據下標，一般用在for 循環當中。**
 
 當然也可以先把題幹做排序，用雙指針（但是會由O(n)變成O(nlogn)）
 
 ```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        # 对输入列表进行排序
+        # 對輸入列表進行排序
         nums_sorted = sorted(nums)
         
-        # 使用双指针
+        # 使用雙指針
         left = 0
         right = len(nums_sorted) - 1
         while left < right:
             current_sum = nums_sorted[left] + nums_sorted[right]
             if current_sum == target:
-                # 如果和等于目标数，则返回两个数的下标
+                # 如果和等於目標數，則返回兩個數的下標
                 left_index = nums.index(nums_sorted[left])
                 right_index = nums.index(nums_sorted[right])
                 if left_index == right_index:
                     right_index = nums[left_index+1:].index(nums_sorted[right]) + left_index + 1
                 return [left_index, right_index]
             elif current_sum < target:
-                # 如果总和小于目标，则将左侧指针向右移动
+                # 如果總和小於目標，則將左側指針向右移動
                 left += 1
             else:
-                # 如果总和大于目标值，则将右指针向左移动
+                # 如果總和大於目標值，則將右指針向左移動
                 right -= 1
 ```
 
@@ -1022,48 +1023,48 @@ class Solution:
 </div>
 
 ```
-给定四个包含整数的数组列表 A , B , C , D ,计算有多少个元组 (i, j, k, l) ，使得 A[i] + B[j] + C[k] + D[l] = 0。
+給定四個包含整數的數組列表 A , B , C , D ,計算有多少個元組 (i, j, k, l) ，使得 A[i] + B[j] + C[k] + D[l] = 0。
 
-为了使问题简单化，所有的 A, B, C, D 具有相同的长度 N，且 0 ≤ N ≤ 500 。所有整数的范围在 -2^28 到 2^28 - 1 之间，最终结果不会超过 2^31 - 1 。
+為了使问题簡單化，所有的 A, B, C, D 具有相同的长度 N，且 0 ≤ N ≤ 500 。所有整數的范圍在 -2^28 到 2^28 - 1 之间，最終結果不會超過 2^31 - 1 。
 
 例如:
 
-输入:
+輸入:
 
 A = [ 1, 2]
 B = [-2,-1]
 C = [-1, 2]
 D = [ 0, 2]
 
-输出:
+輸出:
 
 2
 
-解释:
+解釋:
 
-两个元组如下:
+兩個元組如下:
 
 (0, 0, 0, 1) -> A[0] + B[0] + C[0] + D[1] = 1 + (-2) + (-1) + 2 = 0
 
 (1, 1, 0, 0) -> A[1] + B[1] + C[0] + D[0] = 2 + (-1) + (-1) + 0 = 0
 ```
 
-本题乍眼一看好像和0015.三数之和，0018.四数之和差不多，其实差很多。
+本题乍眼一看好像和0015.三數之和，0018.四數之和差不多，其實差很多。
 
-本题是使用哈希法的经典题目，而0015.三数之和，0018.四数之和并不合适使用哈希法，因为三数之和和四数之和这两道题目使用哈希法在不超时的情况下做到对结果去重是很困难的，很有多细节需要处理。
+本题是使用哈希法的經典题目，而0015.三數之和，0018.四數之和並不合適使用哈希法，因為三數之和和四數之和這兩道题目使用哈希法在不超時的情況下做到對結果去重是很困难的，很有多細節需要處理。
 
-而这道题目是四个独立的数组，只要找到A[i] + B[j] + C[k] + D[l] = 0就可以，不用考虑有重复的四个元素相加等于0的情况，所以相对于题目18. 四数之和，题目15.三数之和，还是简单了不少！
+而這道题目是四個獨立的數組，只要找到A[i] + B[j] + C[k] + D[l] = 0就可以，不用考慮有重複的四個元素相加等於0的情況，所以相對於题目18. 四數之和，题目15.三數之和，還是簡單了不少！
 
 ```python
 class Solution(object):
     def fourSumCount(self, nums1, nums2, nums3, nums4):
-        # 使用字典存储nums1和nums2中的元素及其和
+        # 使用字典存儲nums1和nums2中的元素及其和
         hashmap = {}
         for n1 in nums1:
             for n2 in nums2:
                 hashmap[n1+n2] = hashmap.get(n1+n2, 0) + 1
         
-        # 如果 -(n1+n2) 存在于nums3和nums4, 存入结果, 
+        # 如果 -(n1+n2) 存在於nums3和nums4, 存入結果, 
         # 試想，當hashmap裡面已經有2了，這時候n3+n4出現一個 -2, 只要將-2變為2（取負數），如果存在在hashmap中，就知道他們相加==0。
         count = 0
         for n3 in nums3:
@@ -1074,9 +1075,9 @@ class Solution(object):
         return count
 ```
 
-时间复杂度: O(n^2)
+時间複雜度: O(n^2)
 
-空间复杂度: O(n^2)
+空间複雜度: O(n^2)
 
 
 <div id = "383"style="text-align: center;">
@@ -1084,13 +1085,13 @@ class Solution(object):
 </div>
 
 ```
-给定一个赎金信 (ransom) 字符串和一个杂志(magazine)字符串，**判断第一个字符串 ransom 能不能由第二个字符串 magazines 里面的字符构成。如果可以构成，返回 true ；否则返回 false。**
+給定一個贖金信 (ransom) 字符串和一個雜志(magazine)字符串，**判斷第一個字符串 ransom 能不能由第二個字符串 magazines 裏面的字符構成。如果可以構成，返回 true ；否則返回 false。**
 
-(题目说明：为了不暴露赎金信字迹，要从杂志上搜索各个需要的字母，组成单词来表达意思。杂志字符串中的每个字符只能在赎金信字符串中使用一次。)
+(题目說明：為了不暴露贖金信字跡，要從雜志上搜索各個需要的字母，組成單詞來表達意思。雜志字符串中的每個字符只能在贖金信字符串中使用一次。)
 
 注意：
 
-你可以假设两个字符串均只含有小写字母。
+你可以假設兩個字符串均只含有小寫字母。
 
 canConstruct("a", "b") -> false
 
@@ -1111,9 +1112,9 @@ class Solution:
         return all(ransom_count[i] <= magazine_count[i] for i in range(26))
 ```
 
-**all 函数会对生成器表达式中的每个元素进行求值，只要所有元素都为 True，它就返回 True，否则返回 False。**
+**all 函數會對生成器表達式中的每個元素進行求值，只要所有元素都為 True，它就返回 True，否則返回 False。**
 
-**生成器表达式 ransom_count[i] <= magazine_count[i] for i in range(26) 会遍历从 0 到 25 的所有索引（对应字母 a 到 z），并检查 ransom_count 中每个索引 i 的值是否小于或等于 magazine_count 中对应的值**
+**生成器表達式 ransom_count[i] <= magazine_count[i] for i in range(26) 會遍曆從 0 到 25 的所有索引（對應字母 a 到 z），並檢查 ransom_count 中每個索引 i 的值是否小於或等於 magazine_count 中對應的值**
 
 ```python
 class Solution:
@@ -1138,13 +1139,13 @@ class Solution:
 ```
 給你一個包含 n 個整數的陣列 nums，判斷 nums 中是否存在三個元素 a，b，c ，使得 a + b + c = 0 ？請你找出所有符合條件且不重複的三元組。
 
-注意： 答案中不可以包含重複的三元组。
+注意： 答案中不可以包含重複的三元組。
 
 示例：
 
-给定數组 nums = [-1, 0, 1, 2, -1, -4]，
+給定數組 nums = [-1, 0, 1, 2, -1, -4]，
 
-滿足要求的三元组集合：[ [-1, 0, 1], [-1, -1, 2] ]
+滿足要求的三元組集合：[ [-1, 0, 1], [-1, -1, 2] ]
 ```
 
 *hash 解法：*
@@ -1163,19 +1164,19 @@ class Solution:
         # 找出a + b + c = 0
         # a = nums[i], b = nums[j], c = -(a + b)
         for i in range(len(nums)):
-            # 排序之后如果第一個元素已經大於零，不可能凑成三元组
+            # 排序之後如果第一個元素已經大於零，不可能湊成三元組
             if nums[i] > 0:
                 break
-            if i > 0 and nums[i] == nums[i - 1]:  # 三元组元素a去重
+            if i > 0 and nums[i] == nums[i - 1]:  # 三元組元素a去重
                 continue
             s = set()
             for j in range(i + 1, len(nums)):
-                if j > i + 2 and nums[j] == nums[j - 1] and nums[j - 1] == nums[j - 2]:  # 三元组元素b去重
+                if j > i + 2 and nums[j] == nums[j - 1] and nums[j - 1] == nums[j - 2]:  # 三元組元素b去重
                     continue
                 c = - (nums[i] + nums[j])
                 if c in s:
                     result.append([nums[i], nums[j], c])
-                    s.remove(c)  # 三元组元素c去重
+                    s.remove(c)  # 三元組元素c去重
                 else:
                     s.add(nums[j])
         return result
@@ -1204,11 +1205,11 @@ class Solution:
         nums.sort()
         
         for i in range(len(nums)):
-            # 如果第一个元素已经大于0，不需要进一步检查
+            # 如果第一個元素已經大於0，不需要進一步檢查
             if nums[i] > 0:
                 return result
             
-            # 跳过相同的元素以避免重复
+            # 跳過相同的元素以避免重複
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
                 
@@ -1225,7 +1226,7 @@ class Solution:
                 else:
                     result.append([nums[i], nums[left], nums[right]])
                     
-                    # 跳过相同的元素以避免重复
+                    # 跳過相同的元素以避免重複
                     while right > left and nums[right] == nums[right - 1]:
                         right -= 1
                     while right > left and nums[left] == nums[left + 1]:
@@ -1242,37 +1243,37 @@ class Solution:
 </div>
 
 ```
-题意：给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。
+题意：給定一個包含 n 個整數的數組 nums 和一個目標值 target，判斷 nums 中是否存在四個元素 a，b，c 和 d ，使得 a + b + c + d 的值與 target 相等？找出所有滿足條件且不重複的四元組。
 
 注意：
 
-答案中不可以包含重复的四元组。
+答案中不可以包含重複的四元組。
 
-示例： 给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。 
-满足要求的四元组集合为： [ [-1, 0, 0, 1], [-2, -1, 1, 2], [-2, 0, 0, 2] ]
+示例： 給定數組 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。 
+滿足要求的四元組集合為： [ [-1, 0, 0, 1], [-2, -1, 1, 2], [-2, 0, 0, 2] ]
 ```
 
-四数之和，和15.三数之和是一个思路，都是使用双指针法, 基本解法就是在15.三数之和 的基础上再套一层for循环。
+四數之和，和15.三數之和是一個思路，都是使用雙指針法, 基本解法就是在15.三數之和 的基礎上再套一層for循環。
 
-但是有一些细节需要注意，例如： 不要判断nums[k] > target 就返回了，三数之和 可以通过 nums[i] > 0 就返回了，因为 0 已经是确定的数了，四数之和这道题目 target是任意值。比如：数组是[-4, -3, -2, -1]，target是-10，不能因为-4 > -10而跳过。但是我们依旧可以去做剪枝，逻辑变成nums[i] > target && (nums[i] >=0 || target >= 0)就可以了。
+但是有一些細節需要注意，例如： 不要判斷nums[k] > target 就返回了，三數之和 可以通過 nums[i] > 0 就返回了，因為 0 已經是確定的數了，四數之和這道题目 target是任意值。比如：數組是[-4, -3, -2, -1]，target是-10，不能因為-4 > -10而跳過。但是我們依舊可以去做剪枝，邏輯變成nums[i] > target && (nums[i] >=0 || target >= 0)就可以了。
 
-四数之和的双指针解法是两层for循环nums[k] + nums[i]为确定值，依然是循环内有left和right下标作为双指针，找出nums[k] + nums[i] + nums[left] + nums[right] == target的情况，三数之和的时间复杂度是O(n^2)，四数之和的时间复杂度是O(n^3) 。
+四數之和的雙指針解法是兩層for循環nums[k] + nums[i]為確定值，依然是循環內有left和right下標作為雙指針，找出nums[k] + nums[i] + nums[left] + nums[right] == target的情況，三數之和的時间複雜度是O(n^2)，四數之和的時间複雜度是O(n^3) 。
 
-那么一样的道理，五数之和、六数之和等等都采用这种解法。
+那麼一樣的道理，五數之和、六數之和等等都采用這種解法。
 
-对于15.三数之和双指针法就是将原本暴力O(n^3)的解法，降为O(n^2)的解法，四数之和的双指针解法就是将原本暴力O(n^4)的解法，降为O(n^3)的解法。
+對於15.三數之和雙指針法就是將原本暴力O(n^3)的解法，降為O(n^2)的解法，四數之和的雙指針解法就是將原本暴力O(n^4)的解法，降為O(n^3)的解法。
 
-之前我们讲过哈希表的经典题目：454.四数相加II，相对于本题简单很多，因为本题是要求在一个集合中找出四个数相加等于target，同时四元组不能重复。
+之前我們講過哈希表的經典题目：454.四數相加II，相對於本题簡單很多，因為本题是要求在一個集合中找出四個數相加等於target，同時四元組不能重複。
 
-双指针法将时间复杂度：O(n^2)的解法优化为 O(n)的解法。也就是降一个数量级，题目如下：
+雙指針法將時间複雜度：O(n^2)的解法優化為 O(n)的解法。也就是降一個數量級，题目如下：
 
 1. 27.移除元素
-2. 15.三数之和
-3. 18.四数之和
+2. 15.三數之和
+3. 18.四數之和
 
 ```python
 def four_sum(nums, target):
-    nums.sort()  # 对数组进行排序
+    nums.sort()  # 對數組進行排序
     result = []
     n = len(nums)
     
@@ -1289,7 +1290,7 @@ def four_sum(nums, target):
                 total = nums[i] + nums[j] + nums[left] + nums[right]
                 if total == target:
                     result.append([nums[i], nums[j], nums[left], nums[right]])
-                    # 跳过重复元素
+                    # 跳過重複元素
                     while left < right and nums[left] == nums[left + 1]:
                         left += 1
                     while left < right and nums[right] == nums[right - 1]:
@@ -1304,9 +1305,9 @@ def four_sum(nums, target):
 
 ```
 
-四指针法（双指针法）：
+四指針法（雙指針法）：
 
-排序：时间复杂度是 
+排序：時间複雜度是 
 𝑂
 (
 𝑛
@@ -1316,17 +1317,17 @@ log
 )
 
 
-四重循环：第一层循环是 
+四重循環：第一層循環是 
 𝑂
 (
 𝑛
 )
-，第二层循环是 
+，第二層循環是 
 𝑂
 (
 𝑛
 )
-，内层双指针循环的复杂度是 
+，內層雙指針循環的複雜度是 
 𝑂
 (
 𝑛
@@ -1341,7 +1342,7 @@ log
 
 *hash table:*
 
-四数之和问题的算法实现中使用的四指针法（实际上是两层循环加双指针法）是比较高效的方法之一，但它的时间复杂度是 
+四數之和问题的算法實現中使用的四指針法（實际上是兩層循環加雙指針法）是比較高效的方法之一，但它的時间複雜度是 
 𝑂
 (
 𝑛
@@ -1349,9 +1350,9 @@ log
 )
 O(n 
 3
- )，这并不是最快的理论时间复杂度，但是对于实际应用来说，这个算法的性能通常是足够的。
+ )，這並不是最快的理論時间複雜度，但是對於實际應用來說，這個算法的性能通常是足夠的。
 
-对于此类问题，最理想的时间复杂度可能是 
+對於此類问题，最理想的時间複雜度可能是 
 𝑂
 (
 𝑛
@@ -1370,7 +1371,7 @@ O(n
 )
 O(n 
 2
- )，通过使用哈希表来进一步优化查找过程。但是，这样的优化往往在实际实现中会遇到诸如管理和维护复杂的数据结构、处理更复杂的去重逻辑等挑战。
+ )，通過使用哈希表來進一步優化查找過程。但是，這樣的優化往往在實际實現中會遇到諸如管理和維護複雜的數據結構、處理更複雜的去重邏輯等挑戰。
 
  ```python
  def four_sum_hash(nums, target):
@@ -1380,19 +1381,19 @@ O(n
     nums.sort()
     n = len(nums)
     
-    # 存储所有可能的两数和
+    # 存儲所有可能的兩數和
     for i in range(n):
         for j in range(i + 1, n):
             num_dict[nums[i] + nums[j]].append((i, j))
     
-    # 查找四个不同索引的元素，其和为 target
+    # 查找四個不同索引的元素，其和為 target
     for key in num_dict:
         complement = target - key
         if complement in num_dict:
             for first_pair in num_dict[key]:
                 for second_pair in num_dict[complement]:
                     index_set = set(first_pair + second_pair)
-                    # 确保四个索引不重复
+                    # 確保四個索引不重複
                     if len(index_set) == 4:
                         quad = sorted(nums[i] for i in index_set)
                         results.add(tuple(quad))
@@ -1409,19 +1410,19 @@ O(n
 </div>
 
 ```
-编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。
+編寫一個函數，其作用是將輸入的字符串反轉過來。輸入字符串以字符數組 char[] 的形式給出。
 
-不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。
+不要給另外的數組分配额外的空间，你必须原地修改輸入數組、使用 O(1) 的额外空间解決這一问题。
 
-你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。
+你可以假設數組中的所有字符都是 ASCII 碼表中的可打印字符。
 
 示例 1：
-输入：["h","e","l","l","o"]
-输出：["o","l","l","e","h"]
+輸入：["h","e","l","l","o"]
+輸出：["o","l","l","e","h"]
 
 示例 2：
-输入：["H","a","n","n","a","h"]
-输出：["h","a","n","n","a","H"]
+輸入：["H","a","n","n","a","h"]
+輸出：["h","a","n","n","a","H"]
 ```
 
 two pointers:
@@ -1433,8 +1434,8 @@ class Solution:
         """
         left, right = 0, len(s) - 1
         
-        # 该方法已经不需要判断奇偶数，经测试后时间空间复杂度比用 for i in range(len(s)//2)更低
-        # 因为while每次循环需要进行条件判断，而range函数不需要，直接生成数字，因此时间复杂度更低。推荐使用range
+        # 該方法已經不需要判斷奇偶數，經測試後時间空间複雜度比用 for i in range(len(s)//2)更低
+        # 因為while每次循環需要進行條件判斷，而range函數不需要，直接生成數字，因此時间複雜度更低。推薦使用range
         while left < right:
             s[left], s[right] = s[right], s[left]
             left += 1
@@ -1472,7 +1473,7 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-        # 原地反转,无返回值
+        # 原地反轉,無返回值
         s.reverse()
        
 ```
@@ -1505,32 +1506,32 @@ class Solution:
 </div>
 
 ```
-给定一个字符串 s 和一个整数 k，从字符串开头算起, 每计数至 2k 个字符，就反转这 2k 个字符中的前 k 个字符。
+給定一個字符串 s 和一個整數 k，從字符串開頭算起, 每計數至 2k 個字符，就反轉這 2k 個字符中的前 k 個字符。
 
-如果剩余字符少于 k 个，则将剩余字符全部反转。
+如果剩餘字符少於 k 個，則將剩餘字符全部反轉。
 
-如果剩余字符小于 2k 但大于或等于 k 个，则反转前 k 个字符，其余字符保持原样。
+如果剩餘字符小於 2k 但大於或等於 k 個，則反轉前 k 個字符，其餘字符保持原樣。
 
 示例:
 
-输入: s = "abcdefg", k = 2
-输出: "bacdfeg"
+輸入: s = "abcdefg", k = 2
+輸出: "bacdfeg"
 ```
-从字符串的开头开始，每次处理 2k 个字符。
-对于每个 2k 的块，反转前 k 个字符。
-处理剩余字符时，如果少于 k 个，则全部反转；如果在 k 和 2k 之间，则反转前 k 个字符，其余保持原样。
+從字符串的開頭開始，每次處理 2k 個字符。
+對於每個 2k 的塊，反轉前 k 個字符。
+處理剩餘字符時，如果少於 k 個，則全部反轉；如果在 k 和 2k 之间，則反轉前 k 個字符，其餘保持原樣。
 
 ```python
 def reverse_str(s, k):
-    s = list(s)  # 将字符串转为列表，方便操作
+    s = list(s)  # 將字符串轉為列表，方便操作
     for i in range(0, len(s), 2 * k):
-        s[i:i+k] = reversed(s[i:i+k])  # 反转前 k 个字符
-    return ''.join(s)  # 将列表转回字符串
+        s[i:i+k] = reversed(s[i:i+k])  # 反轉前 k 個字符
+    return ''.join(s)  # 將列表轉回字符串
 
 # 示例使用
 s = "abcdefg"
 k = 2
-print(reverse_str(s, k))  # 输出: "bacdfeg"
+print(reverse_str(s, k))  # 輸出: "bacdfeg"
 
 ```
 
@@ -1538,22 +1539,22 @@ print(reverse_str(s, k))  # 输出: "bacdfeg"
 
 ```python
 def reverse_str(s, k):
-    # 将字符串转换为列表以便修改
+    # 將字符串轉換為列表以便修改
     s = list(s)
     n = len(s)
     
     for i in range(0, n, 2 * k):
-        # 找到当前需要反转的部分
+        # 找到當前需要反轉的部分
         left = i
         right = min(i + k - 1, n - 1)
         
-        # 手动反转这一部分
+        # 手動反轉這一部分
         while left < right:
             s[left], s[right] = s[right], s[left]
             left += 1
             right -= 1
     
-    # 将列表转换回字符串
+    # 將列表轉換回字符串
     result = ""
     for char in s:
         result += char
@@ -1566,62 +1567,62 @@ def reverse_str(s, k):
 </div>
 
 ```python
-给定一个字符串，逐个翻转字符串中的每个单词。
+給定一個字符串，逐個翻轉字符串中的每個單詞。
 
 示例 1：
-输入: "the sky is blue"
-输出: "blue is sky the"
+輸入: "the sky is blue"
+輸出: "blue is sky the"
 
 示例 2：
-输入: "  hello world!  "
-输出: "world! hello"
-解释: 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
+輸入: "  hello world!  "
+輸出: "world! hello"
+解釋: 輸入字符串可以在前面或者後面包含多餘的空格，但是反轉後的字符不能包括。
 
 示例 3：
-输入: "a good   example"
-输出: "example good a"
-解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
+輸入: "a good   example"
+輸出: "example good a"
+解釋: 如果兩個單詞间有多餘的空格，將反轉後單詞间的空格減少到只含一個。
 ```
 
-这道题目可以说是综合考察了字符串的多种操作。
+這道题目可以說是綜合考察了字符串的多種操作。
 
-一些同学会使用split库函数，分隔单词，然后定义一个新的string字符串，最后再把单词倒序相加，那么这道题题目就是一道水题了，失去了它的意义。
+一些同學會使用split庫函數，分隔單詞，然後定義一個新的string字符串，最後再把單詞倒序相加，那麼這道题题目就是一道水题了，失去了它的意義。
 
 ```python
 def reverse_words(s):
-    # 将字符串拆分成单词列表，同时去除多余空格
+    # 將字符串拆分成單詞列表，同時去除多餘空格
     words = s.split()
     
-    # 反转整个单词列表
+    # 反轉整個單詞列表
     words.reverse()
     
-    # 将单词列表重新拼接成字符串
+    # 將單詞列表重新拼接成字符串
     result = ' '.join(words)
     
     return result
 ```
-所以这里我还是提高一下本题的难度：不要使用辅助空间，空间复杂度要求为O(1)。（如果使用python可以為O(n), 因為字符串要改成列表）
+所以這裏我還是提高一下本题的难度：不要使用輔助空间，空间複雜度要求為O(1)。（如果使用python可以為O(n), 因為字符串要改成列表）
 
-不能使用辅助空间之后，那么只能在原字符串上下功夫了。
+不能使用輔助空间之後，那麼只能在原字符串上下功夫了。
 
-想一下，我们将整个字符串都反转过来，那么单词的顺序指定是倒序了，只不过单词本身也倒序了，那么再把单词反转一下，单词不就正过来了。
+想一下，我們將整個字符串都反轉過來，那麼單詞的顺序指定是倒序了，只不過單詞本身也倒序了，那麼再把單詞反轉一下，單詞不就正過來了。
 
 
 所以解题思路如下：
 
-移除多余空格
-将整个字符串反转
-将每个单词反转
-举个例子，源字符串为："the sky is blue "
+移除多餘空格
+將整個字符串反轉
+將每個單詞反轉
+舉個例子，源字符串為："the sky is blue "
 
-移除多余空格 : "the sky is blue"
-字符串反转："eulb si yks eht"
-单词反转："blue is sky the"
+移除多餘空格 : "the sky is blue"
+字符串反轉："eulb si yks eht"
+單詞反轉："blue is sky the"
 
 ```python
 class Solution:
     def reverseWords(self, s: str) -> str:
-        s = s.strip()  # 去除字符串頭尾两端的空格
+        s = s.strip()  # 去除字符串頭尾兩端的空格
         words = []
         i = 0 
         n = len(s)
@@ -1641,5 +1642,33 @@ class Solution:
         
         return ' '.join(words)
 ```
+
+<div id = "28" style="text-align: center;">
+#28, Find the Index of the First Occurrence in a String
+</div>
+
+```python
+給定一個 haystack 字符串和一個 needle 字符串，在 haystack 字符串中找出 needle 字符串出現的第一個位置 (從0開始)。如果不存在，則返回  -1。
+
+示例 1: 輸入: haystack = "hello", needle = "ll" 輸出: 2
+
+示例 2: 輸入: haystack = "aaaaa", needle = "bba" 輸出: -1
+
+說明: 當 needle 是空字符串時，我們應當返回什麼值呢？這是一個在面試中很好的问题。 對於本题而言，當 needle 是空字符串時我們應當返回 0 。這與C語言的 strstr() 以及 Java的 indexOf() 定義相符。
+```
+
+**KMP :**
+
+KMP的經典思想就是:當出現字符串不匹配時，可以記錄一部分之前已經匹配的文本內容，利用這些信息避免從頭再去做匹配。
+
+本篇講到了KMP的重要觀念，由於內容較多我建議大家去看卡爾的KMP解說影片。
+
+- [KMP](https://www.bilibili.com/video/BV1PD4y1o7nd/)
+- [KMP2](https://www.bilibili.com/video/BV1M5411j7Xx/)
+
+
+
+![](https://camo.githubusercontent.com/a6e139d79995aaafa70abbc80a9e6708051d104b57675b81338a4b4c56a7b7b5/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f676966732f4b4d50254537254232254245254538254145254232312e676966)
+
 
 **To be continued...**
