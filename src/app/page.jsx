@@ -20,8 +20,9 @@ const Home = () => {
         <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
         <p className={ styles.description}>
           Hello!<br></br>I&#39;m Pin-Yang Chen, Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.
-          Currently working as a software engineer at a blockchain company, ISUNCLOUD.<br></br>
-          Nice to meet you.
+          I have previously worked as a software engineer at ISUNCLOUD, a blockchain company.<br></br>
+          Currently, I am pursuing a Fintech Program at the Pratt School of Engineering, Duke University, USA<br></br><br></br>
+          你好嗎! What's up!
       </p>
       <div className={styles.buttons}>
           <button className="cybr-btn" onClick={handleClick}>
