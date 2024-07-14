@@ -19,10 +19,11 @@ const Home = () => {
       <div className={styles.textContainer}>
         <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
         <p className={ styles.description}>
-          Hello!<br></br>I&#39;m Chen Pin Yang, please just call me Yang, I hold Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.<br></br>
+          Hello!<br></br>
+          I&#39;m Chen Pin Yang, please just call me Yang, I hold Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.<br></br>
           I have previously worked as a software engineer at ISUNCLOUD, a blockchain company.<br></br>
           Currently, I am pursuing a Fintech Program at the Pratt School of Engineering, Duke University, USA<br></br><br></br>
-          你好嗎! What's up!
+          你好嗎! What&#39;s up!
       </p>
       <div className={styles.buttons}>
           <button className="cybr-btn" onClick={handleClick}>
