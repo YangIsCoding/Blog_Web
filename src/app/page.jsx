@@ -17,7 +17,7 @@ const Home = () => {
   return(
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
+        <h1 className={styles.title} data-text="P.Y.CHEN">Chen Pin Yang</h1>
         <p className={ styles.description}>
           Hello!<br></br>
           I&#39;m Chen Pin Yang, please just call me Yang, I hold Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.<br></br>
