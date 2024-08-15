@@ -54,6 +54,7 @@ string:
 2. [541 - reverse string 2](#541)
 3. [151 -  Reverse Words in a String](#151)
 4. [28 - Find the Index of the First Occurrence in a String](#28)
+5. [459 - Repeated Substring Pattern](#459)
 
 ## 性能分析:
 
@@ -77,7 +78,7 @@ string:
 
 二分查找涉及的很多的邊界條件，邏輯比較簡單，但就是寫不好。例如到底是 WHILE(LEFT < RIGHT) 還 是 WHILE(LEFT <= RIGHT)，到底是RIGHT = MIDDLE呢，還是要RIGHT = MIDDLE - 1呢?
 
-寫二分法，區間的定義一般為兩種，左閉右閉即[LEFT, RIGHT]，或左閉右開即[LEFT, RIGHT)。
+寫二分法，區間的定義一般為兩種，左閉右閉即[LEFT, RIGHT]，或左閉右開即[ LEFT, RIGHT )。
 
 *二分法第一種寫法:*
 
@@ -1667,8 +1668,200 @@ KMP的經典思想就是:當出現字符串不匹配時，可以記錄一部分�
 - [KMP2](https://www.bilibili.com/video/BV1M5411j7Xx/)
 
 
+KMP經典問題：
+
+```
+給一個文本串與一組模式串：試問模式串是否出現在文本串中？
+
+文本串： aabaabaaf
+
+模式串： aabaaf
+```
+
+暴力解的話就是兩層for, O(m*n), 解法是模式串逐個與文本串匹配。直到與文本串後段的aabaaf完全匹配。
+
+KMP解法是要:
+
+1. 先找到模式串的前後綴，
+
+前綴：不包含尾字母的所有字串（aabaa, abaa, baa, aa, a）。
+
+後綴：不包含首字母的所有字串 (abaaf, baaf, aaf, af, f)。
+
+2. 求模式串最長相的前後綴(LPS), next數組：010120
+
+a : 0
+
+aa: 1
+
+aab: 0
+
+**a**ab**a**: 1
+
+aabaa: 2
+
+aabaaf : 0
+
+3. 與文本串匹配：
+
+當找到aabaa為最長相等前後綴時，2代表字串後綴的aa有一個前綴也是aa。
+
+我們要找這個前綴的後面一位開始匹配。也就是b，他的下標剛好會是 2 。O(n + m)
+
 
 ![](https://camo.githubusercontent.com/a6e139d79995aaafa70abbc80a9e6708051d104b57675b81338a4b4c56a7b7b5/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f676966732f4b4d50254537254232254245254538254145254232312e676966)
+
+代碼四步驟：
+1. 初始化
+2. 前後綴不相同
+3. 前後綴相同
+4. 更新next
+
+i ＝ 後綴末尾
+
+j = 前綴末尾
+
+dive into this first to know how to get your next array:
+```python
+def getNext(self, next: List[int], s: str) -> None:
+        j = 0
+        next[0] = 0
+        for i in range(1, len(s)):
+            while j > 0 and s[i] != s[j]:
+                j = next[j - 1]
+            if s[i] == s[j]:
+                j += 1
+            next[i] = j
+
+
+```
+
+answer: 
+
+```python
+class Solution:
+    def getNext(self, next: List[int], s: str) -> None:
+        j = 0
+        next[0] = 0
+        for i in range(1, len(s)):
+            while j > 0 and s[i] != s[j]:
+                j = next[j - 1]
+            if s[i] == s[j]:
+                j += 1
+            next[i] = j
+    
+    def strStr(self, haystack: str, needle: str) -> int:
+        if len(needle) == 0:
+            return 0
+        next = [0] * len(needle)
+        self.getNext(next, needle)
+        j = 0
+        for i in range(len(haystack)):
+            while j > 0 and haystack[i] != needle[j]:
+                j = next[j - 1]
+            if haystack[i] == needle[j]:
+                j += 1
+            if j == len(needle):
+                return i - len(needle) + 1
+        return -1
+```
+
+<div id = "28" style="text-align: center;">
+#459, Repeated Substring Pattern
+</div>
+
+```ptyhon
+給定一個非空的字符串，判斷它是否可以由它的一個子串重覆多次構成。給定的字符串只含有小寫英文字母，並且長度不超過10000。
+
+示例 1:
+
+輸入: "abab"
+輸出: True
+解釋: 可由子字符串 "ab" 重覆兩次構成。
+示例 2:
+
+輸入: "aba"
+輸出: False
+示例 3:
+
+輸入: "abcabcabcabc"
+輸出: True
+解釋: 可由子字符串 "abc" 重覆四次構成。 (或者子字符串 "abcabc" 重覆兩次構成。)
+```
+
+**在一個串中查找是否出現過另一個串，這是KMP的看家本領**
+
+先說結論：如果字符串是由重複子串組成的，重複子串的最小單位就是最長相等前後綴所不包含的那一部分。
+
+如果 len( s ) % ( len( s ) - next [ size-1 ] ) == 0
+
+原字符串如果能整除最長相等前後綴不包括的那一部分，代表他要retrun true
+
+next[size-1] = 最長相等前後綴 ，所以len(s) - next[size-1]就是不包括的那一部分（最小單位重複子串）
+```python
+class Solution:
+    def repeatedSubstringPattern(self, s: str) -> bool:  
+        if len(s) == 0:
+            return False
+        nxt = [0] * len(s)
+        self.getNext(nxt, s)
+        if nxt[-1] != 0 and len(s) % (len(s) - nxt[-1]) == 0: #如果 nxt[-1] 等于 0，表示没有这样的前后缀匹配，这意味着字符串不可能由一个重复的子串构成
+            return True
+        return False
+    
+    def getNext(self, nxt, s):
+        nxt[0] = 0
+        j = 0
+        for i in range(1, len(s)):
+            while j > 0 and s[i] != s[j]:
+                j = nxt[j - 1]
+            if s[i] == s[j]:
+                j += 1
+            nxt[i] = j
+        return nxt
+```
+**補充：**
+
+nxt[-1]: 在Python中，nxt[-1]表示nxt數組的最後一個元素。這個值表示整個字符串中最長相等前後綴的長度
+
+計算 nxt 數組的時間覆雜度是 O(n)，其中 n 是字符串 s 的長度。這是因為我們只需要遍歷字符串一次來填充 nxt 數組。
+
+nxt 數組的長度為 n，所以空間覆雜度是 O(n)。
+
+## 棧與隊列:
+
+1. 棧（Stack）的實現
+
+Python 中沒有專門的棧類，但我們可以通過 list 來實現棧的功能。
+
+底層實現：list 底層是動態數組（dynamic array），它提供了在末尾添加和刪除元素的高效操作。
+
+操作方法：
+
+append()：在棧頂添加元素。
+pop()：從棧頂移除元素。
+
+2. 隊列（Queue）的實現
+
+Python 提供了 collections.deque 來實現隊列的功能，deque 是雙端隊列（double-ended queue）的縮寫，可以高效地從兩端插入和刪除元素。
+
+底層實現：deque 是通過雙向鏈表（doubly linked list）實現的，因此從隊列的兩端添加或移除元素都能達到 O(1) 的時間覆雜度。
+
+操作方法：
+
+append()：在隊列尾部添加元素。
+appendleft()：在隊列頭部添加元素。
+pop()：從隊列尾部移除元素。
+popleft()：從隊列頭部移除元素。
+
+**python內置的 len() 通常在創建對象時就已經知道長度，調用時直接返回長度值，時間覆雜度為 O(1)。但是如果自既定義一個mylen()，時間複雜度為O(n)**
+
+那為什麼len()可以直接知道數組長度？
+
+當你創建一個列表、字符串、字典等容器對象時，Python 會在內存中為該對象分配空間，並且在對象的內部結構中，存儲著該對象當前元素數量的信息。這個長度屬性是在元素被添加或移除時自動更新的。因此，當你調用 len() 函數時，它實際上是在讀取這個預先計算好的長度屬性，而不需要遍歷整個數據結構來計算長度。
+
+
+
 
 
 **To be continued...**
