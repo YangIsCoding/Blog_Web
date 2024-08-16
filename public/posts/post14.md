@@ -1766,7 +1766,7 @@ class Solution:
         return -1
 ```
 
-<div id = "28" style="text-align: center;">
+<div id = "459" style="text-align: center;">
 #459, Repeated Substring Pattern
 </div>
 
@@ -1860,8 +1860,175 @@ popleft()：從隊列頭部移除元素。
 
 當你創建一個列表、字符串、字典等容器對象時，Python 會在內存中為該對象分配空間，並且在對象的內部結構中，存儲著該對象當前元素數量的信息。這個長度屬性是在元素被添加或移除時自動更新的。因此，當你調用 len() 函數時，它實際上是在讀取這個預先計算好的長度屬性，而不需要遍歷整個數據結構來計算長度。
 
+<div id = "232" style="text-align: center;">
+#232, Implement Queue using Stacks
+</div>
+
+```
+使用棧實現隊列的下列操作：
+
+push(x) -- 將一個元素放入隊列的尾部。
+pop() -- 從隊列首部移除元素。
+peek() -- 返回隊列首部的元素。
+empty() -- 返回隊列是否為空。
+
+示例:
+
+MyQueue queue = new MyQueue();
+queue.push(1);
+queue.push(2);
+queue.peek();  // 返回 1
+queue.pop();   // 返回 1
+queue.empty(); // 返回 false
+```
+使用stack來模式隊列的行為，如果僅僅用一個stack，是一定不行的，所以需要兩個stack一個input stack，一個output stack，這里要注意輸入棧和輸出棧的關系。
+
+![](https://camo.githubusercontent.com/5753e936e2ddcd40e83a22375d5ede1c6346d203096fa1b9a326d0a1d0eb2106/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f676966732f3233322e254537253934254138254536254130253838254535254145253945254537253845254230254539253938253946254535253838253937254537253839253838254536253943254143322e676966)
+
+时间复杂度: push和empty为O(1), pop和peek为O(n)
+空间复杂度: O(n)
+
+在push數據的時候，只要數據放進輸入棧就好，但在pop的時候，操作就覆雜一些，輸出棧如果為空，就把進棧數據全部導入進來（注意是全部導入），再從出棧彈出數據，如果輸出棧不為空，則直接從出棧彈出數據就可以了。
+
+最後如何判斷隊列為空呢？如果進棧和出棧都為空的話，說明模擬的隊列為空了。
+
+```python
+
+class MyQueue:
+
+    def __init__(self):
+        self.stack_in = []
+        self.stack_out = []
+
+
+    def push(self, x: int) -> None:
+        self.stack_in.append(x)
+
+
+    def pop(self) -> int:
+        if self.empty():
+            return None
+        
+        if self.stack_out:
+            return self.stack_out.pop()
+        else:
+            for i in range(len(self.stack_in)):
+                self.stack_out.append(self.stack_in.pop())
+            return self.stack_out.pop()
+
+
+    def peek(self) -> int:
+        ans = self.pop()
+        self.stack_out.append(ans)
+        return ans
+
+
+    def empty(self) -> bool:
+        return not (self.stack_in or self.stack_out)
+```
+
+<div id = "225" style="text-align: center;">
+#225, Implement Stack using Queues
+</div>
+
+```
+使用队列实现栈的下列操作：
+
+push(x) -- 元素 x 入栈
+pop() -- 移除栈顶元素
+top() -- 获取栈顶元素
+empty() -- 返回栈是否为空
+
+```
+
+隊列模擬棧，其實一個隊列就夠了，那麽我們先說一說兩個隊列來實現棧的思路。
+
+隊列是先進先出的規則，把一個隊列中的數據導入另一個隊列中，數據的順序並沒有變，並沒有變成先進後出的順序。
+
+但是依然堅持要用兩個隊列來模擬棧，只不過沒有輸入和輸出的關系，而是另一個隊列完全用來備份的！
+
+如下面動畫所示，用兩個隊列que1和que2實現隊列的功能，que2其實完全就是一個備份的作用，把que1最後面的元素以外的元素都備份到que2，然後彈出最後面的元素，再把其他元素從que2導回que1。
+
+时间复杂度: pop为O(n)，其他为O(1)
+空间复杂度: O(n)
+
+![](https://camo.githubusercontent.com/49383d8478bdae7bc98c17861619d70e6341595199ade4d8e624daf4278fa2c1/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f676966732f3232352e2545372539342541382545392539382539462545352538382539372545352541452539452545372538452542302545362541302538382e676966)
+
+```python
+
+from collections import deque
+
+class MyStack:
+    def __init__(self):
+        self.queue1 = deque()  # 主隊列
+        self.queue2 = deque()  # 輔助隊列
+
+    def push(self, x: int) -> None:
+        # 將元素入隊到 queue2
+        self.queue2.append(x)
+        # 再將 queue1 中的所有元素依次出隊並入隊到 queue2
+        while self.queue1:
+            self.queue2.append(self.queue1.popleft())
+        # 交換 queue1 和 queue2 的引用
+        self.queue1, self.queue2 = self.queue2, self.queue1
+
+    def pop(self) -> int:
+        # 直接從 queue1 中出隊即為出棧
+        return self.queue1.popleft()
+
+    def top(self) -> int:
+        # 直接獲取 queue1 的第一個元素即為棧頂元素
+        return self.queue1[0]
+
+    def empty(self) -> bool:
+        # 判斷 queue1 是否為空
+        return not self.queue1
+
+
+```
+
+其實這道題目就是用一個隊列就夠了。
+
+一個隊列在模擬棧彈出元素的時候只要將隊列頭部的元素（除了最後一個元素外） 重新添加到隊列尾部，此時再去彈出元素就是棧的順序了。
+
+```python
+from collections import deque
+
+class MyStack:
+    def __init__(self):
+        self.queue = deque()
+
+    def push(self, x: int) -> None:
+        # 先將新元素加入隊列尾部
+        self.queue.append(x)
+        # 然後將隊列中的其他元素依次重新加入隊列尾部
+        # 這樣新元素會被放到隊列的開頭
+        for _ in range(len(self.queue) - 1):
+            self.queue.append(self.queue.popleft())
+
+    def pop(self) -> int:
+        # 隊列頭部元素出隊，即棧頂元素出棧
+        return self.queue.popleft()
+
+    def top(self) -> int:
+        # 隊列頭部元素即為棧頂元素
+        return self.queue[0]
+
+    def empty(self) -> bool:
+        # 判斷隊列是否為空
+        return not self.queue
+
+
+```
+
+push(x): 時間覆雜度為 O(n)，因為每次需要調整隊列中的所有元素以保證棧的順序。
+
+pop(): 時間覆雜度為 O(1)，因為只需移除隊列頭部元素。
+
+top(): 時間覆雜度為 O(1)，因為只需訪問隊列頭部元素。
+
+empty(): 時間覆雜度為 O(1)，因為只需判斷隊列是否為空。
 
 
 
-
-**...UST　To be continued...**
+**To be continued...**
