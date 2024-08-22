@@ -72,13 +72,13 @@ const SinglePostPage = ({ params }) => {
         {/* Open Graph 标签，用于社交媒体分享时的描述 */}
         <meta property="og:description" content={post.description || 'Default description'} />
         {/* Open Graph 标签，用于社交媒体分享时的图片，使用 post 中的图片或默认图片 */}
-        <meta property="og:image" content={post.postImg || '/default-image.png'} />
+        <meta property="og:image" content={post.postImg || '/favicon.ico'} />
         {/* Open Graph 标签，表示当前页面的 URL */}
         <meta property="og:url" content={`https://www.chenpinyangdev.com/blog/${slug}`} />
         {/* Open Graph 标签，表示内容类型 */}
         <meta property="og:type" content="article" />
       </Head>
-      
+
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <Image className={styles.img} src={post.postImg || '/default-image.png'} alt="picture" layout="fill" />
