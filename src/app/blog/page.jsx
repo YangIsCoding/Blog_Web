@@ -32,11 +32,8 @@ const BlogPage = () => {
 
   return (
     <>
-      <meta name="title" property="og:title" content="[Content title here]">gasdgasdg</meta>
-        <meta property="og:description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
-        <meta property="og:image" content="https://www.chenpinyangdev.com/profile_yang.jpg" />
-        <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://www.chenpinyangdev.com/" />
+      
+      
       
       <div className={styles.container}>
         {posts.map((post) => (
