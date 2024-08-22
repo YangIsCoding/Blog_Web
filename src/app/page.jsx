@@ -5,28 +5,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
-
-export const metadata = {
-  title: 'P.Y,Chen - Home',
-  description: "Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development.",
-  openGraph: {
-    title: 'P.Y,Chen - Home',
-    description: "Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development.",
-    images: [
-      {
-        url: '/favicon.ico',
-        width: 800,
-        height: 600,
-        alt: 'P.Y,Chen',
-      },
-    ],
-  },
-};
-
 const Home = () => {
   const router = useRouter();
 
-  
   const handleClick = () => {
     router.push('/about'); // 程序化地导航到 /about 页面
   };
@@ -35,18 +16,26 @@ const Home = () => {
     router.push('/contact'); // 程序化地导航到 /contact 页面
   };
 
-  
-
   return (
     <>
+      <Head>
+        <title>P.Y,Chen - Home</title>
+        <meta name="description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
+        <meta property="og:title" content="P.Y,Chen - Home" />
+        <meta property="og:description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
+        <meta property="og:image" content="/favicon.ico" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.chenpinyangdev.com/" />
+      </Head>
+
       <div className={styles.container}>
         <div className={styles.textContainer}>
           <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
           <p className={styles.description}>
             Hello!<br />
-            I&#39;m Chen Pin Yang, please just call me Yang, I hold Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.<br />
+            I&#39;m Chen Pin Yang, please just call me Yang. I hold Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.<br />
             I have previously worked as a software engineer at ISUNCLOUD, a blockchain company.<br />
-            Currently, I am pursuing a Master degree of Fintech Program at the Pratt School of Engineering, Duke University, USA<br /><br />
+            Currently, I am pursuing a Master degree of Fintech Program at the Pratt School of Engineering, Duke University, USA.<br /><br />
             你好嗎! What&#39;s up!
           </p>
           <div className={styles.buttons}>
