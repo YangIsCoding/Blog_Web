@@ -9,18 +9,18 @@ import React, { useEffect } from 'react';
 const Home = () => {
   const router = useRouter();
 
-  // 定义导航按钮的点击事件处理程序
   const handleClick = () => {
-    router.push('/about'); // 程序化地导航到 /about 页面
+    router.push('/about'); 
   };
 
   const handleContactClick = () => {
-    router.push('/contact'); // 程序化地导航到 /contact 页面
+    router.push('/contact'); 
   };
 
   return (
     <>
       <Head>
+        <meta name="title" property="og:title" content="[Content title here]"></meta>
         <meta property="og:title" content="P.Y.CHEN - Home" />
         <meta property="og:description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
         <meta property="og:image" content="https://www.chenpinyangdev.com/profile_yang.jpg" />
