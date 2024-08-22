@@ -30,7 +30,7 @@ const Home = () => {
             Hello!<br />
             I&#39;m Chen Pin Yang, please just call me Yang, I hold Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.<br />
             I have previously worked as a software engineer at ISUNCLOUD, a blockchain company.<br />
-            Currently, I am pursuing a Fintech Program at the Pratt School of Engineering, Duke University, USA<br /><br />
+            Currently, I am pursuing a Master degree of Fintech Program at the Pratt School of Engineering, Duke University, USA<br /><br />
             你好嗎! What&#39;s up!
           </p>
           <div className={styles.buttons}>

@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from "./singlePost.module.css";
-import 'highlight.js/styles/github.css'; // 选择一个适合的主题
+import 'highlight.js/styles/github.css';
+import Head from 'next/head';
 
 const getData = async (slug) => {
   const res = await fetch(`/api/${slug}`, {
@@ -60,6 +61,24 @@ const SinglePostPage = ({ params }) => {
   if (!post) return <div>Loading...</div>;
 
   return (
+    <>
+      <Head>
+        {/* 设置页面标题，这也是 og:title 的内容 */}
+        <title>{post.title}</title>
+        {/* 添加页面描述，如果没有描述则使用默认值 */}
+        <meta name="description" content={post.description || 'Default description'} />
+        {/* Open Graph 标签，用于社交媒体分享时的标题 */}
+        <meta property="og:title" content={post.title} />
+        {/* Open Graph 标签，用于社交媒体分享时的描述 */}
+        <meta property="og:description" content={post.description || 'Default description'} />
+        {/* Open Graph 标签，用于社交媒体分享时的图片，使用 post 中的图片或默认图片 */}
+        <meta property="og:image" content={post.postImg || '/default-image.png'} />
+        {/* Open Graph 标签，表示当前页面的 URL */}
+        <meta property="og:url" content={`https://www.chenpinyangdev.com/blog/${slug}`} />
+        {/* Open Graph 标签，表示内容类型 */}
+        <meta property="og:type" content="article" />
+      </Head>
+      
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <Image className={styles.img} src={post.postImg || '/default-image.png'} alt="picture" layout="fill" />
@@ -80,7 +99,8 @@ const SinglePostPage = ({ params }) => {
         <div className={styles.content} dangerouslySetInnerHTML={{ __html: postContent }} />
         <p>Thank you!</p>
       </div>
-    </div>
+      </div>
+      </>
   );
 };
 
