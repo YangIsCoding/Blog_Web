@@ -4,24 +4,6 @@ import PostCard from "@/components/postCard/postCard";
 import styles from "./blog.module.css";
 import Head from 'next/head';
 
-
-export const metadata = {
-  title: 'The Blog Main Page',
-  description: "Chen Pin Yang's blog, sharing insights, experience, and projects in Fintech and software development.",
-  openGraph: {
-    title: 'The Blog Main Page',
-    description: "Chen Pin Yang's blog, sharing insights, experience, and projects in Fintech and software development.",
-    images: [
-      {
-        url: '/path-to-blog-image.jpg',
-        width: 800,
-        height: 600,
-        alt: 'The Blog Main Page',
-      },
-    ],
-  },
-};
-
 const getData = async () => {
   const res = await fetch('/api/posts', { 
     method: 'GET', 
