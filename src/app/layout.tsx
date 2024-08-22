@@ -1,3 +1,4 @@
+// layout.tsx
 import React, { FC, ReactNode } from 'react';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -12,17 +13,12 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-export const metadata = {
-  title: 'P.Y,Chen',
-  description: 'dev with nextjs 14',
-};
-
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
         <div className="container">
-          <Navbar/>
+          <Navbar />
           {children}
           <Footer />
         </div>
