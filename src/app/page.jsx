@@ -7,6 +7,8 @@ import Link from 'next/link';
 
 const Home = () => {
   const router = useRouter();
+
+  
   
   const handleClick = () => {
     router.push('/about'); // 程序化地导航到 /about 页面
@@ -18,14 +20,14 @@ const Home = () => {
 
   return (
     <>
-      <Head>
+      <head>
         <meta name="title" property="og:title" content="it should be it"/>
         <meta name="description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
         <meta name="keywords" content="Chen Pin Yang, portfolio, Fintech, software engineer, Duke University" />
-      </Head>
+      </head>
       <div className={styles.container}>
         <div className={styles.textContainer}>
-          <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN this should be it</h1>
+          <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
           <p className={styles.description}>
             Hello!<br />
             I&#39;m Chen Pin Yang, please just call me Yang, I hold Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.<br />
