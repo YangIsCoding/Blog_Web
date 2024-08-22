@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import PostCard from "@/components/postCard/postCard";
 import styles from "./blog.module.css";
+import Head from 'next/head';
 
 const getData = async () => {
   const res = await fetch('/api/posts', { 
@@ -30,13 +31,18 @@ const BlogPage = () => {
   }
 
   return (
+    <>
+    <Head>
+       <meta property="og:image" content="https://www.chenpinyangdev.com/favicon.ico" />
+    </Head>
     <div className={styles.container}>
       {posts.map((post) => (
         <div className={styles.post} key={post.id}>
           <PostCard post={post} />
         </div>
       ))}
-    </div>
+      </div>
+      </>
   );
 };
 
