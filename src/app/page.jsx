@@ -19,23 +19,20 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>P.Y.CHEN - Personal Portfolio</title>
-        <meta name="description" content="Hello! I'm Chen Pin Yang, please just call me Yang. I hold a Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce. I have previously worked as a software engineer at ISUNCLOUD, a blockchain company. Currently, I am pursuing a Master degree of Fintech Program at the Pratt School of Engineering, Duke University, USA. 你好嗎! What's up!" />
+        <meta name="title" property="og:title" content="it should be it"/>
+        <meta name="description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
         <meta name="keywords" content="Chen Pin Yang, portfolio, Fintech, software engineer, Duke University" />
       </Head>
       <div className={styles.container}>
         <div className={styles.textContainer}>
           <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
-          <div className={styles.descriptionContainer}>
-  <p className={styles.description}>
-    Hello!<br />
-    I&#39;m Chen Pin Yang, please just call me Yang. I hold a Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.<br />
-    I have previously worked as a software engineer at ISUNCLOUD, a blockchain company.<br />
-    Currently, I am pursuing a Master degree of Fintech Program at the Pratt School of Engineering, Duke University, USA.<br /><br />
-    你好嗎! What&#39;s up!
-  </p>
-</div>
-
+          <p className={styles.description}>
+            Hello!<br />
+            I&#39;m Chen Pin Yang, please just call me Yang, I hold Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.<br />
+            I have previously worked as a software engineer at ISUNCLOUD, a blockchain company.<br />
+            Currently, I am pursuing a Master degree of Fintech Program at the Pratt School of Engineering, Duke University, USA<br /><br />
+            你好嗎! What&#39;s up!
+          </p>
           <div className={styles.buttons}>
             <button className="cybr-btn" onClick={handleClick} aria-label="Learn more about Chen Pin Yang">
               Learn More<span aria-hidden>_</span>
