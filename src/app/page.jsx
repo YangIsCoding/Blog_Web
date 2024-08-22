@@ -9,7 +9,14 @@ import React, { useEffect } from 'react';
 const Home = () => {
   const router = useRouter();
 
-  // 定义导航按钮的点击事件处理程序
+  // 使用 useEffect 来检查 meta 标签在页面挂载时是否正确加载
+  useEffect(() => {
+    const metaTags = document.querySelectorAll('meta[property^="og:"]');
+    metaTags.forEach(meta => {
+      console.log('Meta tag loaded:', meta.getAttribute('property'), '=', meta.getAttribute('content'));
+    });
+  }, []);
+
   const handleClick = () => {
     router.push('/about'); // 程序化地导航到 /about 页面
   };
@@ -18,19 +25,17 @@ const Home = () => {
     router.push('/contact'); // 程序化地导航到 /contact 页面
   };
 
-
   return (
     <>
-      <>
-  <meta property="og:title" content="The Rock" />
-  <meta property="og:type" content="video.movie" />
-  <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
-  <meta
-    property="og:image"
-    content="https://ia.media-imdb.com/images/rock.jpg"
-  />
-</>
-
+      <Head>
+        <meta property="og:title" content="The Rock" />
+        <meta property="og:type" content="video.movie" />
+        <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
+        <meta
+          property="og:image"
+          content="https://ia.media-imdb.com/images/rock.jpg"
+        />
+      </Head>
 
       <div className={styles.container}>
         <div className={styles.textContainer}>
