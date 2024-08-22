@@ -4,7 +4,7 @@ import styles from './home.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const Home = () => {
   const router = useRouter();
@@ -20,8 +20,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <meta name="title" property="og:title" content="here yo">hrere</meta>
-        <meta property="og:title" content="P.Y.CHEN - Home" />
+        <meta name="title" property="og:title" content="P.Y.CHEN - Home" />
         <meta property="og:description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
         <meta property="og:image" content="https://www.chenpinyangdev.com/profile_yang.jpg" />
         <meta property="og:type" content="website" />
