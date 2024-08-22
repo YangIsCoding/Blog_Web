@@ -25,6 +25,7 @@ const Home = () => {
         <meta name="description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
         <meta name="keywords" content="Chen Pin Yang, portfolio, Fintech, software engineer, Duke University" />
       </head>
+      
       <div className={styles.container}>
         <div className={styles.textContainer}>
           <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>

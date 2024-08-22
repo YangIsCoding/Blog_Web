@@ -62,9 +62,9 @@ const SinglePostPage = ({ params }) => {
 
   return (
     <>
-    <Head>
+    <head>
        <meta property="og:image" content="https://www.chenpinyangdev.com/favicon.ico" />
-    </Head>
+    </head>
 
     <div className={styles.container}>
       <div className={styles.imgContainer}>
