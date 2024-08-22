@@ -32,16 +32,12 @@ const BlogPage = () => {
 
   return (
     <>
-       <>
-  <meta property="og:title" content="The Rock" />
-  <meta property="og:type" content="video.movie" />
-  <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
-  <meta
-    property="og:image"
-    content="https://ia.media-imdb.com/images/rock.jpg"
-  />
-</>
-
+      <meta name="title" property="og:title" content="P.Y.CHEN - Blog" />
+        <meta property="og:description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
+        <meta property="og:image" content="https://www.chenpinyangdev.com/profile_yang.jpg" />
+        <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://www.chenpinyangdev.com/" />
+      
       <div className={styles.container}>
         {posts.map((post) => (
           <div className={styles.post} key={post.id}>
