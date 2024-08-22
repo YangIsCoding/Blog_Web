@@ -21,7 +21,6 @@ const Home = () => {
     <div>
       <Head>
         <tiltle>Home page</tiltle>
-        <meta property="og:title" content="PY Chen - Home Page" key="title"/>
       </Head>
 
       <div className={styles.container}>
