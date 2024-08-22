@@ -63,7 +63,9 @@ const SinglePostPage = ({ params }) => {
   return (
     <>
     <head>
-       <meta property="og:image" content="https://www.chenpinyangdev.com/favicon.ico" />
+       <meta name="title" property="og:title" content="it should be it"/>
+        <meta name="description" content="Chen Pin Yang's personal blog, showcasing skills, experience, and projects in Fintech and software development." />
+        <meta name="keywords" content="Chen Pin Yang, blog, Fintech, software engineer, Duke University" />
     </head>
 
     <div className={styles.container}>
