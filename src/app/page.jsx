@@ -1,10 +1,10 @@
 "use client";
-import Head from 'next/head';
 import styles from './home.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import React from 'react';
+
 
 const Home = () => {
   const router = useRouter();
@@ -19,10 +19,6 @@ const Home = () => {
 
   return (
     <div>
-      <Head>
-        <tiltle>Home page</tiltle>
-      </Head>
-
       <div className={styles.container}>
         <div className={styles.textContainer}>
           <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
