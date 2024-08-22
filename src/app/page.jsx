@@ -9,14 +9,7 @@ import React, { useEffect } from 'react';
 const Home = () => {
   const router = useRouter();
 
-  // 使用 useEffect 来检查 meta 标签在页面挂载时是否正确加载
-  useEffect(() => {
-    const metaTags = document.querySelectorAll('meta[property^="og:"]');
-    metaTags.forEach(meta => {
-      console.log('Meta tag loaded:', meta.getAttribute('property'), '=', meta.getAttribute('content'));
-    });
-  }, []);
-
+  // 定义导航按钮的点击事件处理程序
   const handleClick = () => {
     router.push('/about'); // 程序化地导航到 /about 页面
   };
@@ -28,13 +21,11 @@ const Home = () => {
   return (
     <>
       <Head>
-        <meta property="og:title" content="The Rock" />
-        <meta property="og:type" content="video.movie" />
-        <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
-        <meta
-          property="og:image"
-          content="https://ia.media-imdb.com/images/rock.jpg"
-        />
+        <meta property="og:title" content="P.Y.CHEN - Home" />
+        <meta property="og:description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
+        <meta property="og:image" content="https://www.chenpinyangdev.com/profile_yang.jpg" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.chenpinyangdev.com/" />
       </Head>
 
       <div className={styles.container}>
