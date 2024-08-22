@@ -20,7 +20,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <meta name="title" property="og:title" content="here yo"></meta>
+        <meta name="title" property="og:title" content="here yo">hrere</meta>
         <meta property="og:title" content="P.Y.CHEN - Home" />
         <meta property="og:description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
         <meta property="og:image" content="https://www.chenpinyangdev.com/profile_yang.jpg" />
