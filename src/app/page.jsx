@@ -5,10 +5,27 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
+
+export const metadata = {
+  title: 'P.Y,Chen - Home',
+  description: "Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development.",
+  openGraph: {
+    title: 'P.Y,Chen - Home',
+    description: "Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development.",
+    images: [
+      {
+        url: '/favicon.ico',
+        width: 800,
+        height: 600,
+        alt: 'P.Y,Chen',
+      },
+    ],
+  },
+};
+
 const Home = () => {
   const router = useRouter();
 
-  
   
   const handleClick = () => {
     router.push('/about'); // 程序化地导航到 /about 页面
@@ -18,14 +35,10 @@ const Home = () => {
     router.push('/contact'); // 程序化地导航到 /contact 页面
   };
 
+  
+
   return (
     <>
-      <head>
-        <meta name="title" property="og:title" content="it should be it"/>
-        <meta name="description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
-        <meta name="keywords" content="Chen Pin Yang, portfolio, Fintech, software engineer, Duke University" />
-      </head>
-      
       <div className={styles.container}>
         <div className={styles.textContainer}>
           <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
