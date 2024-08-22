@@ -32,6 +32,12 @@ const BlogPage = () => {
 
   return (
     <>
+      <head>
+        <meta name="title" property="og:title" content="The Blog main page"/>
+        <meta name="description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
+        <meta name="keywords" content="Chen Pin Yang, portfolio, Fintech, software engineer, Duke University" />
+      </head>
+
     <div className={styles.container}>
       {posts.map((post) => (
         <div className={styles.post} key={post.id}>
