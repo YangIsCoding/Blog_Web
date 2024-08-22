@@ -8,10 +8,10 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = {
-  title: 'P.Y.CHEN - Blog',
+  title: 'P.Y.CHEN - Home',
   description: "Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development.",
   openGraph: {
-    title: 'P.Y.CHEN - Home',
+    title: 'P.Y.CHEN',
     description: "Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development.",
     url: 'https://www.chenpinyangdev.com/',
     images: [
