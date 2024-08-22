@@ -32,16 +32,15 @@ const BlogPage = () => {
 
   return (
     <>
-      {/* 使用 Next.js 提供的 <Head> 组件 */}
-      <Head>
-        <title>P.Y,Chen - Blog</title>
-        <meta name="description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
-        <meta property="og:title" content="P.Y,Chen - Blog" />
-        <meta property="og:description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
-        <meta property="og:image" content="https://www.chenpinyangdev.com/profile_yang.jpg" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.chenpinyangdev.com/blog" />
-      </Head>
+       <>
+  <meta property="og:title" content="The Rock" />
+  <meta property="og:type" content="video.movie" />
+  <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
+  <meta
+    property="og:image"
+    content="https://ia.media-imdb.com/images/rock.jpg"
+  />
+</>
 
       <div className={styles.container}>
         {posts.map((post) => (
