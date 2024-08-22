@@ -20,7 +20,7 @@ const Home = () => {
   return (
     <>
       {/* 确保 Head 元数据在页面初次渲染时已经加载 */}
-      <head>
+      <Head>
         <title>P.Y,Chen - Home</title>
         <meta name="description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
         <meta property="og:title" content="P.Y,Chen - Home" />
@@ -29,7 +29,7 @@ const Home = () => {
         <meta property="og:image" content="https://www.chenpinyangdev.com/profile_yang.jpg" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.chenpinyangdev.com/" />
-      </head>
+      </Head>
 
       {/* 页面主体内容 */}
       <div className={styles.container}>
