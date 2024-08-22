@@ -15,10 +15,6 @@ interface RootLayoutProps {
 export const metadata = {
   title: 'P.Y,Chen',
   description: 'dev with nextjs 14',
-  icons: {
-    icon: '/favicon.ico',
-  },
-  author: 'YANG'
 };
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
