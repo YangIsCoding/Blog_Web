@@ -32,15 +32,6 @@ const BlogPage = () => {
 
   return (
     <>
-    <Head>
-       <title>Your Blog Title</title>
-        <meta name="description" content="This is a brief description of your blog. Make sure it is at least 100 characters long." />
-        <meta property="og:title" content="Your Blog Title" />
-        <meta property="og:description" content="This is a brief description of your blog. Make sure it is at least 100 characters long." />
-        <meta property="og:image" content="https://www.chenpinyangdev.com/contact.png" />
-        <meta property="og:url" content="https://www.chenpinyangdev.com/blog" />
-        <meta property="og:type" content="website" />
-    </Head>
     <div className={styles.container}>
       {posts.map((post) => (
         <div className={styles.post} key={post.id}>
