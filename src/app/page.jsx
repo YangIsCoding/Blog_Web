@@ -4,6 +4,7 @@ import styles from './home.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import React, { useEffect } from 'react';
 
 const Home = () => {
   const router = useRouter();
@@ -17,21 +18,20 @@ const Home = () => {
     router.push('/contact'); // 程序化地导航到 /contact 页面
   };
 
+
   return (
     <>
-      {/* 确保 Head 元数据在页面初次渲染时已经加载 */}
-      <Head>
-        <title>P.Y,Chen - Home</title>
-        <meta name="description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
-        <meta property="og:title" content="P.Y,Chen - Home" />
-        <meta property="og:description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
-        {/* 确保 og:image 的路径是静态且可访问的 */}
-        <meta property="og:image" content="https://www.chenpinyangdev.com/profile_yang.jpg" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.chenpinyangdev.com/" />
-      </Head>
+      <>
+  <meta property="og:title" content="The Rock" />
+  <meta property="og:type" content="video.movie" />
+  <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
+  <meta
+    property="og:image"
+    content="https://ia.media-imdb.com/images/rock.jpg"
+  />
+</>
 
-      {/* 页面主体内容 */}
+
       <div className={styles.container}>
         <div className={styles.textContainer}>
           <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
