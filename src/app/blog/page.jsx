@@ -4,6 +4,24 @@ import PostCard from "@/components/postCard/postCard";
 import styles from "./blog.module.css";
 import Head from 'next/head';
 
+
+export const metadata = {
+  title: 'The Blog Main Page',
+  description: "Chen Pin Yang's blog, sharing insights, experience, and projects in Fintech and software development.",
+  openGraph: {
+    title: 'The Blog Main Page',
+    description: "Chen Pin Yang's blog, sharing insights, experience, and projects in Fintech and software development.",
+    images: [
+      {
+        url: '/path-to-blog-image.jpg',
+        width: 800,
+        height: 600,
+        alt: 'The Blog Main Page',
+      },
+    ],
+  },
+};
+
 const getData = async () => {
   const res = await fetch('/api/posts', { 
     method: 'GET', 
@@ -32,11 +50,6 @@ const BlogPage = () => {
 
   return (
     <>
-      <head>
-        <meta name="title" property="og:title" content="The Blog main page"/>
-        <meta name="description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
-        <meta name="keywords" content="Chen Pin Yang, portfolio, Fintech, software engineer, Duke University" />
-      </head>
 
     <div className={styles.container}>
       {posts.map((post) => (
