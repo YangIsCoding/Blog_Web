@@ -8,6 +8,7 @@ import Link from 'next/link';
 const Home = () => {
   const router = useRouter();
 
+  // 定义导航按钮的点击事件处理程序
   const handleClick = () => {
     router.push('/about'); // 程序化地导航到 /about 页面
   };
@@ -18,17 +19,19 @@ const Home = () => {
 
   return (
     <>
+      {/* 确保 Head 元数据在页面初次渲染时已经加载 */}
       <Head>
         <title>P.Y,Chen - Home</title>
         <meta name="description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
         <meta property="og:title" content="P.Y,Chen - Home" />
         <meta property="og:description" content="Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development." />
-        {/* 确保使用正确的静态图像路径 */}
+        {/* 确保 og:image 的路径是静态且可访问的 */}
         <meta property="og:image" content="https://www.chenpinyangdev.com/profile_yang.jpg" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.chenpinyangdev.com/" />
       </Head>
 
+      {/* 页面主体内容 */}
       <div className={styles.container}>
         <div className={styles.textContainer}>
           <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
