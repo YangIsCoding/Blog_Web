@@ -2421,4 +2421,300 @@ class TreeNode:
         self.left = left
         self.right = right
 ```
+### binary tree traversal(Recurrsive)
+
+這次我們要好好談一談遞歸，為什麽很多同學看遞歸算法都是“一看就會，一寫就廢”。
+
+主要是對遞歸不成體系，沒有方法論，每次寫遞歸算法 ，都是靠玄學來寫代碼，**代碼能不能編過都靠運氣**。
+
+本篇將介紹前後中序的遞歸寫法，一些同學可能會感覺很簡單，其實不然，我們要通過簡單題目把方法論確定下來，有了方法論，後面才能應付覆雜的遞歸。
+
+這里幫助大家確定下來遞歸算法的三個要素。每次寫遞歸，都按照這三要素來寫，可以保證大家寫出正確的遞歸算法！
+
+1. 確定遞歸函數的參數和返回值： 確定哪些參數是遞歸的過程中需要處理的，那麽就在遞歸函數里加上這個參數， 並且還要明確每次遞歸的返回值是什麽進而確定遞歸函數的返回類型。
+
+2. 確定終止條件： 寫完了遞歸算法, 運行的時候，經常會遇到棧溢出的錯誤，就是沒寫終止條件或者終止條件寫的不對，操作系統也是用一個棧的結構來保存每一層遞歸的信息，如果遞歸沒有終止，操作系統的內存棧必然就會溢出。
+
+3. 確定單層遞歸的邏輯： 確定每一層遞歸需要處理的信息。在這里也就會重覆調用自己來實現遞歸的過程。
+
+舉例(前序):
+
+1. 確定遞歸函數的參數和返回值：因為要打印出前序遍歷節點的數值，所以參數里需要傳入vec來放節點的數值，除了這一點就不需要再處理什麽數據了也不需要有返回值，所以遞歸函數返回類型就是void，代碼如下：
+
+```python
+def traversal(cur, vec):
+```
+
+2. 確定終止條件：在遞歸的過程中，如何算是遞歸結束了呢，當然是當前遍歷的節點是空了，那麽本層遞歸就要結束了，所以如果當前遍歷的這個節點是空，就直接return，代碼如下：
+
+```python
+if cur is None:
+    return
+```
+
+3. 確定單層遞歸的邏輯：前序遍歷是中左右的順序，所以在單層遞歸的邏輯，是要先取中節點的數值，代碼如下：
+
+```python
+vec.append(cur.val)  # 中
+traversal(cur.left, vec)  # 左
+traversal(cur.right, vec)  # 右
+```
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        result = []
+        self.traversal(root,result)
+        return result
+    def traversal(self, cur, vec):
+        if not cur:
+            return
+        vec.append(cur.val)
+        self.traversal(cur.left, vec)
+        self.traversal(cur.right,vec)
+```
+
+## binary tree traversal(iterative)
+
+不難寫出以下:
+
+```python
+class Solution:
+    def preorderTraversal(self, root):
+        stack = []
+        result = []
+        if root is None:
+            return result
+        stack.append(root)
+        while stack:
+            node = stack.pop()  # 中
+            result.append(node.val)
+            if node.right:
+                stack.append(node.right)  # 右（空節點不入棧）
+            if node.left:
+                stack.append(node.left)  # 左（空節點不入棧）
+        return result
+```
+
+**注意:棧用於存儲尚未處理的節點。棧是後進先出（LIFO）的數據結構，這意味著你最後壓入棧的節點會最先被彈出處理。**
+
+此時是不是想改一點前序遍歷代碼順序就把中序遍歷搞出來了？
+
+其實還真不行！
+
+但接下來，再用叠代法寫中序遍歷的時候，會發現套路又不一樣了，目前的前序遍歷的邏輯無法直接應用到中序遍歷上。
+
+為了解釋清楚，我說明一下 剛剛在叠代的過程中，其實我們有兩個操作：
+
+1. 處理：將元素放進result數組中
+2. 訪問：遍歷節點
+
+分析一下為什麽剛剛寫的前序遍歷的代碼，不能和中序遍歷通用呢，因為前序遍歷的順序是中左右，先訪問的元素是中間節點，要處理的元素也是中間節點，所以剛剛才能寫出相對簡潔的代碼，因為要訪問的元素和要處理的元素順序是一致的，都是中間節點。
+
+那麽再看看中序遍歷，中序遍歷是左中右，先訪問的是二叉樹頂部的節點，然後一層一層向下訪問，直到到達樹左面的最底部，再開始處理節點（也就是在把節點的數值放進result數組中），這就造成了處理順序和訪問順序是不一致的。
+
+那麽在使用叠代法寫中序遍歷，就需要借用指針的遍歷來幫助訪問節點，棧則用來處理節點上的元素。
+
+```python
+class TreeNode:
+    def __init__(self, value=0, left=None, right=None):
+        self.val = value
+        self.left = left
+        self.right = right
+
+class Solution:
+    def inorder_traversal(self, root):
+        result = []
+        stack = []
+        current_node = root
+        
+        while current_node is not None or stack:
+            if current_node is not None: # 指針來訪問節點，訪問到最底層
+                stack.append(current_node)  #  將訪問的節點放進棧
+                current_node = current_node.left  # Left
+            else:
+                current_node = stack.pop()  # 從棧里彈出的數據，就是要處理的數據（放進result數組里的數據）
+                result.append(current_node.val)  # Middle
+                current_node = current_node.right  # Right
+        
+        return result
+```
+後序:
+```python
+class Solution:
+    def postorder_traversal(self, root):
+        stack = []
+        result = []
+        if root is None:
+            return result
+        stack.append(root)
+        while stack:
+            node = stack.pop()
+            result.append(node.val)
+            if node.left:
+                stack.append(node.left)  # 相对于前序遍历，这更改一下入栈顺序 （空节点不入栈）
+            if node.right:
+                stack.append(node.right)  # 空节点不入栈
+        result.reverse()  # 将结果反转之后就是左右中的顺序了
+        return result
+```
+**就不能統一風格嗎!**
+
+重頭戲來了，接下來介紹一下統一寫法。
+
+我們以中序遍歷為例，用stack無法同時解決訪問節點（遍歷節點）和處理節點（將元素放進結果集）不一致的情況。
+
+那我們就將訪問的節點放入棧中，把要處理的節點也放入棧中但是要做標記。
+
+如何標記呢，就是要處理的節點放入棧之後，緊接著放入一個空指針作為標記。 這種方法也可以叫做標記法。
+
+中序:
+
+```python
+class Solution:
+    def inorderTraversal(self, root):
+        result = []
+        st = []
+        if root is not None:
+            st.append(root)
+        while st:
+            node = st.pop()
+            if node is not None:
+                st.append(node.right)  # 添加右節點（空節點不入棧）
+
+                st.append(node)        # 添加中節點
+                st.append(None)        # 中節點已訪問過，但尚未處理，加入空節點作為標記。
+
+                st.append(node.left)   # 添加左節點（空節點不入棧）
+            else:  # 只有遇到空節點時，才將下一個節點放入結果集中
+                st.pop()                # 將空節點彈出
+                node = st.pop()         # 重新取出棧中的元素
+                result.append(node.val) # 加入到結果集中
+        return result
+```
+利用空節點 (None) 來標記已訪問過的節點：
+
+當遇到一個空節點時，說明之前已經遍歷過該節點的左子樹，現在需要處理該節點（中節點）。
+
+闡述:
+
+初始化
+初始化：
+result = []：一個空列表，用於存儲最終的中序遍歷結果。
+st = []：一個空棧，用於在遍歷過程中暫存節點。
+if root is not None: 確認根節點 1 非空後，st.append(root) 將根節點 1 壓入棧中。
+
+主循環開始:
+
+第一輪循環：
+
+st.pop() 彈出 1，此時 st = []。
+if node is not None:：node 是 1，所以不是 None。
+按照代碼順序：
+將 1 的右子節點 2 壓入棧中（st = [2]）。
+將節點 1 自己壓入棧中（st = [2, 1]）。
+將一個 None 壓入棧中作為標記（st = [2, 1, None]）。
+將 1 的左子節點（因為 1 沒有左子節點，所以什麽也不做）。
+
+第二輪循環：
+
+st.pop() 彈出 None（標記），此時 st = [2, 1]。
+因為 node 是 None，跳到 else 部分：
+st.pop() 彈出 1，此時 st = [2]。
+將 1 的值加入 result，此時 result = [1]。
+
+第三輪循環：
+
+st.pop() 彈出 2，此時 st = []。
+if node is not None:：node 是 2，所以不是 None。
+按照代碼順序：
+將 2 的右子節點（因為 2 沒有右子節點，所以什麽也不做）。
+將節點 2 自己壓入棧中（st = [2]）。
+將一個 None 壓入棧中作為標記（st = [2, None]）。
+將 2 的左子節點 3 壓入棧中（st = [2, None, 3]）。
+
+第四輪循環：
+
+st.pop() 彈出 3，此時 st = [2, None]。
+if node is not None:：node 是 3，所以不是 None。
+按照代碼順序：
+將 3 的右子節點（因為 3 沒有右子節點，所以什麽也不做）。
+將節點 3 自己壓入棧中（st = [2, None, 3]）。
+將一個 None 壓入棧中作為標記（st = [2, None, 3, None]）。
+將 3 的左子節點（因為 3 沒有左子節點，所以什麽也不做）。
+
+第五輪循環：
+
+st.pop() 彈出 None（標記），此時 st = [2, None, 3]。
+因為 node 是 None，跳到 else 部分：
+st.pop() 彈出 3，此時 st = [2, None]。
+將 3 的值加入 result，此時 result = [1, 3]。
+
+第六輪循環：
+
+st.pop() 彈出 None（標記），此時 st = [2]。
+因為 node 是 None，跳到 else 部分：
+st.pop() 彈出 2，此時 st = []。
+將 2 的值加入 result，此時 result = [1, 3, 2]。
+結束
+棧為空，退出循環。
+返回 result = [1, 3, 2]，這是最終的中序遍歷結果。
+
+```python
+class Solution:
+    def traverse(self, root, order="inorder"):
+        result = []
+        st = []
+        if root is not None:
+            st.append(root)
+        while st:
+            node = st.pop()
+            if node is not None:
+                if order == "preorder":  # 前序遍歷：中 -> 左 -> 右
+                    if node.right:
+                        st.append(node.right)
+                    if node.left:
+                        st.append(node.left)
+                    st.append(node)
+                    st.append(None)
+                elif order == "inorder":  # 中序遍歷：左 -> 中 -> 右
+                    if node.right:
+                        st.append(node.right)
+                    st.append(node)
+                    st.append(None)
+                    if node.left:
+                        st.append(node.left)
+                elif order == "postorder":  # 後序遍歷：左 -> 右 -> 中
+                    st.append(node)
+                    st.append(None)
+                    if node.right:
+                        st.append(node.right)
+                    if node.left:
+                        st.append(node.left)
+            else:
+                st.pop()
+                node = st.pop()
+                result.append(node.val)
+        return result
+
+# 使用例子
+solution = Solution()
+
+# 假设 root 是你的二叉树的根节点
+# 可以调用不同的遍历方法
+preorder_result = solution.traverse(root, order="preorder")
+inorder_result = solution.traverse(root, order="inorder")
+postorder_result = solution.traverse(root, order="postorder")
+
+print("Preorder:", preorder_result)
+print("Inorder:", inorder_result)
+print("Postorder:", postorder_result)
+```
+
 **To be continued...**
