@@ -62,22 +62,9 @@ const SinglePostPage = ({ params }) => {
 
   return (
     <>
-      <Head>
-        {/* 设置页面标题，这也是 og:title 的内容 */}
-        <title>{post.title}</title>
-        {/* 添加页面描述，如果没有描述则使用默认值 */}
-        <meta name="description" content={post.description || 'Default description'} />
-        {/* Open Graph 标签，用于社交媒体分享时的标题 */}
-        <meta property="og:title" content={post.title} />
-        {/* Open Graph 标签，用于社交媒体分享时的描述 */}
-        <meta property="og:description" content={post.description || 'Default description'} />
-        {/* Open Graph 标签，用于社交媒体分享时的图片，使用 post 中的图片或默认图片 */}
-        <meta property="og:image" content={'https://www.chenpinyangdev.com/favicon.ico'} />
-        {/* Open Graph 标签，表示当前页面的 URL */}
-        <meta property="og:url" content={`https://www.chenpinyangdev.com/blog/${slug}`} />
-        {/* Open Graph 标签，表示内容类型 */}
-        <meta property="og:type" content="article" />
-      </Head>
+    <Head>
+       <meta property="og:image" content="https://www.chenpinyangdev.com/favicon.ico" />
+    </Head>
 
     <div className={styles.container}>
       <div className={styles.imgContainer}>
@@ -100,7 +87,7 @@ const SinglePostPage = ({ params }) => {
         <p>Thank you!</p>
       </div>
       </div>
-      </>
+    </>
   );
 };
 
