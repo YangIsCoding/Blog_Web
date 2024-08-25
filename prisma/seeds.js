@@ -15,13 +15,13 @@ async function main() {
 
   await prisma.post.create({
     data: {
-      id:14,
+      id:19,
       userId: 1,
-      title: '[CHI]算法筆記',
-      shortdesc: '感謝代碼隨想錄前輩的重點整理',
-      content: "/posts/post14.md",
-      postTime: "continue updating",
-      postImg: "/algo.webp"
+      title: '[EN]EIP-1559 raw transaction algorithm, and RLP decode',
+      shortdesc: 'To show the process of how a raw transaction data be decoded',
+      content: "/posts/post4en.md",
+      postTime: "2023.12.06",
+      postImg: "/post4.webp"
     }
   });
 }

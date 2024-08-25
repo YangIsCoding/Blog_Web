@@ -1,6 +1,8 @@
 Dear Niece,
 
-*May you be like a flower: May you be as bright as a sunflower under the shining sun.
+*May you be like a flower: 
+
+May you be as bright as a sunflower under the shining sun.
 As steadfast as a cotton tree in midsummer.
 As pure as a small white flower on the grass.
 As peaceful as a daffodil under careful care.*
@@ -20,4 +22,5 @@ Little flower, I have many more things I want to say to you, and I will slowly s
 May God plant the seed of my niece in a garden of happiness until you become a flower unafraid of wind and frost.
 
 September 22, 2022
+
 Written by Your Little Uncle
