@@ -59,7 +59,7 @@ const resume = () => {
 </li>
 <li><strong>Personal Full-stack website</strong><ul>
                     <li>&emsp;Built the website www.chenpinyangdev.com using Next.js 14, ensuring a seamless user experience by retrieving data from backend APIs.</li>
-                    <li>&emsp;Achieved a 337% increase in reach within 7 days.</li>
+                    <li>&emsp;Achieved a 1062% increase in reach within 7 days.</li>
                     <li>&emsp;Implemented the backend with Node.js to generate APIs and used Prisma SQLite for the database.</li>
                     <li>&emsp;Developed a blog on the website to share insights on Ethereum, personal thoughts, and tutorials.</li>
 </ul>
