@@ -32,9 +32,6 @@ const BlogPage = () => {
 
   return (
     <>
-      
-      
-      
       <div className={styles.container}>
         {posts.map((post) => (
           <div className={styles.post} key={post.id}>

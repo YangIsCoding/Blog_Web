@@ -2717,4 +2717,78 @@ print("Inorder:", inorder_result)
 print("Postorder:", postorder_result)
 ```
 
+<div id = "102" style="text-align: center;">
+#102, Binary Tree Level Order Traversal
+</div>
+
+```
+Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+
+
+Input: root = [3,9,20,null,null,15,7]
+Output: [[3],[9,20],[15,7]]
+```
+
+層序遍歷一個二叉樹。就是從左到右一層一層的去遍歷二叉樹。這種遍歷的方式和我們之前講過的都不太一樣。
+
+需要借用一個輔助數據結構即隊列來實現，隊列先進先出，符合一層一層遍歷的邏輯，而用棧先進後出適合模擬深度優先遍歷也就是遞歸的邏輯。
+
+層序遍歷方式就是廣度優先遍歷，就是要用到queue
+
+會了這個可以一個打十個
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+        if not root:
+            return []
+        queue = collections.deque()
+        queue.append(root)
+        while queue:
+            queue_len = len(queue)
+            curr_list = []
+            for i in range(queue_len):
+                node = queue.popleft()
+                curr_list.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            res.append(curr_list)
+        return res
+```
+
+<div id = "226" style="text-align: center;">
+#226, Binary Tree Level Order Traversal
+</div>
+
+```
+Given the root of a binary tree, invert the tree, and return its root.
+```
+![](https://assets.leetcode.com/uploads/2021/03/14/invert1-tree.jpg)
+
+這道題，可以用前序及後序來解。
+
+```python
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if root == None:
+            return
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+        root.left, root.right = root.right, root.left
+        return root
+```
 **To be continued...**
