@@ -1,23 +1,23 @@
-Dear Niece,
+「愛姪，願妳似花
+願妳開朗似豔陽下的向日葵。
+堅定如孟仲夏的木棉花。
+純潔若青草上的小白花。
+平安像呵護中的水仙花。」
 
-*May you be like a flower: May you be as bright as a sunflower under the shining sun.
-As steadfast as a cotton tree in midsummer.
-As pure as a small white flower on the grass.
-As peaceful as a daffodil under careful care.*
+親愛的小花花：
+我是小舅舅，這是你生命中的第一封信，願妳在生命中遇到的風浪、畏懼都能在反覆閱讀此信中找到最真摯、最堅定的力量，伴隨妳一生。
 
-Dear little flower: I am your little uncle, and this is the first letter of your life. I hope that in the storms and fears you encounter in life, you can find the most sincere and steadfast strength by reading this letter over and over, to accompany you throughout your life.
+早已可以想像，你惺忪的表情，第一次接觸世界的樣子，有爸爸媽媽歡喜卻溫柔地將妳護於胸膛，有可愛天真的哥哥為妳拍手叫好。有阿公、阿嬤、舅公、阿祖們、舅媽、大舅舅、小舅舅迫不及待給妳來自肺腑的祝福。或許妳的表情困惑、或許妳對這些陌生的臉龐感到畏懼，不過就讓我們一起伴妳成長，將生命中的甜萃與妳分享。
 
-I can already imagine your drowsy expression, the way you first encounter the world, with your mom and dad joyfully yet gently holding you close to their chests, with your cute and innocent brother clapping his hands to cheer for you. There's grandpa, grandma, your grand-uncles, great-grandparents, aunt, big uncle, and little uncle all eagerly waiting to give you heartfelt blessings. Perhaps your expression is confused, or maybe you feel afraid of these unfamiliar faces, but let us all grow with you, sharing the sweetness of life with you.
+感恩、知足是大地之母贈妳的第一份課題。有了這個心態，心將安好，可以化悒悒不樂、顛躓不定的靈魂平靜。你將知道自己有多麼幸運，知道自己永遠被深深愛著。愛姪啊，要多想想自己所擁有的、不去計較自己所沒有的，你要知道在別人眼裡，你是多麼令人稱羨的呀！妳要明白，打從你還在媽媽肚子裡就倍受祝福著。家人都願陪妳走過窒礙。看著爸爸媽媽的眼睛吧！妳將看到妳自己，他們會嘴角微揚。會發現他們有妳是多麼地感恩。
 
-Gratitude and contentment are the first lessons Mother Earth gives you. With this mindset, your heart will be at peace, and you can calm a troubled soul. You will know how lucky you are, knowing that you are always deeply loved. My dear niece, think more about what you have, and don’t worry about what you don’t have. You must know that in the eyes of others, you are so enviable! You must understand that from the time you were in your mother’s womb, you were blessed. Your family is willing to walk with you through obstacles. Look into your parents' eyes! You will see yourself there; they will smile, and you will find that they are so grateful to have you.
+堅毅、勇敢是馳騁生命之旅的重要心態。在不久的未來我將牽起妳的手，一步一步慢慢地繞過公園、社區、學校、婚禮、與世界。當妳跌倒時，或許我們不會扶起妳挫傷的膝，你將一次次變得勇敢、眼神更加堅定，撐起自己、撐起自己所愛繼續往前走，而我們永遠都在。衝過困難、溫煦的陽光會輕拂妳的傷，你會安好，而經驗也將鐫刻妳心。愛姪，希望妳面對挫折時，願和我分享，我將窮盡所學，將我的腳印奉獻給妳。願我能成為合格的舅舅，被妳信任，被妳依靠。
 
-Perseverance and courage are important mindsets for the journey of life. In the near future, I will hold your hand, and step by step, we will walk around parks, neighborhoods, schools, weddings, and the world. When you fall, perhaps we won’t immediately pick up your bruised knees, but you will become braver each time, your gaze more determined, lifting yourself up, carrying on with what you love, and we will always be here. As you overcome difficulties, the warm sunlight will gently caress your wounds, and you will be fine, while the experience will be etched into your heart. My dear niece, I hope that when you face setbacks, you will share them with me. I will exhaust all I’ve learned to offer my footprints to you. I hope I can be a qualified uncle, trusted and relied upon by you.
+此信撰時，我22歲，雖然經驗不足，但我必須與妳分享「樂觀」有多重要。向日葵最美的一面是它面對陽光的那一面。樂觀不是強顏歡笑，不是在面對危機時選擇吃火鍋壓驚。樂觀是永遠相信還有辦法、還有路可以走，積極地走下去。樂觀不只是快樂，我們可以從的短暫的歡樂時光獲得快樂。但樂觀卻可以將憂傷隨時光洗滌。舟楫上的船伕可以選擇怨操楫之疲憊、也可以選擇感受夜涼如洗的微風、熠熠閃光的星辰。
 
-When writing this letter, I am 22 years old. Although my experience is insufficient, I must share with you how important “optimism” is. The most beautiful side of a sunflower is the one that faces the sun. Optimism is not forcing a smile, nor is it choosing to eat hotpot to relieve stress during a crisis. Optimism is always believing that there is still a way, still a path to take, and actively moving forward. Optimism is not just about happiness; we can obtain happiness from brief moments of joy. But optimism can wash away sadness with time. A boatman on a boat can choose to lament the fatigue of rowing, or he can choose to enjoy the cool evening breeze and the twinkling stars.
+小花花，我還有許多話想跟你說，待我用時光慢慢與妳訴說。我會深愛著你們、我會抱著你們、我會讓你們玩玩我的頭髮、抓抓我的鼻子、我會陪你們買玩具、玩球、我會陪你們聊天、在花海中拍照、在海邊蓋屬於我們家的城堡 。我會將小花紮在妳髮上，像我用文字將妳紮在我心上。
 
-Little flower, I have many more things I want to say to you, and I will slowly share them with you over time. I will deeply love you, I will hold you, let you play with my hair, pinch my nose, I will take you to buy toys, play ball, chat with you, take photos in flower fields, and build our family’s castle by the sea. I will tie little flowers in your hair, just as I have tied you to my heart with words.
+祈天主將我姪的種子埋在屬於幸福的園，直到妳成為不畏風霜的花。
 
-May God plant the seed of my niece in a garden of happiness until you become a flower unafraid of wind and frost.
-
-September 22, 2022
-Written by Your Little Uncle
+2022/9/22
+小舅舅筆

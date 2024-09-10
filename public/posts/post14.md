@@ -56,6 +56,28 @@ string:
 4. [28 - Find the Index of the First Occurrence in a String](#28)
 5. [459 - Repeated Substring Pattern](#459)
 
+stack and queue:
+1. [232 - Implement Queue using Stacks](#232)
+2. [225 - Implement Stack using Queues](#225)
+3. [20 - Valid Parentheses](#20)
+4. [1047 - Remove All Adjacent Duplicates In String](#1047)
+5. [150 - Evaluate Reverse Polish Notation](#150)
+6. [239 - Sliding Window Maximum](#239)
+7. [347, Sliding Window Maximum](#347)
+
+binary tree:
+1. [102 - Binary Tree Level Order Traversal](#102)
+2. [226 - Invert binary Tree](#226)
+3. [101 - Symmetric Tree](#101)
+4. [104 - Maximum Depth of Binary Tree](#104)
+5. [111 - Minimum Depth of Binary Tree](#111)
+6. [222 - Count Complete Tree Nodes](#222)
+7. [110 - Balanced Binary Tree](#110)
+8. [257 - Binary Tree Paths](#257)
+9. [404 - Sum of Left Leaves](#404)
+10. [513 - Find Bottom Left Tree Value](#513)
+11. [112 - Path Sum](#112)
+12. [106 - Construct Binary Tree from Inorder and Postorder Traversal](#106)
 ## 性能分析:
 
 大O用來表示上界的，當用它作為演算法的最壞情況運行時間的上界，就是對任意資料輸入的運行時間的上界。
@@ -2766,7 +2788,7 @@ class Solution:
 ```
 
 <div id = "226" style="text-align: center;">
-#226, Binary Tree Level Order Traversal
+#226, Invert binary Tree
 </div>
 
 ```
@@ -2791,4 +2813,676 @@ class Solution:
         root.left, root.right = root.right, root.left
         return root
 ```
+
+<div id = "101" style="text-align: center;">
+#101, Symmetric Tree
+</div>
+
+```
+給你一個二叉樹，檢查他有沒有對稱
+```
+
+![](https://assets.leetcode.com/uploads/2021/02/19/symtree1.jpg)
+
+**對二叉樹題目來說，確定遍歷方式是最重要的**
+
+先想清楚，判斷對稱二叉樹要比較的是哪兩個節點，要比較的可不是左右節點！
+
+對於二叉樹是否對稱，要比較的是根節點的左子樹與右子樹是不是相互翻轉的，理解這一點就知道了其實我們要比較的是兩個樹（這兩個樹是根節點的左右子樹），所以在遞歸遍歷的過程中，也是要同時遍歷兩棵樹。
+
+那麽如何比較呢？
+
+比較的是兩個子樹的里側和外側的元素是否相等。如圖所示：
+
+![](https://camo.githubusercontent.com/af0be100cd04a571c2f4ab50c3ba23c77326ee2ed2a8073df2aeacf130ba0fd6/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303231303230333134343632343431342e706e67)
+
+其實，這一題只能用**後序**，為什麼？因為左右中的特性可以確定收集完所有子節點的情況再返回給上一層（中）。
+
+```python
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if not root:
+            return True
+        return self.compare(root.left, root.right)
+        
+    def compare(self, left, right):
+        #首先排除空節點的情況
+        if left == None and right != None: return False
+        elif left != None and right == None: return False
+        elif left == None and right == None: return True
+        #排除了空節點，再排除數值不相同的情況
+        elif left.val != right.val: return False
+        
+        #此時就是：左右節點都不為空，且數值相同的情況
+        #此時才做遞歸，做下一層的判斷
+        outside = self.compare(left.left, right.right) #左子樹：左、 右子樹：右
+        inside = self.compare(left.right, right.left) #左子樹：右、 右子樹：左
+        isSame = outside and inside #左子樹：中、 右子樹：中 （邏輯處理）
+        return isSame
+```
+
+<div id = "104" style="text-align: center;">
+#104, Maximum Depth of Binary Tree
+</div>
+
+```
+給定一個二叉樹，找出其最大深度。
+
+二叉樹的深度為根節點到最遠葉子節點的最長路徑上的節點數。
+
+說明: 葉子節點是指沒有子節點的節點。
+
+示例： 給定二叉樹 [3,9,20,null,null,15,7]，
+
+return: 3
+```
+![](https://camo.githubusercontent.com/5dce4befc4f2b696249db7143f48e3c01a4b9906dcfc58fa996522867e3bb56f/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303231303230333135333033313931342d32303233303331303132313830393930322e706e67)
+
+什麼是深度、什麼是高度？
+
+深度：任一node到root節點的距離（前序）
+
+高度：任一node到leaf的距離(後序)
+
+因為後序（高度）就是最大深度，所以這一題可以用後序求深度。
+
+```python
+class Solution:
+    def maxdepth(self, root: treenode) -> int:
+        return self.getdepth(root)
+        
+    def getdepth(self, node):
+        if not node:
+            return 0
+        leftheight = self.getdepth(node.left) #左
+        rightheight = self.getdepth(node.right) #右
+        height = 1 + max(leftheight, rightheight) #中
+        return height
+```
+
+<div id = "111" style="text-align: center;">
+#111, Minimum Depth of Binary Tree
+</div>
+
+```
+給定一個二叉樹，找出其最小深度。
+
+最小深度是從根節點到最近葉子節點的最短路徑上的節點數量。
+
+說明: 葉子節點是指沒有子節點的節點。
+
+示例:
+
+給定二叉樹 [3,9,20,null,null,15,7],
+
+result = 2
+```
+
+![](https://camo.githubusercontent.com/49722c1ecb29edd4e3bce38f25ef8eae06429c14f1fbf880edaa0a38801fb2b8/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f323032313032303331353538323538362e706e67)
+
+1. 確定遞歸函數的參數和返回值
+```python
+int getDepth(TreeNode* node)
+```
+2. 確定終止條件
+```python
+if (node == NULL) return 0;
+```
+
+3. 確定單層遞歸的邏輯
+
+這塊和求最大深度可就不一樣了，一些同學可能會寫如下代碼：
+
+```python
+int leftDepth = getDepth(node->left);
+int rightDepth = getDepth(node->right);
+int result = 1 + min(leftDepth, rightDepth);
+return result;
+```
+
+這個代碼就犯了此圖中的誤區：
+
+![](https://camo.githubusercontent.com/e7bdb1c3c567fad8cfeb207c290b54309e01aec9d269cf48bc64e6543029835f/68747470733a2f2f636f64652d7468696e6b696e672e63646e2e626365626f732e636f6d2f706963732f3131312e2545342542412538432545352538462538392545362541302539312545372539412538342545362539432538302545352542302538462545362542372542312545352542412541362e706e67)
+
+如果這麽求的話，沒有左孩子的分支會算為最短深度。
+
+所以，如果左子樹為空，右子樹不為空，說明最小深度是 1 + 右子樹的深度。
+
+反之，右子樹為空，左子樹不為空，最小深度是 1 + 左子樹的深度。 最後如果左右子樹都不為空，返回左右子樹深度最小值 + 1 。
+
+代碼如下：
+
+```python
+class Solution:
+    def getDepth(self, node):
+        if node is None:
+            return 0
+        leftDepth = self.getDepth(node.left)  # 左
+        rightDepth = self.getDepth(node.right)  # 右
+        
+        # 當一個左子樹為空，右不為空，這時並不是最低點
+        if node.left is None and node.right is not None:
+            return 1 + rightDepth
+        
+        # 當一個右子樹為空，左不為空，這時並不是最低點
+        if node.left is not None and node.right is None:
+            return 1 + leftDepth
+        
+        result = 1 + min(leftDepth, rightDepth)
+        return result
+
+    def minDepth(self, root):
+        return self.getDepth(root)
+
+```
+
+<div id = "222" style="text-align: center;">
+#222, Count Complete Tree Nodes
+</div>
+
+```
+給出一個完全二叉樹，求出該樹的節點個數。
+
+示例 1：
+
+輸入：root = [1,2,3,4,5,6]
+輸出：6
+```
+
+**定義:完全二叉樹只有兩種情況，情況一：就是滿二叉樹，情況二：最後一層葉子節點沒有滿。**
+
+我們先來講，普通二叉樹該怎麼解（前、中、後都可以，後序簡單一點）：
+```python
+def counting(self, node: TreeNode)->int:
+    if not node: return 0
+    leftCount = self.counting(node.left)
+    rightCount = self.counting(node.right)
+    result = 1+ leftCount + rightCount
+    return result
+    #O(n)
+```
+
+完全二叉樹的特性
+
+在完全二叉樹中，除了最底層節點可能沒填滿外，其余每層節點數都達到最大值，並且最下面一層的節點都集中在該層最左邊的若幹位置。若最底層為第 h 層，則該層包含 1~ 2^(h-1)  個節點。
+
+1. 對於情況一，可以直接用 2^樹深度 - 1 來計算，注意這里根節點深度為1。
+
+2. 對於情況二，分別遞歸左孩子，和右孩子，遞歸到某一深度一定會有左孩子或者右孩子為滿二叉樹，然後依然可以按照情況1來計算。
+
+![](https://camo.githubusercontent.com/dca3a41d253c7c0fe9e893637040b3ee7fbf835c1dfd45e19550a7299acf21be/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303230313132343039323534333636322e706e67)
+
+而我們應該要**判斷其子樹是不是滿二叉樹，如果是則直接利用公式計算這個子樹（滿二叉樹）的節點數量，如果不是則繼續遞歸** 這樣不管是完全二叉樹或滿二叉樹都可以控制在O(long*logn)
+
+```python
+class Solution: # 利用完全二叉樹特性
+    def countNodes(self, root: TreeNode) -> int:
+        if not root: return 0
+        count = 1
+        left = root.left; right = root.right
+        while left and right:
+            count+=1
+            left = left.left; right = right.right
+        if not left and not right: # 如果同時到底說明是滿二叉樹，反之則不是
+            return 2**count-1
+        return 1+self.countNodes(root.left)+self.countNodes(root.right)  
+```
+
+<div id = "110" style="text-align: center;">
+#110, Balanced Binary Tree
+</div>
+
+```
+給定一個二叉樹，判斷它是否是高度平衡的二叉樹。
+
+本題中，一棵高度平衡二叉樹定義為：一個二叉樹每個節點 的左右兩個子樹的高度差的絕對值不超過1。
+
+示例 1:
+
+給定二叉樹 [3,9,20,null,null,15,7]
+
+return True
+```
+
+![](https://camo.githubusercontent.com/08b0bab108b3a19d05a70994e6d9618de3ab80b044c09103ff618d0a97fa94ad/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f323032313032303331353534323233302e706e67)
+
+關於根節點的深度究竟是1 還是 0，不同的地方有不一樣的標準，leetcode的題目中都是以節點為一度，即根節點深度是1。但維基百科上定義用邊為一度，即根節點的深度是0，我們暫時以leetcode為準（畢竟要在這上面刷題）。
+
+此時大家應該明白了既然要求比較高度，必然是要後序遍歷。
+
+如何判斷以當前傳入節點為根節點的二叉樹是否是平衡二叉樹呢？當然是其左子樹高度和其右子樹高度的差值。
+
+分別求出其左右子樹的高度，然後如果差值小於等於1，則返回當前二叉樹的高度，否則返回-1，表示已經不是二叉平衡樹了。
+
+```python
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        if self.get_hight(root) != -1:
+            return True
+        else: 
+            return False
+    def get_hight(self, node) -> int:
+        if not node:
+            return 0
+        leftHight = self.get_hight(node.left)
+        rightHight = self.get_hight(node.right)
+        if leftHight == -1 or rightHight == -1 or abs(leftHight - rightHight) > 1:
+            return -1
+        return max(leftHight, rightHight) + 1
+```
+
+<div id = "257" style="text-align: center;">
+#257, Binary Tree Paths
+</div>
+
+```
+給定一個二叉樹，返回所有從根節點到葉子節點的路徑。
+
+說明: 葉子節點是指沒有子節點的節點。
+```
+
+![](https://camo.githubusercontent.com/fb1c9b6a043b04a3506fe3af3fc02700b708d18ae0b7c63f42ec6d78eb375358/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f323032313032303431353136313537362e706e67)
+
+這道題目要求從根節點到葉子的路徑，所以需要前序遍歷，這樣才方便讓父節點指向孩子節點，找到對應的路徑。
+
+![](https://camo.githubusercontent.com/b26ffbe6faa8cf404a5a645beff276c5c9fac3a47cda0c1caa085517d8c3a043/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303231303230343135313730323434332e706e67)
+
+```python
+class Solution:
+    def traversal(self, cur, path, result):
+        path.append(cur.val)  # 中
+        if not cur.left and not cur.right:  # 到達葉子節點
+            sPath = '->'.join(map(str, path)) #str 函數會將傳入的整數轉換為對應的字串
+            result.append(sPath)
+            return
+        if cur.left:  # 左
+            self.traversal(cur.left, path, result)
+            path.pop()  # 回溯
+        if cur.right:  # 右
+            self.traversal(cur.right, path, result)
+            path.pop()  # 回溯
+
+    def binaryTreePaths(self, root):
+        result = []
+        path = []
+        if not root:
+            return result
+        self.traversal(root, path, result)
+        return result
+```
+
+<div id = "404" style="text-align: center;">
+#404, Sum of Left Leaves
+</div>
+
+```
+計算給定二叉樹的所有左葉子之和。
+```
+
+![](https://camo.githubusercontent.com/89dd906b803284b60d99b9fd853742672d526fee352ccd2637e8c03975437d75/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303231303230343135313932373635342e706e67)
+
+![](https://camo.githubusercontent.com/b8ccf277a1710b3d5df5c5ec92b84d9a14deffa2e9a315f90af379a492e9f2ef/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303232303930323136353830352e706e67)
+
+相信通過這兩個圖，大家對最左葉子的定義有明確理解了。
+
+那麽判斷當前節點是不是左葉子是無法判斷的，必須要通過節點的父節點來判斷其左孩子是不是左葉子。
+
+如果該節點的左節點不為空，該節點的左節點的左節點為空，該節點的左節點的右節點為空，則找到了一個左葉子
+
+```python
+if node.left is not None and node.left.left is None and node.left.right is None:
+    # 左葉子節點處理邏輯
+```
+
+遞歸的遍歷順序為後序遍歷（左右中），是因為要通過遞歸函數的返回值來累加求取左葉子數值之和。
+
+遞歸三部曲：
+
+1. 確定遞歸函數的參數和返回值
+判斷一個樹的左葉子節點之和，那麽一定要傳入樹的根節點，遞歸函數的返回值為數值之和，所以為int
+
+使用題目中給出的函數就可以了。
+
+2. 確定終止條件
+如果遍歷到空節點，那麽左葉子值一定是0
+
+```python
+if root is None:
+    return 0
+```
+注意，只有當前遍歷的節點是父節點，才能判斷其子節點是不是左葉子。 所以如果當前遍歷的節點是葉子節點，那其左葉子也必定是0，那麽終止條件為：
+```python
+if root is None:
+    return 0
+if root.left is None and root.right is None:
+    return 0 #其實這個也可以不寫，如果不寫不影響結果，但就會讓遞歸多進行了一層。
+ ```
+3. 確定單層遞歸的邏輯
+當遇到左葉子節點的時候，記錄數值，然後通過遞歸求取左子樹左葉子之和，和 右子樹左葉子之和，相加便是整個樹的左葉子之和。
+
+代碼如下：
+
+```python
+left_value = sum_of_left_leaves(root.left)  # 左
+if root.left and not root.left.left and not root.left.right:
+    left_value = root.left.val
+right_value = sum_of_left_leaves(root.right)  # 右
+
+sum_value = left_value + right_value  # 中
+return sum_value
+
+```
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sumOfLeftLeaves(self, root):
+        if root is None:
+            return 0
+        if root.left is None and root.right is None: # 遇到子葉情況，子葉本身的數值已經被父節點紀錄了
+            return 0
+        
+        leftValue = self.sumOfLeftLeaves(root.left)  # 左
+        if root.left and not root.left.left and not root.left.right:  # 左子樹是左葉子的情况
+            leftValue = root.left.val
+            
+        rightValue = self.sumOfLeftLeaves(root.right)  # 右
+
+        sum_val = leftValue + rightValue  # 中
+        return sum_val
+```
+
+<div id = "513" style="text-align: center;">
+#513, Find Bottom Left Tree Value
+</div>
+
+```
+給定一個二叉樹，在樹的最後一行找到最左邊的值。
+```
+
+![](https://camo.githubusercontent.com/1678afc10af4f1c0efe20984b74f8f620d99837b1dafd3f0b9bb10c72d73941f/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303231303230343135333031373538362e706e67)
+
+我們來分析一下題目：在樹的最後一行找到最左邊的值。
+
+首先要是最後一行，然後是最左邊的值。
+
+如果使用遞歸法，如何判斷是最後一行呢，其實就是深度最大的葉子節點一定是最後一行。
+
+所以要找深度最大的葉子節點。
+
+那麽如何找最左邊的呢？可以使用前序遍歷（當然中序，後序都可以，因為本題沒有 中間節點的處理邏輯，只要左優先就行），保證優先左邊搜索，然後記錄深度最大的葉子節點，此時就是樹的最後一行最左邊的值。
+
+```python
+class Solution:
+    def findBottomLeftValue(self, root: TreeNode) -> int:
+        self.max_depth = float('-inf')
+        self.result = None
+        self.traversal(root, 0)
+        return self.result
+    
+    def traversal(self, node, depth):
+        if not node.left and not node.right:
+            if depth > self.max_depth:
+                self.max_depth = depth
+                self.result = node.val
+            return
+        
+        if node.left:
+            depth += 1
+            self.traversal(node.left, depth)
+            depth -= 1
+        if node.right:
+            depth += 1
+            self.traversal(node.right, depth)
+            depth -= 1
+```
+
+本題使用層序遍歷再合適不過了，比遞歸要好理解得多！
+
+只需要記錄最後一行第一個節點的數值就可以了。
+
+```python
+from collections import deque
+class Solution:
+    def findBottomLeftValue(self, root):
+        if root is None:
+            return 0
+        queue = deque()
+        queue.append(root)
+        result = 0
+        while queue:
+            size = len(queue)
+            for i in range(size):
+                node = queue.popleft()
+                if i == 0:
+                    result = node.val
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return result
+```
+
+<div id = "112" style="text-align: center;">
+#112, Path Sum
+</div>
+
+```
+給定一個二叉樹和一個目標和，判斷該樹中是否存在根節點到葉子節點的路徑，這條路徑上所有節點值相加等於目標和。
+
+說明: 葉子節點是指沒有子節點的節點。
+
+示例: 給定如下二叉樹，以及目標和 sum = 22，
+```
+
+![](https://camo.githubusercontent.com/d8322d94529540b74abc6ec8e1124d8a7c76486a87f14bd0c09fcb8b94211a78/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303233303430373231303234372e706e67)
+
+```
+返回 true, 因為存在目標和為 22 的根節點到葉子節點的路徑 5->4->11->2。
+```
+
+由於我們沒有必要整棵樹都跑完，只要一條路徑中了，就可以返回 true了。
+
+所以，遞歸第一部曲：確定遞歸參數和返回值。我們就要返回bool。
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def traversal(self, cur: TreeNode, count: int) -> bool:
+        if not cur.left and not cur.right and count == 0: # 遇到葉子節點，並且計數為0
+            return True
+        if not cur.left and not cur.right: # 遇到葉子節點直接返回
+            return False
+        
+        if cur.left: # 左
+            count -= cur.left.val
+            if self.traversal(cur.left, count): # 遞歸，處理節點
+                return True
+            count += cur.left.val # 回溯，撤銷處理結果
+            
+        if cur.right: # 右
+            count -= cur.right.val
+            if self.traversal(cur.right, count): # 遞歸，處理節點
+                return True
+            count += cur.right.val # 回溯，撤銷處理結果
+            
+        return False
+    
+    def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+        if root is None:
+            return False
+        return self.traversal(root, sum - root.val)      
+```
+
+```python
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root:
+            return False
+        if root.val == targetSum and not root.left and not root.right:
+            return True
+        return self.hasPathSum(root.left,targetSum - root.val) or self.hasPathSum(root.right,targetSum - root.val)
+```
+
+<div id = "106" style="text-align: center;">
+#106, Construct Binary Tree from Inorder and Postorder Traversal
+</div>
+
+```python
+給妳inorder, postorder, 做出整棵樹
+
+Input: inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
+Output: [3,9,20,null,null,15,7]
+```
+![](https://assets.leetcode.com/uploads/2021/02/19/tree.jpg)
+
+首先回憶一下如何根據兩個順序構造一個唯一的二叉樹，相信理論知識大家應該都清楚，就是以 後序數組的最後一個元素為切割點，先切中序數組，根據中序數組，反過來再切後序數組。一層一層切下去，每次後序數組最後一個元素就是節點元素。
+
+如果讓我們肉眼看兩個序列，畫一棵二叉樹的話，應該分分鐘都可以畫出來。
+
+流程如圖：
+
+![](https://camo.githubusercontent.com/0b007e4086174a2587b02c3ea8eaa8dba0534ab8e639a2907e13047917cd9db5/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303231303230333135343234393836302e706e67)
+
+那麽代碼應該怎麽寫呢？
+
+說到一層一層切割，就應該想到了遞歸。
+
+來看一下一共分幾步：
+
+第一步：如果數組大小為零的話，說明是空節點了。
+
+第二步：如果不為空，那麽取後序數組最後一個元素作為節點元素。
+
+第三步：找到後序數組最後一個元素在中序數組的位置，作為切割點
+
+第四步：切割中序數組，切成中序左數組和中序右數組 （順序別搞反了，一定是先切中序數組）
+
+第五步：切割後序數組，切成後序左數組和後序右數組
+
+第六步：遞歸處理左區間和右區間
+
+寫出來是這樣的：
+
+```python
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+def traversal(inorder, postorder):
+    # 第一步
+    if len(postorder) == 0:
+        return None
+
+    # 第二步：後序遍歷數組最後一個元素，就是當前的中間節點
+    root_value = postorder[-1]
+    root = TreeNode(root_value)
+
+    # 葉子節點
+    if len(postorder) == 1:
+        return root
+
+    # 第三步：找切割點
+    delimiter_index = 0
+    for delimiter_index in range(len(inorder)):
+        if inorder[delimiter_index] == root_value:
+            break
+
+    # 第四步：切割中序數組，得到 中序左數組和中序右數組
+    inorder_left = inorder[:delimiter_index]
+    inorder_right = inorder[delimiter_index + 1:]
+
+    # 第五步：切割後序數組，得到 後序左數組和後序右數組
+    postorder_left = postorder[:delimiter_index]
+    postorder_right = postorder[delimiter_index:-1]
+
+    # 第六步
+    root.left = traversal(inorder_left, postorder_left)
+    root.right = traversal(inorder_right, postorder_right)
+
+    return root
+```
+
+難點大家應該發現了，就是如何切割，以及邊界值找不好很容易亂套。
+
+此時應該注意確定切割的標準，是左閉右開，還有左開右閉，還是左閉右閉，這個就是不變量，要在遞歸中保持這個不變量。
+
+在切割的過程中會產生四個區間，把握不好不變量的話，一會左閉右開，一會左閉右閉，必然亂套！
+
+105 題：
+
+```python
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        # 第一步: 特殊情況討論: 樹為空. 或者說是遞歸終止條件
+        if not preorder:
+            return None
+
+        # 第二步: 前序遍歷的第一個就是當前的中間節點.
+        root_val = preorder[0]
+        root = TreeNode(root_val)
+
+        # 第三步: 找切割點.
+        separator_idx = inorder.index(root_val)
+
+        # 第四步: 切割inorder數組. 得到inorder數組的左,右半邊.
+        inorder_left = inorder[:separator_idx]
+        inorder_right = inorder[separator_idx + 1:]
+
+        # 第五步: 切割preorder數組. 得到preorder數組的左,右半邊.
+        # ⭐️ 重點1: 中序數組大小一定跟前序數組大小是相同的.
+        preorder_left = preorder[1:1 + len(inorder_left)]
+        preorder_right = preorder[1 + len(inorder_left):]
+
+        # 第六步: 遞歸
+        root.left = self.buildTree(preorder_left, inorder_left)
+        root.right = self.buildTree(preorder_right, inorder_right)
+        # 第七步: 返回答案
+        return root
+```
+
+106題：
+
+```python
+class Solution:
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+        # 第一步: 特殊情況討論: 樹為空. (遞歸終止條件)
+        if not postorder:
+            return None
+
+        # 第二步: 後序遍歷的最後一個就是當前的中間節點.
+        root_val = postorder[-1]
+        root = TreeNode(root_val)
+
+        # 第三步: 找切割點.
+        separator_idx = inorder.index(root_val)
+
+        # 第四步: 切割inorder數組. 得到inorder數組的左,右半邊.
+        inorder_left = inorder[:separator_idx]
+        inorder_right = inorder[separator_idx + 1:]
+
+        # 第五步: 切割postorder數組. 得到postorder數組的左,右半邊.
+        # ⭐️ 重點1: 中序數組大小一定跟後序數組大小是相同的.
+        postorder_left = postorder[:len(inorder_left)]
+        postorder_right = postorder[len(inorder_left): len(postorder) - 1]
+
+        # 第六步: 遞歸
+        root.left = self.buildTree(inorder_left, postorder_left)
+        root.right = self.buildTree(inorder_right, postorder_right)
+         # 第七步: 返回答案
+        return root
+```
+
 **To be continued...**
