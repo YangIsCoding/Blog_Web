@@ -78,6 +78,7 @@ binary tree:
 10. [513 - Find Bottom Left Tree Value](#513)
 11. [112 - Path Sum](#112)
 12. [106 - Construct Binary Tree from Inorder and Postorder Traversal](#106)
+13. [654 - Maximum Binary Tree](#654)
 ## 性能分析:
 
 大O用來表示上界的，當用它作為演算法的最壞情況運行時間的上界，就是對任意資料輸入的運行時間的上界。
@@ -3421,7 +3422,7 @@ def traversal(inorder, postorder):
 
 在切割的過程中會產生四個區間，把握不好不變量的話，一會左閉右開，一會左閉右閉，必然亂套！
 
-105 題：
+105 題：Construct Binary Tree from Preorder and Inorder Traversal
 
 ```python
 class Solution:
@@ -3453,7 +3454,7 @@ class Solution:
         return root
 ```
 
-106題：
+106題：Construct Binary Tree from Inorder and Postorder Traversal
 
 ```python
 class Solution:
@@ -3483,6 +3484,172 @@ class Solution:
         root.right = self.buildTree(inorder_right, postorder_right)
          # 第七步: 返回答案
         return root
+```
+<div id = "654" style="text-align: center;">
+#654, Maximum Binary Tree
+</div>
+
+```
+給定一個不含重覆元素的整數數組。一個以此數組構建的最大二叉樹定義如下：
+
+二叉樹的根是數組中的最大元素。
+左子樹是通過數組中最大值左邊部分構造出的最大二叉樹。
+右子樹是通過數組中最大值右邊部分構造出的最大二叉樹。
+通過給定的數組構建最大二叉樹，並且輸出這個樹的根節點。
+```
+![](https://camo.githubusercontent.com/14332ec6f1973132ed79c8c45e0b8d41b086b3bb5bb3c6d9eef9d633771cad3e/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303231303230343135343533343739362e706e67)
+
+構造樹一般采用的是前序遍歷，因為先構造中間節點，然後遞歸構造左子樹和右子樹。
+
+1. 確定參數返回值
+
+```python
+def constructMaximumBinaryTree(self, nums: List[int]) -> TreeNode:
+```
+
+2. 確定終止條件
+
+題目中說了輸入的數組大小一定是大於等於1的，所以我們不用考慮小於1的情況，那麽當遞歸遍歷的時候，如果傳入的數組大小為1，說明遍歷到了葉子節點了。
+
+那麽應該定義一個新的節點，並把這個數組的數值賦給新的節點，然後返回這個節點。 這表示一個數組大小是1的時候，構造了一個新的節點，並返回。
+```python
+if len(nums) == 1:
+            return TreeNode(nums[0])
+```
+
+3. 確定單層遞歸邏輯
+
+這里有三步工作:
+
+    1. 先要找到數組中最大的值和對應的下標， 最大的值構造根節點，下標用來下一步分割數組。
+
+    2. 最大值所在的下標左區間 構造左子樹
+
+    3. 最大值所在的下標右區間 構造右子樹
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def constructMaximumBinaryTree(self, nums: List[int]) -> TreeNode:
+        if len(nums) == 1:
+            return TreeNode(nums[0])
+        node = TreeNode(0)
+        # 找到數組中最大的值和對應的下標
+        maxValue = 0
+        maxValueIndex = 0
+        for i in range(len(nums)):
+            if nums[i] > maxValue:
+                maxValue = nums[i]
+                maxValueIndex = i
+        node.val = maxValue
+        # 最大值所在的下標左區間 構造左子樹
+        if maxValueIndex > 0:
+            new_list = nums[:maxValueIndex]
+            node.left = self.constructMaximumBinaryTree(new_list)
+        # 最大值所在的下標右區間 構造右子樹
+        if maxValueIndex < len(nums) - 1:
+            new_list = nums[maxValueIndex+1:]
+            node.right = self.constructMaximumBinaryTree(new_list)
+        return node
+        
+```
+
+注意類似用數組構造二叉樹的題目，每次分隔盡量不要定義新的數組，而是通過下標索引直接在原數組上操作，這樣可以節約時間和空間上的開銷。
+
+一些同學也會疑惑，什麽時候遞歸函數前面加if，什麽時候不加if，這個問題我在最後也給出了解釋。
+
+其實就是不同代碼風格的實現，一般情況來說：如果讓空節點（空指針）進入遞歸，就不加if，如果不讓空節點進入遞歸，就加if限制一下， 終止條件也會相應的調整。
+
+
+<div id = "617" style="text-align: center;">
+#617, Merge Two Binary Trees
+</div>
+
+```
+給定兩個二叉樹，想象當你將它們中的一個覆蓋到另一個上時，兩個二叉樹的一些節點便會重疊(相加)。
+
+你需要將他們合並為一個新的二叉樹。合並的規則是如果兩個節點重疊，那麽將他們的值相加作為節點合並後的新值，否則不為 NULL 的節點將直接作為新二叉樹的節點。
+```
+
+![](https://camo.githubusercontent.com/539724dbcb5365287700369a7c8c22686d0e87f2e453fc38d9cb18643e8365d5/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303233303331303030303835342e706e67)
+
+1. 確定參數及返回值：
+
+首先要合入兩個二叉樹，那麽參數至少是要傳入兩個二叉樹的根節點，返回值就是合並之後二叉樹的根節點。
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def mergeTrees(t1, t2):
+```
+
+2. 確定終止條件：
+
+因為是傳入了兩個樹，那麽就有兩個樹遍歷的節點t1 和 t2，如果t1 == NULL 了，兩個樹合並就應該是 t2 了（如果t2也為NULL也無所謂，合並之後就是NULL）。反過來如果t2 == NULL，那麽兩個數合並就是t1（如果t1也為NULL也無所謂，合並之後就是NULL）。
+
+```python
+if t1 is None:
+    return t2  
+if t2 is None:
+    return t1
+```
+
+3. 確定單層遞歸的邏輯：
+
+單層遞歸的邏輯就比較好寫了，這里我們重覆利用一下t1這個樹，t1就是合並之後樹的根節點（就是修改了原來樹的結構）。
+
+那麽單層遞歸中，就要把兩棵樹的元素加到一起。
+
+```python
+t1.val += t2.val
+```
+
+接下來t1 的左子樹是：合並 t1左子樹 t2左子樹之後的左子樹。
+
+t1 的右子樹：是 合並 t1右子樹 t2右子樹之後的右子樹。
+
+最終t1就是合並之後的根節點。
+
+代碼如下：
+
+```python
+t1.left = merge_trees(t1.left, t2.left)
+t1.right = merge_trees(t1.right, t2.right)
+return t1
+```
+
+完整版：
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def mergeTrees(self, root1: TreeNode, root2: TreeNode) -> TreeNode:
+        # 遞歸終止條件: 
+        #  但凡有一個節點為空, 就立刻返回另外一個. 如果另外一個也為None就直接返回None. 
+        if not root1: 
+            return root2
+        if not root2: 
+            return root1
+        # 上面的遞歸終止條件保證了代碼執行到這里root1, root2都非空. 
+        root1.val += root2.val # 中
+        root1.left = self.mergeTrees(root1.left, root2.left) #左
+        root1.right = self.mergeTrees(root1.right, root2.right) # 右
+        
+        return root1 # 注意: 本題我們重覆使用了題目給出的節點而不是創建新節點. 節省時間, 空間. 
+
 ```
 
 **To be continued...**

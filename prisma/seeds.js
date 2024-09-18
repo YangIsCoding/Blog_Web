@@ -15,13 +15,13 @@ async function main() {
 
   await prisma.post.create({
     data: {
-      id:19,
+      id:20,
       userId: 1,
-      title: '[EN]EIP-1559 raw transaction algorithm, and RLP decode',
-      shortdesc: 'To show the process of how a raw transaction data be decoded',
-      content: "/posts/post4en.md",
-      postTime: "2023.12.06",
-      postImg: "/post4.webp"
+      title: 'What is Web3.0?',
+      shortdesc: 'Congratulations, you’re living in a time of transformation!',
+      content: "/posts/post15.md",
+      postTime: "2024.09.16",
+      postImg: "/blockchain.webp"
     }
   });
 }
