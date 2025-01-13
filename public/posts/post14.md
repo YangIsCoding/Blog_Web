@@ -79,6 +79,9 @@ binary tree:
 11. [112 - Path Sum](#112)
 12. [106 - Construct Binary Tree from Inorder and Postorder Traversal](#106)
 13. [654 - Maximum Binary Tree](#654)
+14. [617 - Merge Two Binary Trees](#617)
+
+
 ## 性能分析:
 
 大O用來表示上界的，當用它作為演算法的最壞情況運行時間的上界，就是對任意資料輸入的運行時間的上界。
@@ -3649,6 +3652,164 @@ class Solution:
         root1.right = self.mergeTrees(root1.right, root2.right) # 右
         
         return root1 # 注意: 本題我們重覆使用了題目給出的節點而不是創建新節點. 節省時間, 空間. 
+
+```
+
+
+<div id = "700" style="text-align: center;">
+#700, Search in a Binary Search Tree
+</div>
+
+```
+給定二叉搜索樹（BST）的根節點和一個值。 你需要在BST中找到節點值等於給定值的節點。 返回以該節點為根的子樹。 如果節點不存在，則返回 NULL。
+```
+![](https://camo.githubusercontent.com/cf55fdf9637675b74a15c3d3372691529f3abc26048901ea5f1e01701100783d/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303231303230343135353532323437362e706e67)
+
+**二叉搜索樹**是一個有序樹：
+
+若它的左子樹不空，則左子樹上所有結點的值均小於它的根結點的值；
+若它的右子樹不空，則右子樹上所有結點的值均大於它的根結點的值；
+它的左、右子樹也分別為二叉搜索樹
+這就決定了，二叉搜索樹，遞歸遍歷和叠代遍歷和普通二叉樹都不一樣。
+
+本題，其實就是在二叉搜索樹中搜索一個節點。那麽我們來看看應該如何遍歷。
+
+1. 確定參數及返回值
+
+遞歸函數的參數傳入的就是根節點和要搜索的數值，返回的就是以這個搜索數值所在的節點。
+```python
+def searchBST(root: TreeNode, val: int) -> TreeNode:
+```
+
+2. 確定終止條件
+
+如果root為空，或者找到這個數值了，就返回root節點。
+```python
+if (root == None or root.val == val) return root
+```
+
+3. 確定單層遞歸的邏輯
+
+因為二叉搜索樹的節點是有序的，所以可以有方向的去搜索。
+
+如果root.val > val，搜索左子樹，如果root.val < val，就搜索右子樹，最後如果都沒有搜索到，就返回None。
+
+```python
+result = None
+if root.val > val:
+    result = searchBST(root.left, val)
+if root.val < val:
+    result = searchBST(root.right, val)
+return result
+```
+
+完整代碼：
+
+```python
+class Solution:
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+        # 為什麽要有返回值: 
+        #   因為搜索到目標節點就要立即return，
+        #   這樣才是找到節點就返回（搜索某一條邊），如果不加return，就是遍歷整棵樹了。
+
+        if not root or root.val == val: 
+            return root
+
+        if root.val > val: 
+            return self.searchBST(root.left, val)
+
+        if root.val < val: 
+            return self.searchBST(root.right, val)
+```
+
+<div id = "98" style="text-align: center;">
+#98, Validate Binary Search Tree
+</div>
+
+```
+給定一個二叉樹，判斷其是否是一個有效的二叉搜索樹。
+
+假設一個二叉搜索樹具有如下特征：
+
+1. 節點的左子樹只包含小於當前節點的數（所有）。
+2. 節點的右子樹只包含大於當前節點的數。（所有）
+3. 所有左子樹和右子樹自身必須也是二叉搜索樹。
+```
+
+![](https://camo.githubusercontent.com/9bbee4cadbad0ade9c46bcf6d6c81493efcdc4419a6640df41c4b04bf775c95e/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303233303331303030303735302e706e67)
+
+用中序的話，整個數組就是有序的(排序好的)，如果遍歷過後數組是單調遞增的，他就是二叉搜索數。
+
+中序遍歷是「左 → 根 → 右」，對於二叉搜索樹來說，這樣的遍歷順序自然會生成一個遞增的數列。因此，如果一棵樹的中序遍歷結果是遞增的，那麼這棵樹就是一棵合法的二叉搜索樹。
+
+中序遍歷是按照「左子樹 → 根節點 → 右子樹」的順序來遍歷節點。對於二叉搜索樹來說，這個順序保證了遍歷過程中：
+
+先遍歷左子樹（所有節點都小於根節點）。
+
+然後訪問根節點。
+
+最後遍歷右子樹（所有節點都大於根節點）。
+
+**所以**，最直白的想法就是創一個新的數組。對數進行中序遍歷，如果他有序（遞增），就是二叉搜索數。
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        inorder = []
+        
+        def inorder_traversal(node):
+            if not node:
+                return
+            inorder_traversal(node.left)   # 遍歷左子樹
+            inorder.append(node.val)       # 訪問根節點
+            inorder_traversal(node.right)  # 遍歷右子樹
+        
+        # 中序遍歷生成節點的值
+        inorder_traversal(root)
+        
+        # 檢查中序遍歷結果是否為遞增
+        for i in range(1, len(inorder)):
+            if inorder[i] <= inorder[i - 1]:
+                return False
+        return True
+```
+
+能不能不使用數組？
+
+```python
+class Solution:
+    def __init__(self):
+        self.maxVal = float('-inf') 
+
+    def isValidBST(self, root):
+        if root is None:
+            return True
+
+        left = self.isValidBST(root.left)
+        if self.maxVal < root.val:
+            self.maxVal = root.val
+        else:
+            return False
+        right = self.isValidBST(root.right)
+
+        return left and right
+```
+
+如果當前節點的值大於 maxVal，則更新 maxVal 為當前節點值，表示此節點是目前遇到的最大值。
+如果當前節點的值小於或等於 maxVal，則違反了二叉搜索樹的性質（因為中序遍歷結果應該是單調遞增的），所以返回 False。
+
+<div id = "530" style="text-align: center;">
+#530, Validate Binary Search Tree
+</div>
+
+```
 
 ```
 
