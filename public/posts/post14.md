@@ -3806,10 +3806,241 @@ class Solution:
 如果當前節點的值小於或等於 maxVal，則違反了二叉搜索樹的性質（因為中序遍歷結果應該是單調遞增的），所以返回 False。
 
 <div id = "530" style="text-align: center;">
-#530, Validate Binary Search Tree
+#530, Minimum Absolute Difference in BST
 </div>
 
 ```
+給你一棵所有節點為非負值的二叉搜索樹，請你計算樹中任意相鄰兩節點的差的絕對值的最小值。
+```
+
+![](https://camo.githubusercontent.com/26f8103eacf60eae5c7bf34dc251ff7fd68434a0466ac124b2463867d25fd25a/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303230313031343232333430303132332e706e67)
+
+注意是二元搜尋樹，二元搜尋樹可是有序的。
+
+遇到在二元搜尋樹上求什麼最值啊，差值之類的，就把它想成在一個有序數組上求最值，求差值，這樣就簡單多了。
+
+**那麼二元搜尋樹採用中序遍歷，其實就是一個有序數組。**
+
+遇到在二元搜尋樹上求什麼最值，求差值之類的，都要思考一下二元搜尋樹可是有序的，要利用好這一特點。
+
+```python
+class Solution:
+    def __init__(self):
+        self.vec = []
+
+    def traversal(self, root):
+        if root is None:
+            return
+        self.traversal(root.left)
+        self.vec.append(root.val)  # 二叉搜索樹轉換為序陣列
+        self.traversal(root.right)
+
+    def getMinimumDifference(self, root):
+        self.vec = []
+        self.traversal(root)
+        if len(self.vec) < 2:
+            return 0
+        result = float('inf')
+        for i in range(1, len(self.vec)):
+            # 統計有陣列的最小差值
+            result = min(result, self.vec[i] - self.vec[i - 1])
+        return result
+```
+使用雙指針來避免額外分配數組，我們可以在中序遍歷的同時計算最小差值，而不是先構造一個有序數組。
+
+```python
+class Solution:
+    def __init__(self):
+        self.prev = None  # 保存上一個節點的值
+        self.min_diff = float('inf')  # 保存最小差值
+
+    def traversal(self, root):
+        if root is None:
+            return
+        # 遍歷左子樹
+        self.traversal(root.left)
+        # 處理當前節點
+        if self.prev is not None:  # 如果 prev 不為 None，計算當前節點與前一節點的差值(prev是樹的下層，因為是中序)
+            self.min_diff = min(self.min_diff, root.val - self.prev)
+        self.prev = root.val  # 更新 prev 為當前節點的值
+        # 遍歷右子樹
+        self.traversal(root.right)
+
+    def getMinimumDifference(self, root):
+        self.prev = None  # 初始化 prev
+        self.min_diff = float('inf')  # 初始化最小差值
+        self.traversal(root)  # 中序遍歷
+        return self.min_diff
+```
+
+<div id = "501" style="text-align: center;">
+#501, Find Mode in Binary Search Tree
+</div>
+
+```
+給定一個有相同值的二元搜尋樹（BST），找出 BST 中的所有眾數（出現頻率最高的元素）。
+
+假定 BST 有如下定義：
+
+結點左子樹所含結點的值小於等於目前結點的值
+結點右子樹所含結點的值大於等於目前結點的值
+左子樹和右子樹都是二元搜尋樹
+```
+
+![](https://camo.githubusercontent.com/d8b36a74c1f8c5f1c8d40c3f94c06cea69e486ff9d8328567ff5b0a796a8489c/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303230313031343232313533323230362e706e67)
+
+如果不是二元搜尋樹，最直觀的方法一定是把這個樹都遍歷了，用map統計頻率，把頻率排個序，最後取前面高頻的元素的集合。
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+from collections import defaultdict
+
+class Solution:
+    def searchBST(self, cur, freq_map):
+        if cur is None:
+            return
+        freq_map[cur.val] += 1  # 统计元素频率
+        self.searchBST(cur.left, freq_map)
+        self.searchBST(cur.right, freq_map)
+
+    def findMode(self, root):
+        freq_map = defaultdict(int)  # key:元素，value:出现频率
+        result = []
+        if root is None:
+            return result
+        self.searchBST(root, freq_map)
+        max_freq = max(freq_map.values())
+        for key, freq in freq_map.items():
+            if freq == max_freq:
+                result.append(key)
+        return result
+
+```
+
+但既然是搜尋樹，它中序遍歷就是有順序的。我們可以利用這一個原理使用雙指針方法來解，目的是為了減少一次遍歷（原本是兩次）。
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+
+    def traversal(self,root):
+        if root is None:
+            return
+        self.traversal(root.left)
+
+        if self.prev is None:
+            self.count = 1
+        elif self.prev != root.val:
+            self.count = 1
+        elif self.prev == root.val:
+            self.count += 1
+        self.prev = root.val
+
+        if self.count > self.maxcount:
+            self.maxcount = self.count
+            self.result = []  # 很关键的一步，不要忘记清空result，之前result里的元素都失效了           
+            self.result.append(root.val)
+        elif self.count == self.maxcount:
+            self.result.append(root.val)
+        self.traversal(root.right)
+        
+    def findMode(self, root: Optional[TreeNode]) -> List[int]:
+        self.count = 0
+        self.maxcount = 0
+        self.prev = None  # 记录前一个节点
+        self.result = []
+
+        self.traversal(root)
+        return self.result
+        
+```
+
+
+<div id = "236" style="text-align: center;">
+#236, Lowest Common Ancestor of a Binary Tree
+</div>
+
+```
+給定一個二元樹, 找到該樹中兩個指定節點的最近公共祖先。
+
+百度百科中最近公共祖先的定義為：「對於有根樹T 的兩個結點p、q，最近公共祖先表示為一個結點x，滿足x 是p、q 的祖先且x 的深度盡可能大（一個節點也可以是它自己的祖先）。
+
+例如，給定如下二元樹: root = [3,5,1,6,2,0,8,null,null,7,4]
+```
+![](https://assets.leetcode.com/uploads/2018/12/14/binarytree.png)
+```
+Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+Output: 3
+Explanation: The LCA of nodes 5 and 1 is 3.
+
+Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
+Output: 5
+Explanation: The LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.
+```
+
+**如何從下向上遍歷？**
+
+在二叉樹中是沒辦法向上遍歷的，但是處理順序是可以的！
+
+以上面為例，假設7，4分別是p,q. 2是LCA。就代表2擁有7與4這兩個子樹。
+
+注意看，是不是左、右、中。後序遍歷！
+
+在這個解法中，遞迴的過程實際上是先遞迴進行 深度優先搜尋（DFS），然後才進行回溯，這就是所謂的後序遍歷（Post-order Traversal）。
+
+**!!!**
+
+前序遍歷:
+用於複製二元樹。
+用於計算樹的某些特定數值（如樹的節點數量）。
+
+中序：
+常用於排序問題，因為對於一棵二元搜索樹（BST），中序遍歷會得到一個有序的節點列表。
+用於檢查二元樹是否是二元搜索樹。
+
+後序(需要由下往上的題目)：
+用於刪除二元樹中的節點。
+用於計算樹的深度或高度。
+用於計算樹的總和、樹的最大最小值等。
+
+```Python
+class Solution:
+    def lowestCommonAncestor(self, root, p, q):
+        # 如果當前節點是 p 或 q，或者當前節點是空，則返回當前節點（終止條件）
+        if root == q or root == p or root is None:
+            return root
+
+        # 遞迴搜尋左子樹
+        left = self.lowestCommonAncestor(root.left, p, q)
+
+        # 遞迴搜尋右子樹
+        right = self.lowestCommonAncestor(root.right, p, q)
+
+        # 如果左子樹和右子樹都找到了 p 或 q，那麼當前節點是最近公共祖先
+        if left is not None and right is not None:
+            return root
+
+        # 如果左子樹為 None（當某一子樹沒有包含目標節點 p 或 q 時，該子樹的結果將會是 None。），但右子樹找到了 p 或 q，則返回右子樹的結果
+        if left is None and right is not None:
+            return right
+        
+        # 如果右子樹為 None，但左子樹找到了 p 或 q，則返回左子樹的結果
+        elif left is not None and right is None:
+            return left
+        
+        # 如果左右子樹都為 None，表示未找到 p 或 q，返回 None
+        else: 
+            return None
 
 ```
 
