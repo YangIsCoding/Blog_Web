@@ -4044,4 +4044,268 @@ class Solution:
 
 ```
 
+<div id = "235" style="text-align: center;">
+#235, Lowest Common Ancestor of a Binary Search Tree
+</div>
+
+![](https://camo.githubusercontent.com/d568604a22aaf02f11388a2d490b956ffa75263ad77d611e898b3a2efced8e6f/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303230313031383137323234333630322e706e67)
+```
+給定一個二元搜尋樹, 找到該樹中兩個指定節點的最近公共祖先。
+
+範例 1:
+
+輸入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
+輸出: 6
+解釋: 節點 2 和節點 8 的最近公共祖先是 6。
+範例 2:
+
+輸入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
+輸出: 2
+解釋: 節點 2 和節點 4 的最近公共祖先是 2, 因為根據定義最近公共祖先節點可以為節點本身。
+說明:
+
+所有節點的值都是唯一的。
+p、q 為不同節點且均存在於給定的二元搜尋樹中。
+```
+
+因為是有序樹，所以 如果 中間節點是 q 和 p 的公共祖先，那麼 中節點的陣列 一定是在 [p, q]區間的。即 中節點 > p && 中節點 < q 或 中節點 > q && 中節點 < p。
+
+那麼只要從上到下去遍歷，遇到 cur節點是數值在[p, q]區間中則一定可以說明該節點cur就是p 和 q的公共祖先。
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def traversal(self, root, p, q):
+        if root is None:
+            return
+        if root.val > p.val and root.val > q.val:
+            left = self.traversal(root.left, p, q)
+            if left != None: # if we find the LCA in left subtree, return left subtree
+                return left
+        if root.val < p.val and root.val < q.val:
+            right = self.traversal(root.right, p, q)
+            if right != None: # if we find the LCA in right subtree, return right subtree
+                return right
+        #  反正剩下的一定是在p,q之間不用管誰大
+        return root
+        
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        return self.traversal(root,p,q)
+```
+
+<div id = "701" style="text-align: center;">
+#701, Insert into a Binary Search Tree
+</div>
+
+```
+給定二元搜尋樹（BST）的根節點和要插入樹中的值，將值插入二元搜尋樹。傳回插入後二叉搜尋樹的根節點。輸入資料保證，新值和原始二元搜尋樹中的任意節點值都不同。
+
+請注意，可能存在多種有效的插入方式，只要樹在插入後仍保持為二元搜尋樹即可。你可以傳回任意有效的結果。
+```
+![](https://camo.githubusercontent.com/4efe9d93f37e24a478c01973703f1276421ff1a074fbb78c9d582745fa637894/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303230313031393137333235393535342e706e67)
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def insert(self, root, val):
+        if root == None: # 注意到最後一定會插入到葉子節點,到達葉子節點時，返回node給root.left 或root.right(看情況)
+            node = TreeNode(val)
+            return node
+        if val > root.val:
+            root.right = self.insert(root.right,val)
+        if val < root.val:
+            root.left = self.insert(root.left, val)
+        return root
+
+
+    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        return self.insert(root,val)
+```
+
+<div id = "450" style="text-align: center;">
+#450, Insert into a Binary Search Tree
+</div>
+
+```
+給定一個二元搜尋樹的根節點 root 和一個值 key，刪除二元搜尋樹中的 key 對應的節點，並保證二元搜尋樹的性質不變。傳回二元搜尋樹（有可能被更新）的根節點的引用。
+
+一般來說，刪除節點可分為兩個步驟：
+
+首先找到需要刪除的節點； 如果找到了，請刪除它。說明： 要求演算法時間複雜度為 O(h)，h 為樹的高度。
+```
+
+![](https://camo.githubusercontent.com/2695ee42e38eb8bda947faa396efe04992f693a2a833aceca484deab3deba34c/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303230313032303137313034383236352e706e67)
+
+舉體來說，這道題分五種情況。
+
+1. 沒找到要刪除的節點
+
+2. 要刪掉的是葉子節點（最好刪）左空右空
+
+3. 要刪掉的是左不空，右為空（直接把左邊連到目前節點）
+
+4. 左空、右不空（直接把右邊連到目前節點）
+
+5. 左不空、右不空（必須大幅調整樹的結構）
+
+    找到"後繼節點"或"前驅節點"
+
+    "後繼節點"是該節點右子樹中的最小節點，代表比當前節點大且最接近的值。
+    "前驅節點"是該節點左子樹中的最大節點，代表比當前節點小且最接近的值。
+    替換當前節點的值
+    將後繼節點的值替換到當前節點的位置，這樣當前節點的值就不再是要刪除的值。
+
+    刪除後繼節點
+    後繼節點一定沒有左子樹，因此刪除後繼節點的操作會回到情況 3 或 4。
+
+```python 
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def delete_node(root, key):
+    # 1. 沒找到要刪除的節點，直接返回 None
+    if not root:
+        return None
+
+    # 根據 BST 性質，遞迴搜尋目標節點
+    if key < root.val:  # 要刪除的值小於當前節點，遞迴到左子樹
+        root.left = delete_node(root.left, key)
+    elif key > root.val:  # 要刪除的值大於當前節點，遞迴到右子樹
+        root.right = delete_node(root.right, key)
+    else:  # 找到目標節點，進入刪除邏輯
+        # 2. 刪除的是葉子節點（左子樹和右子樹都為空）
+        if not root.left and not root.right:
+            return None  # 直接將該節點刪除，返回 None
+        
+        # 3. 節點只有左子樹（右子樹為空）
+        elif not root.right:
+            return root.left  # 直接將左子樹接到該節點的父節點
+        
+        # 4. 節點只有右子樹（左子樹為空）
+        elif not root.left:
+            return root.right  # 直接將右子樹接到該節點的父節點
+        
+        # 5. 節點有左右子樹
+        else:
+            # 找到後繼節點（右子樹中的最小值節點）
+            successor = find_min(root.right)
+            # 將後繼節點的值替換到當前節點
+            root.val = successor.val
+            # 呼叫 delete_node 處理右子樹，返回刪除後的新右子樹。 找到節點，刪除它（它是葉子節點，直接返回 None）
+            new_right_subtree = delete_node(root.right, successor.val)
+
+            # 更新當前節點的右子樹
+            root.right = new_right_subtree
+
+    
+    return root
+
+# 輔助函數：找到以 node 為根的子樹中的最小節點
+def find_min(node):
+    while node.left:
+        node = node.left  # 一直向左找到最小值
+    return node
+
+```
+
+<div id = "669" style="text-align: center;">
+#669, Trim a Binary Search Tree
+</div>
+
+
+```
+給定一個二元搜尋樹，同時給定最小邊界L 和最大邊界 R。透過修剪二元搜尋樹，使得所有節點的值在[L, R]中 (R>=L) 。你可能需要改變樹的根節點，所以結果應該會傳回修剪好的二元搜尋樹的新的根節點。
+```
+
+![](https://camo.githubusercontent.com/050260418236b574a56b145a9dcbdec9392a4519b4dc9d240187c5fa4feda707/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303230313031343137333131353738382e706e67)
+
+![](https://camo.githubusercontent.com/e93712963d468a78c76cac3a22bd6106e38d4d9a2ede6c05aa3f5df7104d9a46/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303230313031343137333231393134322e706e67)
+
+```python
+
+# 定義二元搜尋樹的節點
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def trimBST(self, root: Optional[TreeNode], low: int, high: int) -> Optional[TreeNode]:
+        if not root:
+            return None
+        
+        # 當前節點的值小於 low，則修剪右子樹
+        if root.val < low:
+            return self.trimBST(root.right, low, high)
+        
+        # 當前節點的值大於 high，則修剪左子樹
+        if root.val > high:
+            return self.trimBST(root.left, low, high)
+
+        # 修剪左右子樹並重新連結
+        root.left = self.trimBST(root.left, low, high)
+        root.right = self.trimBST(root.right, low, high)
+
+        return root
+
+```
+
+<div id = "108" style="text-align: center;">
+#108, Convert Sorted Array to Binary Search Tree
+</div>
+
+```
+將一個依照升序排列的有序數組，轉換為一棵高度平衡二元搜尋樹。
+
+在本題中，一個高度平衡二元樹是指一個二元樹每個節點 的左右兩個子樹的高度差的絕對值不超過 1。
+```
+
+![](https://camo.githubusercontent.com/1042c58949e6e66a6000f450d45670c0b9fd2818022a60f57c68c7625807c480/68747470733a2f2f636f64652d7468696e6b696e672d313235333835353039332e66696c652e6d7971636c6f75642e636f6d2f706963732f32303230313032323136343432303736332e706e67)
+
+
+由於輸入陣列是遞增排序的，我們可以：
+
+取中間元素作為根節點，確保左右兩邊元素數量均衡。
+
+遞迴處理左半部分作為左子樹。
+
+遞迴處理右半部分作為右子樹。
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
+        if not nums:  # 若數組為空，返回 None
+            return None
+        
+        mid = len(nums) // 2  # 取中間索引
+        root = TreeNode(nums[mid])  # 以中間值作為根節點
+        
+        # 遞迴構造左子樹與右子樹
+        root.left = self.sortedArrayToBST(nums[:mid])  # 左半部分
+        root.right = self.sortedArrayToBST(nums[mid + 1:])  # 右半部分
+        
+        return root
+
+```
 **To be continued...**
