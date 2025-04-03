@@ -4308,4 +4308,75 @@ class Solution:
         return root
 
 ```
+
+<div id = "538" style="text-align: center;">
+#538, Convert BST to Greater Tree
+</div>
+
+```
+給出二元 搜尋 樹的根節點，該樹的節點值各不相同，請你將其轉換為累加樹（Greater Sum Tree），使每個節點 node 的新值等於原樹中大於或等於 node.val 的值總和。
+
+提醒一下，二元搜尋樹符合下列限制條件：
+
+節點的左子樹僅包含鍵 小於 節點鍵的節點。 節點的右子樹僅包含鍵 大於 節點鍵的節點。 左右子樹也必須是二元搜尋樹。
+
+範例 1：
+```
+![](https://camo.githubusercontent.com/8be4afa0c646cf8565966b5e13273403c2ef31fc5f8f611721448a65cd92c2d4/68747470733a2f2f66696c652e6b616d61636f6465722e636f6d2f706963732f32303230313032333136303735313833322e706e67)
+```
+輸入：[4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]
+輸出：[30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]
+
+範例 2：
+
+輸入：root = [0,null,1]
+輸出：[1,null,1]
+
+範例 3：
+
+輸入：root = [1,0,2]
+輸出：[3,3,2]
+
+範例 4：
+
+輸入：root = [3,2,4,1]
+輸出：[7,9,4,10]
+
+提示：
+
+樹中的節點數介於 0 和 104 之間。
+每個節點的值介於 -104 和 104 之間。
+樹中的所有值 互不相同 。
+給定的樹為二元搜尋樹。
+```
+這是一棵二元搜尋樹，二元搜尋樹啊，這是有序的啊。
+
+那麼有序的元素如何求累加呢？
+
+其實這就是一棵樹，大家可能看起來有點彆扭，換一個角度來看，這就是一個有序數組[2, 5, 13]，求從後到前的累加數組，也就是[20, 18, 13]，是不是感覺這就簡單了。
+
+為什麼變成陣列就是感覺簡單了呢？
+
+因為陣列大家都知道怎麼遍歷啊，從後向前，挨個累加就完事了，這換成了二元搜尋樹，看起來就彆扭了一些是不是。
+
+那麼知道如何遍歷這個二元樹，也就迎刃而解了，從樹中可以看出累加的順序是右中左，所以我們需要反中序遍歷這個二元樹，然後順序累加就可以了。
+
+本題依然需要一個pre指標來記錄目前遍歷節點cur的前一個節點，這樣才方便做累加。(就像數組/arr 一樣)
+
+```python
+class Solution:
+    def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        self.pre = None
+        self.traversal(root)
+        return root
+
+    def traversal(self, cur):
+        if not cur:
+            return
+        self.traversal(cur.right)
+        if self.pre:
+            cur.val += self.pre.val
+        self.pre = cur
+        self.traversal(cur.left)
+```
 **To be continued...**
