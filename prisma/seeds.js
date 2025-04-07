@@ -15,13 +15,13 @@ async function main() {
 
   await prisma.post.create({
     data: {
-      id:20,
+      id:21,
       userId: 1,
-      title: 'What is Web3.0?',
-      shortdesc: 'Congratulations, you’re living in a time of transformation!',
-      content: "/posts/post15.md",
-      postTime: "2024.09.16",
-      postImg: "/blockchain.webp"
+      title: 'Leetcode 2',
+      shortdesc: 'Now, You have done the part 1 congrats, let us continue',
+      content: "/posts/post16.md",
+      postTime: "2025.04.07",
+      postImg: "/algo.webp"
     }
   });
 }
