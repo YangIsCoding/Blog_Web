@@ -10,7 +10,9 @@ const Resume = () => {
       </div>
 
       <h1>Pin-Yang Chen</h1>
-      <p>72 Argonaut Drive, Durham, North Carolina, USA | +1-919-685-2936 | pin-yang.chen@duke.edu</p>
+          <p>Address: 72 Argonaut Drive, Durham, North Carolina, USA</p>
+          <p>Phone: +1-919-685-2936</p>
+          <p>Email: pin-yang.chen@duke.edu</p>
       <p>
         Website:{" "}
         <a className={styles.link} href="https://www.chenpinyangdev.com" target="_blank">
