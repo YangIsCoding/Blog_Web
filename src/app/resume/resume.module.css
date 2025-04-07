@@ -31,3 +31,58 @@
         min-width: 300px;
     }
 }
+
+/* 只改 Resume 頁面內部的 strong 和 a 顏色 */
+.resumeContainer :global(strong) {
+  color: #4dffff !important;
+}
+
+.resumeContainer :global(a) {
+  color: white !important;
+}
+
+.resumeContainer li {
+  color: white !important;
+}
+
+.resumeContainer {
+  padding: 2rem;
+  font-family: "Helvetica", sans-serif;
+  color: #f8f8f8;
+  background-color: #111;
+}
+
+.imgContainer {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+
+
+
+
+.sectionList {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.sectionList > li {
+  margin-bottom: 1.5rem;
+}
+
+.sectionList ul {
+  list-style-type: circle;
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.sectionList li p {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+
+
+
+
+
