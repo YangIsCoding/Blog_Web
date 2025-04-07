@@ -73,7 +73,7 @@ const Resume = () => {
             <li>Automated financial reporting: Developed a system on Blockchain that processes multiple transaction types, such as currency exchange and transfers, allowing users to input transaction data and specify a time range for generating financial reports on distributed ledger.</li>
             <li>Smart contract development: Implemented robust attack prevention code and optimized the deployment process, reducing the original smart contract system deployment time by 80%.</li>
             <li>Dynamic API generation: Designed the system to instantly generate and provide Restful APIs based on user requests for specific reports, enhancing accessibility and efficiency.</li>
-            <li>Implemented unit testing, automated testing, and registry pattern: Ensured system reliability and maintainability through rigorous testing and design patterns, utilizing 300 test cases to safe customers' cryptocurrency.</li>
+            <li>Implemented unit testing, automated testing, and registry pattern: Ensured system reliability and maintainability through rigorous testing and design patterns, utilizing 300 test cases to safe customers&#39; cryptocurrency.</li>
           </ul>
         </li>
         <li>
@@ -81,7 +81,7 @@ const Resume = () => {
           <ul>
             <li>Content creation: Developed a blog website <a className={styles.link} href="https://www.chenpinyangdev.com" target="_blank">www.chenpinyangdev.com</a> to share insights on Ethereum, philosophy, and software tutorials that achieved a 1062% increase in reach within 7 days.</li>
             <li>Frontend development: Built the website using Next.js 14, ensuring a seamless user experience by retrieving data from backend APIs, designing responsive web design (RWD), and creating CSS animations.</li>
-            <li>Backend development: Implemented the backend using Node.js to generate APIs, utilized Prisma's SQLite for the database, and employed GitHub CI/CD workflows for continuous monitoring.</li>
+            <li>Backend development: Implemented the backend using Node.js to generate APIs, utilized Prisma&#39;s SQLite for the database, and employed GitHub CI/CD workflows for continuous monitoring.</li>
           </ul>
         </li>
         <li>
