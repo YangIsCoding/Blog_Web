@@ -80,6 +80,16 @@ binary tree:
 12. [106 - Construct Binary Tree from Inorder and Postorder Traversal](#106)
 13. [654 - Maximum Binary Tree](#654)
 14. [617 - Merge Two Binary Trees](#617)
+15. [700 - Search in a Binary Search Tree](#700)
+16. [530 - Minimum Absolute Difference in BST](#530)
+17. [501 - Find Mode in Binary Search Tree](#501)
+18. [236 - Lowest Common Ancestor of a Binary Tree](#236)
+19. [235 - Lowest Common Ancestor of a Binary Search Tree](#235)
+20. [701 - Insert into a Binary Search Tree](#701)
+21. [450 - Delete Node in a BST](#450)
+22. [669 - Trim a Binary Search Tree](#669)
+23. [108 - Convert Sorted Array to Binary Search Tree](#108)
+24. [538 - Convert BST to Greater Tree](#538)
 
 
 ## 性能分析:
