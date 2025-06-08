@@ -28,7 +28,7 @@ const Home = () => {
             In a world saturated with code and media, I choose to live as a person with soul and attitude.<br />
             I write articles, edit videos, and craft sound to let ideas flow.<br />
             I know the gap between ideals and reality, and I know fear and doubt will appear.<br />
-            But I choose to keep walking—with passion in my eye.<br />
+            But I choose to keep walking—with passion in my eyes.<br />
             Line by line, project by project. This blog is where I document that journey.<br />
             You’re welcome to walk alongside me.:)<br />
           </p>
