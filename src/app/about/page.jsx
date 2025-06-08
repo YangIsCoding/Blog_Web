@@ -30,9 +30,16 @@ const AboutPage = () => {
         <p className={styles.desc}>
           &quot;The world is a simulation.&quot;<br></br>
 
-This realization dawned on me during a philosophical debate on materialism versus idealism. I came to understand that the internet and server concepts are perfect metaphors for idealism. Our world is replete with virtual constructs like currency, nationality, and law - all born from collective human consensus and shaping our social fabric. These days, such constructs predominantly reside in the cloud, significantly influencing sectors like healthcare, finance, and transportation. This transition to the virtual underscores a vital truth about our society&#39;s structure. So, enhancing these virtual elements is crucial for world improvement, with computer science playing a pivotal role.
 
-          </p>
+I build systems on the blockchain because I believe that code can shape new forms of trust, value, and freedom.
+But beyond engineering, I’m equally drawn to storytelling — through words, images, and sound.
+
+To me, building and creating are two sides of the same pursuit: exploring the edges of what’s real, what’s possible, and what’s meaningful.
+In a world increasingly shaped by virtual constructs — currency, law, identity, community — I see code not just as a tool, but as a medium for shaping human experience.
+
+That’s why I infuse code with &quot;romance&quot; — a spirit of curiosity, philosophy, and aesthetic intention.
+This is a space where I share my explorations: projects I build, ideas I ponder, and stories I tell.
+        </p>
           
         <div className={styles.boxes}>
           <div className={styles.box}>

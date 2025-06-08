@@ -23,11 +23,14 @@ const Home = () => {
         <div className={styles.textContainer}>
           <h1 className={styles.title} data-text="P.Y.CHEN">P.Y.CHEN</h1>
           <p className={styles.description}>
-            Hello!<br />
-            I&#39;m Chen Pin Yang, please just call me Yang. I hold Bachelor of Science in Management Information System, with interdisciplinary certifications in Computer Programming and E-commerce.<br />
-            I have previously worked as a software engineer at ISUNCLOUD, a blockchain company.<br />
-            Currently, I am pursuing a Master degree of Fintech Program at the Pratt School of Engineering, Duke University, USA.<br /><br />
-            你好嗎! What&#39;s up!
+            I&#39;m Chen Pin Yang, an engineer and a creator, just call me Yang. <br />
+            I want to shape the future’s order with blockchain, and the freedom I seek through images and music.<br />
+            In a world saturated with code and media, I choose to live as a person with soul and attitude.<br />
+            I write articles, edit videos, and craft sound to let ideas flow.<br />
+            I know the gap between ideals and reality, and I know fear and doubt will appear.<br />
+            But I choose to keep walking—with passion in my eye.<br />
+            Line by line, project by project. This blog is where I document that journey.<br />
+            You’re welcome to walk alongside me.:)<br />
           </p>
           <div className={styles.buttons}>
             <button className="cybr-btn" onClick={handleClick} aria-label="Learn more about Chen Pin Yang">
