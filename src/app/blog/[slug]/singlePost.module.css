@@ -1,9 +1,9 @@
-/* singlePost.module.css */
+
 
 .container {
   display: flex;
   gap: 100px;
-  font-family: Arial, Helvetica, sans-serif; /* 覆盖字体 */
+  font-family: Arial, Helvetica, sans-serif;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
@@ -21,11 +21,11 @@
 }
 
 .Blogcontent {
-  max-width: 5000px; /* 限制最大宽度，避免内容溢出 */
-  overflow-x: auto; /* 当内容宽度超过容器宽度时，显示水平滚动条 */
-  padding: 20px; /* 在内容与容器边缘之间添加20px的空间 */
-  word-wrap: break-word; /* 允许长单词在必要时换行 */
-  box-sizing: border-box; /* 包括边框和内边距在元素总宽度和总高度内 */
+  max-width: 5000px;
+  overflow-x: auto;
+  padding: 20px;
+  word-wrap: break-word;
+  box-sizing: border-box;
 }
 
 .textContainer {
@@ -34,18 +34,19 @@
   flex-direction: column;
   gap: 50px;
   max-width: 800px;
-  font-family: Arial, Helvetica, sans-serif; /* 覆盖字体 */
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .title {
   font-size: 64px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* 覆盖字体 */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  word-break: break-word; /* 防止長標題爆版 */
 }
 
 .detail {
   display: flex;
   gap: 20px;
-  font-family: Arial, Helvetica, sans-serif; /* 覆盖字体 */
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .avatar {
@@ -58,7 +59,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-family: Arial, Helvetica, sans-serif; /* 覆盖字体 */
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .detailTitle {
@@ -71,11 +72,13 @@
 }
 
 .content {
-  font-family: Arial, Helvetica, sans-serif; /* 覆盖字体 */
+  font-family: Arial, Helvetica, sans-serif;
   max-width: 100%;
   width: 100%;
-  overflow-x: auto; /* 保留橫向捲動 */
+  overflow-x: auto;
   box-sizing: border-box;
+  padding: 20px; /* 桌機版保持 20px */
+  word-break: break-word; /* 防止中文字亂斷行 */
 }
 
 .content a {
@@ -83,6 +86,21 @@
   color: var(--lightYellow);
 }
 
+/* 平板版 (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .container {
+    gap: 50px;
+    padding: 0 20px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+}
+
+/* 手機版 (max-width: 768px) */
 @media (max-width: 768px) {
   .imgContainer {
     display: none;
@@ -91,7 +109,7 @@
   .container {
     flex-direction: column;
     gap: 20px;
-    padding: 0; /* 改這邊 */
+    padding: 0px;
     max-width: 100%;
     width: 100%;
   }
@@ -105,7 +123,7 @@
   .content {
     max-width: 100%;
     width: 100%;
-    padding: 0px; /* 很關鍵，保證內容左右有空間 */
+    padding: 0px;
     overflow-x: auto;
     box-sizing: border-box;
     word-break: break-word;
@@ -117,4 +135,3 @@
     word-break: break-word;
   }
 }
-
