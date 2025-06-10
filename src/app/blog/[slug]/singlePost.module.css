@@ -105,4 +105,9 @@
     max-width: 100%;
     width: 100%;
   }
+  .title {
+    font-size: 25px; /* 手機上縮小一半 */
+    line-height: 1.2; /* 避免太擠 */
+    word-wrap: break-word; /* 保證長標題換行 */
+  }
 }
