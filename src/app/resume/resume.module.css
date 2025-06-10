@@ -1,10 +1,11 @@
-.imgContainer{
-    flex:1;
+.imgContainer {
     position: relative;
     width: 100%;
-    filter:drop-shadow(0px 0px 10px rgba(0,0,0,.5)) contrast(110%);
-    min-height: 600px;
     max-width: 600px;
+    filter: drop-shadow(0px 0px 10px rgba(0,0,0,.5)) contrast(110%);
+    min-height: 600px;
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
 .link{
@@ -13,22 +14,28 @@
 
 /* 在屏幕宽度小于或等于500px时，图片宽度为100% */
 @media (max-width: 500px) {
-  .imageContainer {
-    width: 300px;
-  }
+    .imgContainer {
+        width: 100%; /* 貼齊手機螢幕 */
+        max-width: 300px;
+        min-height: 300px;
+        margin: 0 auto 1.5rem auto; /* 居中 + 下邊距 */
+    }
 }
 
+/* <=450px */
 @media(max-width: 450px){
-    .title{
-        font-size: 40px;
+    .title {
+        font-size: 32px; /* 手機版字體不要太大 */
     }
     .brandImg {
-    width: 50px; 
-    height: 50px; 
-  }
-  .imgContainer{
-        min-height: 300px;
-        min-width: 300px;
+        width: 50px;
+        height: 50px;
+    }
+    .imgContainer {
+        width: 100%;
+        max-width: 280px;
+        min-height: 280px;
+        margin: 0 auto 1.5rem auto;
     }
 }
 
@@ -46,7 +53,7 @@
 }
 
 .resumeContainer {
-  padding: 2rem;
+  padding: 5px;
   font-family: "Helvetica", sans-serif;
   color: #f8f8f8;
   background-color: #111;
@@ -56,9 +63,6 @@
   text-align: center;
   margin-bottom: 2rem;
 }
-
-
-
 
 .sectionList {
   list-style-type: none;
