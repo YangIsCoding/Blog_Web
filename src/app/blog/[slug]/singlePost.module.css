@@ -90,8 +90,8 @@
 
   .container {
     flex-direction: column;
-    gap: 12px;
-    padding: 10px;
+    gap: 20px;
+    padding: 0 12px;
     max-width: 100%;
     width: 100%;
   }
@@ -99,15 +99,21 @@
   .textContainer {
     max-width: 100%;
     width: 100%;
+    padding-bottom: 20px; /* 建議補上，避免內容黏住手機底部 */
   }
 
   .content {
     max-width: 100%;
     width: 100%;
   }
+
+  .Blogcontent {
+    padding: 12px; /* 手機上適合縮小 padding */
+  }
+
   .title {
-    font-size: 25px; /* 手機上縮小一半 */
-    line-height: 1.2; /* 避免太擠 */
-    word-wrap: break-word; /* 保證長標題換行 */
+    font-size: 28px; /* 建議 28~32px 會更平衡 */
+    line-height: 1.2;
+    word-wrap: break-word;
   }
 }
