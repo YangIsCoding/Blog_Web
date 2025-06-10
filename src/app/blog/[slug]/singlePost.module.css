@@ -4,6 +4,10 @@
   display: flex;
   gap: 100px;
   font-family: Arial, Helvetica, sans-serif; /* 覆盖字体 */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .imgContainer {
@@ -68,6 +72,10 @@
 
 .content {
   font-family: Arial, Helvetica, sans-serif; /* 覆盖字体 */
+  max-width: 100%;
+  width: 100%;
+  overflow-x: auto; /* 保留橫向捲動 */
+  box-sizing: border-box;
 }
 
 .content a {
@@ -79,25 +87,22 @@
   .imgContainer {
     display: none;
   }
-}
 
-@media (max-width: 640px) {
-  .container,
-  .content {
-    width: 475px;
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    max-width: 100%;
+    width: 100%;
   }
-}
 
-@media (max-width: 475px) {
-  .container,
-  .content {
-    width: 380px;
+  .textContainer {
+    max-width: 100%;
+    width: 100%;
   }
-}
 
-@media (max-width: 400px) {
-  .container,
   .content {
-    width: 290px;
+    max-width: 100%;
+    width: 100%;
   }
 }
