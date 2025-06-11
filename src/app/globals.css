@@ -37,6 +37,7 @@ p img {
 }
 
 pre {
+   font-size: 15px;
   background-color: #282c34;
   color: #abb2bf;
   padding: 16px;
