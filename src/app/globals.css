@@ -32,8 +32,8 @@ strong{
     font-family: 'Cyber', sans-serif;
 }
 p img {
-  max-width: 100%; /* 使图片最大宽度不超过其包含的<p>标签宽度 */
-  height: auto; /* 保持图片的原始宽高比 */
+  max-width: 100%;
+  height: auto;
 }
 
 pre {
@@ -72,16 +72,16 @@ h4{
 }
 
 pre {
-    border: 1px solid #ccc; /* 设置边框样式 */
-  max-width: 100%; /* 确保pre元素不会超过其父容器的宽度 */
-  overflow-x: auto; /* 当内容溢出时显示水平滚动条 */
-  white-space: pre-wrap; /* 保持空白符的处理方式，同时允许单词在必要时换行 */
-  word-wrap: break-word; /* 在长单词或URL地址不足以在当前行放下时进行换行 */
+    border: 1px solid #ccc; 
+  max-width: 100%; 
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word; 
 }
 
 code {
-  display: block; /* 使code元素表现为块级元素，有助于应用滚动条 */
-  white-space: pre; /* 保持格式化文本的原始空白符 */
+  display: block;
+  white-space: pre;
 }
 
 p{

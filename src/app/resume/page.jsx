@@ -91,7 +91,7 @@ const Resume = () => {
                 <li>Implemented a milestone-based funding mechanism where investors vote on fund releases, reducing the risk of fund misuse and increasing trust between parties.</li>
                 <li>Designed investor dashboards to monitor project progress, returns, and repayment status, ensuring transparency in every step of the fundraising process.</li>
                 <li>Led the development of core campaign features including project creation, investment, repayment, and investor protection through collateral and refund logic.</li>
-                <li>LedgerVest: <a className={styles.link} href="https://ledgervest.colab.duke.edu/" target="_blank">https://ledgervest.colab.duke.edu/</a></li>
+                <li>LedgerVest: <a className={styles.link} href="www.myledgervest.com" target="_blank">www.myledgervest.com</a></li>
             </ul>
         </li>
 
