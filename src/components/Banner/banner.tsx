@@ -39,7 +39,7 @@ export default function ChainBanner() {
             isPaused ? styles.scrollPaused : styles.scrollRunning
           }`}
         >
-                  <span className={styles.greenDot}>Don't be scared!&nbsp;Believe in Love &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🌏</span>
+                  <span className={styles.greenDot}>Don&apos;t be scared!&nbsp;Believe in Love &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🌏</span>
                   
             {prices.map((coin) => (
                 <span key={coin.symbol} className={styles.token}>
