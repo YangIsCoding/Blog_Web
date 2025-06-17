@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import styles from './ledgervest.module.css';
 
 export const metadata = {
   title: 'LedgerVest | My Decentralized Fundraising Platform',
@@ -12,13 +13,12 @@ export default function LedgerVestPage() {
   return (
     <div className="container mx-auto px-4 py-12">
 
-<div className="mb-10 max-w-4xl mx-auto">
+<div className="max-w-4xl mx-auto mb-10">
   <Link href="https://www.myledgervest.com" target="_blank">
-    <div className="border border-gray-300 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:border-blue-500 transition-all duration-300 cursor-pointer">
+    <div className={styles.imageWrapper}>
       <Image
         src="/ledgerVest.webp"
         alt="LedgerVest Preview"
-        layout="responsive"
         width={1280}
         height={720}
       />
