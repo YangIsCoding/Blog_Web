@@ -10,7 +10,8 @@ const links = [
         { title: "Contact", path: "/contact" },
         { title: "Blog", path: "/blog" },
     { title: "Résumé", path: "/resume" },
-    {title: "LVT", path: "/ledgervest"}
+    { title: "LVT", path: "/ledgervest" },
+    { title: "Support", path: "/donate" },
 ];
     
 const Links = () => { 

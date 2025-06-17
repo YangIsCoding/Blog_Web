@@ -6,8 +6,10 @@ import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/footer/Footer';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Providers } from './providers';
 
 export const metadata = {
+  metadataBase: new URL('https://www.chenpinyangdev.com'),
   title: 'P.Y.CHEN - Home',
   description: "Chen Pin Yang's personal portfolio, showcasing skills, experience, and projects in Fintech and software development.",
   openGraph: {
@@ -36,13 +38,15 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
+      <Providers>
         <div className="container">
           <Navbar />
           {children}
           <Footer />
         </div>
         <Analytics />
-        <SpeedInsights />
+          <SpeedInsights />
+      </Providers>
       </body>
     </html>
   );
