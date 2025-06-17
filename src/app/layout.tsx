@@ -7,6 +7,7 @@ import Footer from '@/components/footer/Footer';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Providers } from './providers';
+import ChainBanner from '@/components/Banner/banner';
 
 export const metadata = {
   metadataBase: new URL('https://www.chenpinyangdev.com'),
@@ -40,7 +41,8 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
       <body className={inter.className}>
       <Providers>
         <div className="container">
-          <Navbar />
+            <Navbar />
+            <ChainBanner />
           {children}
           <Footer />
         </div>
